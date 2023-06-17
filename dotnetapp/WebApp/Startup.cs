@@ -10,11 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WebApp.Context;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 
 namespace WebApp
 {
@@ -24,15 +19,6 @@ namespace WebApp
         {
             Configuration = configuration;
         }
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCors(option =>{option.AddPolicy("Mypolicy", builder =>{builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();});});
-            services.AddSwaggerGen(c =>{c.SwaggerDoc("v2", new OpenApiInfo { Title = "WebApp", Version = "v2" });});
-            services.AddAuthorization(); // add the required services for authorization
-            services.AddControllers(); 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnStr")));
-            
-          }
 
         public IConfiguration Configuration { get; }
 
@@ -42,13 +28,6 @@ namespace WebApp
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>{c.SwaggerEndpoint("/swagger/v2/swagger.json", "WebApp");});
-            
-            app.UseCors("Mypolicy");
-
-            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
