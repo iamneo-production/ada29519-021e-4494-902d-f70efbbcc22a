@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 is_global = true
 build_property.TargetFramework = net5.0
 build_property.TargetPlatformMinVersion = 
@@ -12,6 +13,8 @@ build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = WebApp
 build_property.ProjectDir = /home/coder/project/workspace/dotnetapp/WebApp/
 =======
+=======
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
@@ -28,6 +31,9 @@ build_property.RootNamespace = WebApp
 build_property.ProjectDir = e:\virtusa_phase2\projects\DotNet\ServiceAngular\dotnetapp\WebApp\
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+=======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61

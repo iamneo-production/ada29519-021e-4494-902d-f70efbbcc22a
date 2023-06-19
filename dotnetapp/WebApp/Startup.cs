@@ -13,11 +13,14 @@ using Microsoft.Extensions.Logging;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 using WebApp.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+=======
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
@@ -36,6 +39,7 @@ namespace WebApp
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(option =>{option.AddPolicy("Mypolicy", builder =>{builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();});});
@@ -45,6 +49,8 @@ namespace WebApp
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnStr")));
             
           }
+=======
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
@@ -63,6 +69,7 @@ namespace WebApp
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>{c.SwaggerEndpoint("/swagger/v2/swagger.json", "WebApp");});
@@ -70,6 +77,8 @@ namespace WebApp
             app.UseCors("Mypolicy");
 
             app.UseAuthentication();
+=======
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
