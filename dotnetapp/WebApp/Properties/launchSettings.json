@@ -14,7 +14,11 @@
       "launchBrowser": true,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       "applicationUrl": "http://0.0.0.0:8080",
+=======
+      "applicationUrl": "https://localhost:7079;http://localhost:5061",
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
       "applicationUrl": "https://localhost:7079;http://localhost:5061",
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61

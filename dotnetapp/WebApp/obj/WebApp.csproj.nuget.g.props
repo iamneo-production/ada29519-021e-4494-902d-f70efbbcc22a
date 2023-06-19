@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
@@ -30,6 +31,8 @@
 =======
 =======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+=======
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
@@ -45,6 +48,9 @@
     <SourceRoot Include="C:\Users\bhuva\.nuget\packages\" />
   </ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+=======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 =======
 >>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
