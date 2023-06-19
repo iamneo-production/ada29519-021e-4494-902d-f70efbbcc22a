@@ -1,0 +1,25 @@
+<div class="backgroundui">
+  <div class="bgcolor">
+    <div class="left">
+     
+      <h1 style="color:azure">Welcome to AC Service Management System</h1>
+      <h3 style="color:azure">Please login to book appointments.</h3>
+
+    </div>
+    <div class="right">
+      <h1 style="color:azure;text-align: center;">LOGIN</h1>
+      
+
+      <div class="inputs">
+        <form [formGroup]="LoginForm">
+          <input formControlName="email" type="email" placeholder="Email" id="email" />
+          <small *ngIf="LoginForm.controls['email'].dirty && LoginForm.hasError('email','email')">*email is required</small>
+          <input formControlName="password" type="password" placeholder="password" id="password" />
+          <small *ngIf="LoginForm.controls['password'].dirty && LoginForm.hasError('required','password')">*password isrequired</small>
+        </form>
+      </div>
+      <button (click)="onlogin()" type="submit" id="loginButton">login</button>
+      <p style="color:azure">New User/admin? <a routerLink="/signup" id="signupLink">Sign up</a>.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<app-user></app-user>
+
+<body>
+  <br>
+  <div class="row" id="dashBoardBody">
+    <div class="container col">
+      <div class="card-container">
+        <div class="card" id="{{grid}}">
+          <img src={{serviceimage}} alt="Image" class="img" id="productImage">
+
+          <div class="card-details">
+            <h3>{{serviceName}}</h3>
+            <hr>
+            <p>MailID : {{ servicemailid }}</p>
+            <p>Phone : {{ servicePhone }}</p>
+            <p>Timing : 00:00-23:59</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container col">
+      <div class="form">
+        <h1>Enter the details</h1>
+        <form [formGroup]="productdetails">
+          <input type="text" placeholder="Enter the name of the product" id="enterProductName"
+            formControlName="productName">
+          <small
+            *ngIf="productdetails.controls['productName'].dirty && productdetails.hasError('required','productName')">Product
+            name is required</small>
+
+          <input type="text" placeholder="Enter the model no of the product" id="enterModelNo"
+            formControlName="productModelNo">
+          <small
+            *ngIf="productdetails.controls['productModelNo'].dirty && productdetails.hasError('required','productModelNo')">availableSlots
+            is required</small>
+
+          <input type="date" placeholder="Enter the date of purchase" id="enterDateOfPurchase"
+            formControlName="dateOfPurchase">
+          <small
+            *ngIf="productdetails.controls['dateOfPurchase'].dirty && productdetails.hasError('required','dateOfPurchase')">ProductDateOfPurchase
+            is required</small>
+
+          <input type="tel" placeholder="Enter the contact number" id="enterContactNumber"
+            formControlName="contactNumber">
+          <small
+            *ngIf="productdetails.controls['contactNumber'].dirty && productdetails.hasError('required','contactNumber')">contactNumber
+            is required</small>
+
+          <textarea placeholder="Enter problem of the product" id="enterProblem"
+            formControlName="problemDescription"></textarea>
+          <small
+            *ngIf="productdetails.controls['problemDescription'].dirty && productdetails.hasError('required','problemDescription')">problemDescription
+            is required</small>
+          <br>
+          <h3>Book the Slots</h3>
+
+          <div class="slots">
+
+            <select id="selectDate" formControlName="date" placeholder="Choose the DATE">
+              <option value="" disabled selected>Select a date</option>
+              <ng-container *ngFor="let slot of availableSlots">
+                <option [value]="slot.date">{{ slot.date }}</option>
+              </ng-container>
+            </select>
+            <small *ngIf="productdetails.controls['date'].dirty && productdetails.hasError('required', 'date')">
+              Date is required
+            </small>
+
+
+            <select id="selectTime" formControlName="time" placeholder="Choose the time slot">
+              <option value="" disabled selected>Select a time</option>
+              <ng-container *ngFor="let slot of availableSlots">
+                <ng-container *ngIf="slot.date === productdetails.value.date">
+                  <option *ngFor="let timeSlot of slot.times" [value]="timeSlot.time" [disabled]="timeSlot.isBooked">
+                    {{ timeSlot.time }}
+                  </option>
+                </ng-container>
+              </ng-container>
+            </select>
+            <small
+              *ngIf="productdetails.controls['time'].dirty && productdetails.controls['time'].hasError('required')">
+              Time is required
+            </small>
+
+
+
+          </div>
+
+          <button (click)="onbook()" type="submit" id="bookButton">BOOK</button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+  <br>
+</body>

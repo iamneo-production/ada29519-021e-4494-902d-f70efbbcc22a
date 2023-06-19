@@ -1,0 +1,119 @@
+<app-user></app-user>
+
+  <body>
+
+  
+  <div class="bgcolor" id="myBookingBody">
+      <div class="container">
+      <br>
+      <div class="alert" *ngIf="AppointmentArr.length===0">
+        <h1>NO BOOKING</h1>
+      </div>
+      <table class="table table-striped" *ngIf="AppointmentArr.length>0">
+          <thead>
+              <tr>
+              <th>#</th>
+              <th>NAME</th>
+              <th>DATE</th>
+              <th>TIMING</th>
+              <th>ACTION</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of AppointmentArr ;let i=index">
+              <td>{{ i + 1 }}</td>
+              <td id="centerName{{i+1}}">{{app.servicecenter}}</td>
+              <td>{{app.date}}</td>
+              <td>{{app.time}}</td>
+              <td >
+                <button class="btn-link"(click)="fillappointment(app)"  id="editBooking">Edit</button>
+               
+                <button class="btn-link"(click)="deleteappointment(app.id)"  id="deleteBooking">Delete</button>
+              </td>
+          </tr>
+          </tbody>
+          
+      </table>
+    </div>
+      <div class="right-half-container">
+        <div class="box-form">
+          <div class="right">
+            <div class="inputs">
+              <h1>Enter the details</h1>
+              <form [formGroup]="EditAppointment">
+                <input type="text" placeholder="Enter the name of the product" id="editProductName"
+                  formControlName="productName">
+                <small
+                  *ngIf="EditAppointment.controls['productName'].dirty && EditAppointment.hasError('required','productName')">Product
+                  name is required</small>
+  
+                <input type="text" placeholder="Enter the model no of the product" id="editModelNo"
+                  formControlName="productModelNo">
+                <small
+                  *ngIf="EditAppointment.controls['productModelNo'].dirty && EditAppointment.hasError('required','productModelNo')">productModelNo
+                  is required</small>
+  
+                <input type="date" placeholder="Enter the date of purchase" id="editDateOfPurchase"
+                  formControlName="dateOfPurchase">
+                <small
+                  *ngIf="EditAppointment.controls['dateOfPurchase'].dirty && EditAppointment.hasError('required','dateOfPurchase')">ProductDateOfPurchase
+                  is required</small>
+  
+                <input type="tel" placeholder="Enter the contact number" id="editContactNumber"
+                  formControlName="contactNumber">
+                <small
+                  *ngIf="EditAppointment.controls['contactNumber'].dirty && EditAppointment.hasError('required','contactNumber')">contactNumber
+                  is required</small>
+  
+                <textarea placeholder="Enter problem of the product" id="enterProblem"
+                  formControlName="problemDescription"></textarea>
+                <small
+                  *ngIf="EditAppointment.controls['problemDescription'].dirty && EditAppointment.hasError('required','problemDescription')">problemDescription
+                  is required</small>
+                  <br>
+                  <h3>Book the Slots</h3>
+  
+                <div class="slots">
+  
+                <select id="selectDate" formControlName="date"placeholder="Choose the DATE">
+                  <option value="" disabled selected>Select a date</option>
+                  <ng-container *ngFor="let slot of availableSlots">
+                    <option [value]="slot.date">{{ slot.date }}</option>
+                  </ng-container>
+                </select>
+                <small
+                  *ngIf="EditAppointment.controls['date'].dirty && EditAppointment.hasError('required', 'date')">
+                  Date is required
+                </small>
+  
+  
+                <select id="selectTime" formControlName="time" placeholder="Choose the time slot">
+                  <option value="" disabled selected>Select a time</option>
+                  <ng-container *ngFor="let slot of availableSlots" >
+                    <ng-container *ngIf="slot.date === EditAppointment.value.date">
+                      <option *ngFor="let timeSlot of slot.times" [value]="timeSlot.time" [disabled]="timeSlot.isBooked">
+                        {{ timeSlot.time }}
+                      </option>
+                    </ng-container>
+                  </ng-container>
+                </select>
+                <small *ngIf="EditAppointment.controls['time'].dirty && EditAppointment.controls['time'].hasError('required')">
+                  Time is required
+                </small>
+  
+              </div>
+  
+                <button class="btn-link"(click)="Update()" type="submit" id="updateBooking">Update</button>
+              </form>
+            </div>
+          </div>
+        </div>
+    
+      <br>
+      </div>
+  </div>
+
+  
+  </body>
+  
+    
