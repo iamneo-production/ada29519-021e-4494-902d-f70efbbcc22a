@@ -1,0 +1,112 @@
+.card {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .card-body {
+    background: url('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=996&t=st=1684130719~exp=1684131319~hmac=53f5f0f19aedb8281a056a84fa260f080c106c7da4043cb6b6c7dd6c4a54d54a') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  @media (min-width: 768px) {
+    .card {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+  }
+  
+  
+  h1, h3 {
+    font-weight: bold;
+    color: #1E90FF;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-label {
+    font-weight: bold;
+    color: #1E90FF;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 15px 25px;
+    font-size: 16px;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.3);
+    border-color: transparent;
+  }
+  
+  .btn-primary {
+    background-color: #1E90FF;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4E9AFF;
+  }
+  
+  a {
+    color: #1E90FF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  a:hover {
+    color: #4E9AFF;
+  }
+  
+  .text-danger {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #dc3545;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+  }
+  
+  .text-danger.show {
+    opacity: 1;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .d-block {
+    display: block;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  @media screen and (max-width: 576px) {
+    .form-control {
+      font-size: 14px;
+      padding: 12px 20px;
+    }
+  
+    .btn-primary {
+      padding: 12px 20px;
+    }
+  }
+  
