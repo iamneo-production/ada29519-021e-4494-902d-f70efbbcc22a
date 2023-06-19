@@ -18,7 +18,7 @@ import { ShareService } from './services/share.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { TestComponent } from './component/test/test.component';
+
 
 
 
@@ -37,8 +37,7 @@ import { TestComponent } from './component/test/test.component';
     UserComponent,
     DashboardComponent,
     AppointmentComponent,
-    HomepageComponent,
-    TestComponent
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
