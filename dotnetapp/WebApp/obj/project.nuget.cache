@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "version": 2,
   "dgSpecHash": "YQU6EG9sISHowm8/cQMBiBHVkfl4vueupTV/Go5VjIPbXx/eO7HxuJbD74UKmMf4es5GCiroOIBuW6zq5QcXvg==",
@@ -171,4 +172,13 @@
     "/home/coder/.nuget/packages/system.xml.xmlserializer/4.3.0/system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
+=======
+{
+  "version": 2,
+  "dgSpecHash": "5bGeHpmvHpLLgdGkocBQ3mPHP/mCF+Nur+y5W6PlTyO25lrXUMrJ4nD2MhLh788fjkPZ0tWz4w/MECTGqInE3Q==",
+  "success": true,
+  "projectFilePath": "E:\\virtusa_phase2\\projects\\DotNet\\AcademyAngularDotNet\\dotnetapp\\WebApp\\WebApp.csproj",
+  "expectedPackageFiles": [],
+  "logs": []
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
 }
