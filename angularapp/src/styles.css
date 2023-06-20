@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.backgroundui {
+  font-family: Arial, sans-serif;
+  background-image: url("https://img.freepik.com/free-photo/blue-teal-sand-paper_53876-92791.jpg?size=626&ext=jpg&ga=GA1.2.1796158635.1680273435&semt=ais");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body{
+  background-color: lightblue;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+/* @import '~bootstrap/dist/css/bootstrap.css'; */
+
+/*   
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

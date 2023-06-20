@@ -1,0 +1,69 @@
+<app-admin></app-admin>
+
+<body>
+
+    <div class="form">
+        <br>
+        <h6>EDIT SERVICE CENTER</h6>
+        <form [formGroup]="editCenter">
+
+            <input formControlName="serviceCenterName" type="text" placeholder="Enter the ServiceCenter name"
+                id="editName" />
+            <small
+                *ngIf="editCenter.controls['serviceCenterName'].dirty && editCenter.hasError('required','serviceCenterName')">Center
+                name is required</small>
+
+            <input formControlName="serviceCenterPhone" type="tel" placeholder="Center Number" id="editNumber" />
+            <small
+                *ngIf="editCenter.controls['serviceCenterPhone'].dirty && editCenter.hasError('required','serviceCenterPhone')">Center
+                Number is required</small>
+
+            <textarea formControlName="serviceCenterAddress" placeholder="Center Address" id="editAddress"></textarea>
+            <small
+                *ngIf="editCenter.controls['serviceCenterAddress'].dirty && editCenter.hasError('required','serviceCenterAddress')">Center
+                address is required</small>
+
+            <input formControlName="serviceCenterImageUrl" type="url" placeholder="Center image" id="editImageUrl" />
+            <small
+                *ngIf="editCenter.controls['serviceCenterImageUrl'].dirty && editCenter.hasError('required','serviceCenterImageUrl')">imageURL
+                is required</small>
+
+            <input formControlName="serviceCenteramailId" type="email" placeholder="Center Mail ID" id="editEmail" />
+            <small
+                *ngIf="editCenter.controls['serviceCenteramailId'].dirty && editCenter.hasError('required','serviceCenteramailId')">Email
+                is required</small>
+
+            <textarea formControlName="serviceCenterDescription" placeholder="About Center"
+                id="editCenterDescripition"></textarea>
+            <small
+                *ngIf="editCenter.controls['serviceCenterDescription'].dirty && editCenter.hasError('required','serviceCenterDescription')">Center
+                Description
+                is required</small>
+        </form>
+        <button (click)="onedit()" type="submit" id="updateButton">UPDATE</button>
+
+
+    </div>
+    <div class="form1">
+        <div class="container">
+            <div *ngIf="servicesarr.length==0" class="alert">
+                NO service found
+            </div>
+            <div class="temp" *ngIf="servicesarr.length>0" id="adminProfileView">
+                <div *ngFor="let ser of servicesarr" class="gray-container">
+                    <img src="{{ser.serviceCenterImageUrl}}" width="450" height="250">
+
+                    <div>
+                        <h3>Center Name: {{ser.serviceCenterName}}</h3>
+                        <h3>Contact Number: {{ser.serviceCenterPhone}}</h3>
+                        <h3>Contact Number: {{ser.serviceCenteramailId}}</h3>
+                        <button (click)="updateform(ser);scrollPageToTop()" id="editCenter">Edit</button>
+
+                        <button (click)="ondelete(ser.serviceCenterID)" id="deleteCenter">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>

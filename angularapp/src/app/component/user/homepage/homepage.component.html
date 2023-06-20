@@ -1,0 +1,40 @@
+<body>
+  <app-user></app-user>
+
+  <div class="homeBody" id="homeBody">
+    <div class="body">
+      <div class="container mt-4">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form class="form-inline">
+              <div class="input-group mr-lg-4">
+                <!-- <input class="form-control" type="text" [(ngModel)]="search" placeholder="Type here to Search" aria-label="Search"><br> -->
+                <input type="text" name="search" [(ngModel)]="search" placeholder="search" class="form-control">
+                &nbsp;&nbsp;&nbsp;
+                <button style="background-color: darkblue; color: white;" id="searchButton" type="submit">Search</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div *ngIf="servicesarr.length==0" class="alert alert-info">
+      NO service found
+    </div>
+    <div class="temp" *ngIf="servicesarr.length>0">
+      <div *ngFor="let ser of servicesarr |filter:search; let i=index" routerLink="/user/dashboard" class="grid-item" (click)="getServiceCenter('grid' + (i+1), ser.serviceCenterName, ser.serviceCenterPhone, ser.serviceCenteramailId, ser.serviceCenterImageUrl)">
+        <div class="item" [id]="'grid' + (i+1)">
+          <img [src]="ser.serviceCenterImageUrl" alt="Grid Image" class="grid-image" />
+          <div class="grid-details">
+            <h3 class="grid-name">{{ ser.serviceCenterName }}</h3>
+            <p class="grid-place">Address: {{ ser.serviceCenterAddress }}</p>
+            <p class="grid-des">Description: {{ ser.serviceCenterDescription }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,37 @@
+<app-admin></app-admin>
+
+<body>
+
+  
+  <div class="container col">
+      <div class="form">
+            <h2 style="text-align: center;">ADD SERVICE CENTER</h2>
+            <form [formGroup]="addCenter">
+              <input formControlName="serviceCenterName" type="text" placeholder="Enter the ServiceCenter name" id="addName" />
+              <small *ngIf="addCenter.controls['serviceCenterName'].dirty && addCenter.hasError('required','serviceCenterName')">Center name is required</small>
+    
+              <input formControlName="serviceCenterPhone" type="tel" placeholder="Center Number" id="addNumber" />
+              <small *ngIf="addCenter.controls['serviceCenterPhone'].dirty && addCenter.hasError('required','serviceCenterPhone')">Phone Number is required</small>
+    
+              <textarea formControlName="serviceCenterAddress" placeholder="Center Address" id="addAddress"></textarea>
+              <small *ngIf="addCenter.controls['serviceCenterAddress'].dirty && addCenter.hasError('required','serviceCenterAddress')">Center address is required</small>
+    
+              <input formControlName="serviceCenterImageUrl" type="url" placeholder="Center image" id="addImageUrl" />
+              <small *ngIf="addCenter.controls['serviceCenterImageUrl'].dirty && addCenter.hasError('required','serviceCenterImageUrl')">imageURL is required</small>
+    
+              <input formControlName="serviceCenteramailId" type="email" placeholder="Center Mail ID" id="addEmail" />
+              <small *ngIf="addCenter.controls['serviceCenteramailId'].dirty && addCenter.hasError('required','serviceCenteramailId')">Email is required</small>
+    
+              <textarea formControlName="serviceCenterDescription" placeholder="About Center" id="addCentreDescripition"></textarea>
+              <small *ngIf="addCenter.controls['serviceCenterDescription'].dirty && addCenter.hasError('required','serviceCenterDescription')">Center Description is required</small>
+    
+              <br><br>
+              <button (click)="onadd()" type="submit" id="addButton" style="align-content: center;">ADD</button>
+            </form>
+          </div>
+          
+        </div>
+  </body>
+  
+  
+  
