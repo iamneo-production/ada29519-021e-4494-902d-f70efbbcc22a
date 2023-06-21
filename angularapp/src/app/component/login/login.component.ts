@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       if(passwordValue==='admin'){
         this.auth.adminlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            alert(res.message);
+            
               this.router.navigate(['admin']);
           },
           error: (err) => {
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       else{
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            alert(res.message);
+            
               this.router.navigate(['user']);
           },
           error: (err) => {

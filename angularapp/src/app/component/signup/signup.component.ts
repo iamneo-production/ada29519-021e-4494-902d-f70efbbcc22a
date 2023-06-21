@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
         this.auth.adminsignup(this.SignupForm.value)
         .subscribe({
           next: (res => {
-            alert(res.message)
+            
             this.SignupForm.reset();
             this.router.navigate(['login']);
           })
@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
         this.auth.usersignup(this.SignupForm.value)
           .subscribe({
             next: (res => {
-              alert(res.message)
+              
               this.SignupForm.reset();
               this.router.navigate(['login']);
             })

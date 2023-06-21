@@ -131,6 +131,7 @@ export class DashboardComponent implements OnInit {
       console.log(this.productdetails.value);
       this.appointment.bookappointment(this.productdetails.value).subscribe(response => {
         console.log(response);
+        this.productdetails.reset()
       });
     }
   }
