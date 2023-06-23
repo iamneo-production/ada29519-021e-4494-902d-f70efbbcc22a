@@ -1,5 +1,5 @@
 
-import { Component, Inject, Injectable, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateForm';
@@ -14,19 +14,33 @@ import sharing from 'src/app/helpers/validateForm';
 })
 
 export class LoginComponent implements OnInit {
+  @ViewChild('loginButton') loginButton!: ElementRef;
+
   LoginForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder, 
-    private auth: AuthService, 
+    private fb: FormBuilder,
+    private auth: AuthService,
     private router: Router,
-    private share:ShareService) {}
+    private elRef: ElementRef
+  ) {}
 
   ngOnInit(): void {
+    const storedEmail = localStorage.getItem('semail');
+    const storedPassword = localStorage.getItem('spassword');
     this.LoginForm = this.fb.group({
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', Validators.required]
+      email: [storedEmail || '', [Validators.email, Validators.required]],
+      password: [storedPassword || '', Validators.required]
     });
+
+    if (storedEmail && storedPassword) {
+      setTimeout(() => {
+        const loginButton = this.elRef.nativeElement.querySelector('#loginButton');
+        loginButton.click(); 
+        localStorage.removeItem('semail')
+        localStorage.removeItem('spassword')
+      });
+    }
   }
 
   onlogin() {
@@ -34,32 +48,29 @@ export class LoginComponent implements OnInit {
       console.log(this.LoginForm.value);
       const passwordValue = this.LoginForm.get('password')?.value;
       const email = this.LoginForm.get('email')?.value;
-      localStorage.setItem('email',email)
-      if(passwordValue==='admin'){
+      localStorage.setItem('email', email);
+      if (passwordValue === 'admin') {
         this.auth.adminlogin(this.LoginForm.value).subscribe({
           next: (res) => {
             alert(res.message);
-              this.router.navigate(['admin']);
+            this.router.navigate(['admin']);
           },
           error: (err) => {
             alert(err?.error.message);
           }
         });
-      }
-      else{
+      } else {
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
             alert(res.message);
-              this.router.navigate(['user']);
+            this.router.navigate(['user']);
           },
           error: (err) => {
             alert(err?.error.message);
           }
         });
       }
-      
-    }
-     else {
+    } else {
       ValidateForm.validateAllFormFileds(this.LoginForm);
       alert('Form is invalid');
     }

@@ -25,9 +25,9 @@
       NO service found
     </div>
     <div class="temp" *ngIf="servicesarr.length>0">
-      <div *ngFor="let ser of servicesarr |filter:search; let i=index" routerLink="/user/dashboard" class="grid-item" (click)="getServiceCenter('grid' + (i+1), ser.serviceCenterName, ser.serviceCenterPhone, ser.serviceCenteramailId, ser.serviceCenterImageUrl)">
+      <div *ngFor="let ser of servicesarr |filter:search; let i=index" class="grid-item" (click)="getServiceCenter('grid' + (i+1), ser.serviceCenterName, ser.serviceCenterPhone, ser.serviceCenteramailId, ser.serviceCenterImageUrl)">
         <div class="item" [id]="'grid' + (i+1)">
-          <img [src]="ser.serviceCenterImageUrl" alt="Grid Image" class="grid-image" />
+          <img [src]="ser.serviceCenterImageUrl" alt="Grid Image"  class="grid-image" />
           <div class="grid-details">
             <h3 class="grid-name">{{ ser.serviceCenterName }}</h3>
             <p class="grid-place">Address: {{ ser.serviceCenterAddress }}</p>

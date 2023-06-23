@@ -13,6 +13,7 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class DashboardComponent implements OnInit {
 
+
   serviceName: string = '';
   servicePhone: string = '';
   servicemailid: string = ''
@@ -131,8 +132,8 @@ export class DashboardComponent implements OnInit {
       console.log(this.productdetails.value);
       this.appointment.bookappointment(this.productdetails.value).subscribe(response => {
         console.log(response);
+        this.productdetails.reset()
       });
-      this.productdetails.reset()
     }
   }
 
