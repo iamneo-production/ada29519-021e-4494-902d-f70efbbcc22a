@@ -142,6 +142,7 @@ this.appointments.cancelappointment(Id).subscribe(res=>{
       console.log(response)
       this.getappointment()
     })
+    this.EditAppointment.reset()
   }
   }
 }

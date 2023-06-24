@@ -33,7 +33,5 @@ export class HomepageComponent implements OnInit {
     localStorage.setItem("grid",grid)
 
   }
-  
-  
 
 }
