@@ -11,8 +11,11 @@ p {
   padding-top: 50px;
 }
 
-body {
+body{
   background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid-item {

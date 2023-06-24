@@ -32,12 +32,16 @@ export class SignupComponent implements OnInit {
 
     if (this.SignupForm.valid) {
       const usertype = this.SignupForm.get('userRole')?.value
+      const smail=this.SignupForm.get('email')?.value
+      const spwd=this.SignupForm.get('password')?.value
       console.log(this.SignupForm.value);
+      
       if (usertype === 'admin') {
         this.auth.adminsignup(this.SignupForm.value)
         .subscribe({
           next: (res => {
-            
+            localStorage.setItem("Semail",smail)
+      localStorage.setItem("Spwd",spwd)
             this.SignupForm.reset();
             this.router.navigate(['login']);
           })
@@ -50,6 +54,8 @@ export class SignupComponent implements OnInit {
         this.auth.usersignup(this.SignupForm.value)
           .subscribe({
             next: (res => {
+              localStorage.setItem("Semail",smail)
+      localStorage.setItem("Spwd",spwd)
               
               this.SignupForm.reset();
               this.router.navigate(['login']);

@@ -9,11 +9,14 @@
     <div class="inputs">
       <br>
       <form [formGroup]="SignupForm">
-        <select formControlName="userRole" id="admin/user">
+        <!-- <select formControlName="userRole" id="admin/user">
           <option value="">select</option>
           <option  value="user">User</option>
           <option  value="admin">Admin</option>
-        </select>
+        </select> -->
+
+        <input formControlName="userRole" type="text" placeholder="UserRole" id="admin/user" />
+
         <small *ngIf="SignupForm.controls['userRole'].dirty && SignupForm.hasError('required','userRole')">userType is required</small>
   
         <input formControlName="email" type="email" placeholder="Email" id="email" />
