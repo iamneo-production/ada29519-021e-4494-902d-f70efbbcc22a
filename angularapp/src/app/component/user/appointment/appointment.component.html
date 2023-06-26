@@ -26,10 +26,10 @@
             <td>{{app.date}}</td>
             <td>{{app.time}}</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="fillappointment(app)" id="editBooking" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="submit" class="btn btn-primary" (click)="fillappointment(app)" id="editBooking" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 EDIT
               </button>
-              <button type="button" class="btn btn-primary" (click)="deleteappointment(app.id)" id="deleteBooking">
+              <button type="submit" class="btn btn-primary" (click)="deleteappointment(app.id)" id="deleteBooking">
                 DELETE
               </button>
             </td>

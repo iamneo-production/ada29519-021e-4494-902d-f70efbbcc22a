@@ -11,24 +11,22 @@ p {
   padding-top: 50px;
 }
 
-body{
+body {
   background-color: lightblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .grid-item {
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   width: calc(33.33% - 20px);
   border-radius: 20px;
   height: 480px;
-  background-color: pink;
+  background-color: lavender;
   cursor: pointer;
   margin: 10px;
   padding: 10px;
   box-sizing: border-box;
   float: left;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 }
 
 /* Clearfix for every third item */
