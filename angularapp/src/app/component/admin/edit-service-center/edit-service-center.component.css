@@ -1,11 +1,6 @@
 body{
   background-color: lightblue;
 }
-
-
-
-
-
 @media (max-width: 768px) {
   .form,
   .form1 {
@@ -13,11 +8,6 @@ body{
     float: none;
   }
 }
-
-
-
-
-
 .form button {
   padding: 10px 20px;
   background-color:palevioletred;
@@ -27,7 +17,6 @@ body{
   cursor: pointer;
 }
 
-/* Cards */
 .container {
   padding: 20px;
 }
@@ -65,7 +54,6 @@ body{
   margin-right: 10px;
 }
 
-/* Additional styles */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -129,12 +117,10 @@ small {
   float: left;
 }
 
-/* Clearfix for every third item */
 .grid-item:nth-child(4n+1) {
   clear: left;
 }
 
-/* Clearfix for the last row if it contains less than three items */
 .grid-container::after {
   content: "";
   display: table;
@@ -157,7 +143,6 @@ small {
 }
 
 .grid-item button {
-  /* background-color: #090c09; */
   color: #fff;
   border: none;
   padding: 8px 16px;
@@ -178,14 +163,12 @@ p {
 }
 
 @media (max-width: 768px) {
-  /* Adjust grid item width for smaller screens */
   .grid-item {
     width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 576px) {
-  /* Adjust grid item width for even smaller screens */
   .grid-item {
     width: calc(100% - 20px);
   }

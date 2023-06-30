@@ -19,5 +19,7 @@ namespace acservice.Database
 
         public DbSet<AdminModel> Admins { get; set; }
         public DbSet<LoginModel> LoginModels { get; set; }
+        public DbSet<ReviewModels> Reviews { get; set; }
+        public DbSet<BillModel> Bills { get; set; }
     }
 }

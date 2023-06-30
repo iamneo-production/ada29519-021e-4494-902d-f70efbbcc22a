@@ -32,9 +32,7 @@ export class AuthService {
   addCenterDB(centerobj:any){
     return this.http.post<any>(`${this.addserviceCenterURL}`,centerobj)
   }
-  // editCenterDB(centerobj:any){
-  //   return this.http.post<any>(`${this.AddCenterURL}`,centerobj)
-  // }
+
   onBookDB(centerobj:any){
     console.log(centerobj)
     return this.http.post<any>(`${this.AddBookingURL}`,centerobj)

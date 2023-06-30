@@ -12,6 +12,7 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class SignupComponent implements OnInit {
 
+  signupButtonText:string="signup"
   SignupForm!: FormGroup;
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private share: ShareService) {
 
@@ -31,6 +32,7 @@ export class SignupComponent implements OnInit {
   onsignup() {
 
     if (this.SignupForm.valid) {
+      this.signupButtonText = 'Loading...';
       const usertype = this.SignupForm.get('userRole')?.value
       const smail=this.SignupForm.get('email')?.value
       const spwd=this.SignupForm.get('password')?.value
@@ -46,6 +48,7 @@ export class SignupComponent implements OnInit {
             this.router.navigate(['login']);
           })
           , error: (err => {
+            this.signupButtonText = 'signup'
             alert(err?.error.message)
           })
         })
@@ -61,6 +64,7 @@ export class SignupComponent implements OnInit {
               this.router.navigate(['login']);
             })
             , error: (err => {
+              this.signupButtonText = 'signup'
               alert(err?.error.message)
             })
           })

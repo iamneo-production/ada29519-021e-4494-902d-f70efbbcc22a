@@ -9,9 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   @ViewChild('loginButton') loginButton!: ElementRef;
 
+  loginButtonText: string = 'login';
   LoginForm!: FormGroup;
 
   constructor(
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
 
   onlogin() {
     if (this.LoginForm.valid) {
+      this.loginButtonText = 'Loading...';
       console.log(this.LoginForm.value);
       const passwordValue = this.LoginForm.get('password')?.value;
       const email = this.LoginForm.get('email')?.value;
@@ -48,10 +51,10 @@ export class LoginComponent implements OnInit {
       if (passwordValue === 'admin') {
         this.auth.adminlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            
             this.router.navigate(['admin']);
           },
           error: (err) => {
+            this.loginButtonText = 'login';
             alert(err?.error.message);
           }
         });
@@ -61,6 +64,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['user']);
           },
           error: (err) => {
+            this.loginButtonText = 'login';
             alert(err?.error.message);
           }
         });

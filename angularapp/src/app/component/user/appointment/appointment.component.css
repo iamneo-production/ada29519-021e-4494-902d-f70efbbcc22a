@@ -98,8 +98,37 @@ button[type="submit"] {
 small {
   color: red;
 }
-.space {
-  margin-left: 10px; /* Adjust the margin as needed */
+
+.rating {
+  font-size: 24px;
+  color: #c6c6c6;
 }
+
+.star {
+  cursor: pointer;
+}
+
+.filled {
+  color: #f8ce0b;
+}
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form {
+  margin-bottom: 20px;
+}
+.alert{
+  align-items: center;
+  text-align: center;
+  background-color: azure;
+  border-radius: 20px;
+}
+
 
 

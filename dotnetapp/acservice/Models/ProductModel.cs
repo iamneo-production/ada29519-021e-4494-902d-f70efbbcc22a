@@ -25,6 +25,7 @@ namespace acservice.Models
 
         public string maildid { get; set; }
         public string servicecenter { get; set; }
+        public string servicecentermailid { get; set; }
 
     }
 }

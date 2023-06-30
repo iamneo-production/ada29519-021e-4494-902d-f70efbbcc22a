@@ -1,37 +1,23 @@
-
-
 .bgcolor {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
-
-/* .left {
-  flex: 1;
-  position: relative;
-} */
-
 .left {
   text-align: center;
   margin-bottom: 20px;
 }
-/* .right {
-  flex: 1;
-  padding-left: 40px;
-} */
 .right {
   width: 50%;
 }
 .left h1{
   margin-right: 40px;
 }
-
 h5 {
   font-size: 20px;
   margin-bottom: 20px;
 }
-
 p {
   font-size: 14px;
   margin-bottom: 20px;
