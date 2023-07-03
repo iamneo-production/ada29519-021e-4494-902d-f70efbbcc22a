@@ -9,5 +9,6 @@ export interface Appointment{
     problemDescription:string
     date:string
     time:string
+    servicecentermailid:string
 
 }
