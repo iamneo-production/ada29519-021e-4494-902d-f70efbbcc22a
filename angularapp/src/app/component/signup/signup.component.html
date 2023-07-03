@@ -10,26 +10,26 @@
       <br>
       <form [formGroup]="SignupForm">
         <select formControlName="userRole" id="admin/user">
-          <option value="">select</option>
+          <option value="">Enter admin/user</option>
           <option  value="user">User</option>
           <option  value="admin">Admin</option>
         </select>
-        <small *ngIf="SignupForm.controls['userRole'].dirty && SignupForm.hasError('required','userRole')">userType is required</small>
+        <small *ngIf="SignupForm.controls['userRole'].dirty && SignupForm.hasError('required','userRole')">UserType is required</small>
   
         <input formControlName="email" type="email" placeholder="Email" id="email" />
         <small *ngIf="SignupForm.controls['email'].dirty && SignupForm.hasError('email','email')">Email is required</small>
   
         <input formControlName="username" type="text" placeholder="Username" id="username" />
-        <small *ngIf="SignupForm.controls['username'].dirty && SignupForm.hasError('required','username')">user name is required</small>
+        <small *ngIf="SignupForm.controls['username'].dirty && SignupForm.hasError('required','username')">UserName is required</small>
   
         <input formControlName="mobilenumber" type="tel" placeholder="Mobile number" id="mobileNumber" />
-        <small *ngIf="SignupForm.controls['mobilenumber'].dirty && SignupForm.hasError('required','mobilenumber')">mobileNumber is required</small>
+        <small *ngIf="SignupForm.controls['mobilenumber'].dirty && SignupForm.hasError('required','mobilenumber')">MobileNumber is required</small>
   
         <input formControlName="password" type="password" placeholder="Password" id="password" />
-        <small *ngIf="SignupForm.controls['password'].dirty && SignupForm.hasError('required','password')">password is required</small>
+        <small *ngIf="SignupForm.controls['password'].dirty && SignupForm.hasError('required','password')">Password is required</small>
   
         <input formControlName="confirmpassword" type="password" placeholder="Confirm Password" id="confirmPassword" />
-        <small *ngIf="SignupForm.controls['confirmpassword'].dirty && SignupForm.get('confirmpassword')?.hasError('passwordMismatch')">password is required</small>
+        <small *ngIf="SignupForm.controls['confirmpassword'].dirty && SignupForm.get('confirmpassword')?.hasError('passwordMismatch')">Password is required</small>
       </form>
     </div>
     <button (click)="onsignup()" type="submit" id="submitButton">Submit</button>
