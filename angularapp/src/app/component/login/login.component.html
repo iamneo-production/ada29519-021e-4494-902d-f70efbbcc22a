@@ -12,10 +12,10 @@
   
         <div class="inputs">
           <form [formGroup]="LoginForm">
-            <input formControlName="email" type="email" placeholder="Email" id="email" />
+            <input formControlName="email" type="email" placeholder="Enter Email" id="email" />
             <small *ngIf="LoginForm.controls['email'].dirty && LoginForm.hasError('email','email')">*email is required</small>
-            <input formControlName="password" type="password" placeholder="password" id="password" />
-            <small *ngIf="LoginForm.controls['password'].dirty && LoginForm.hasError('required','password')">*password isrequired</small>
+            <input formControlName="password" type="password" placeholder="Enter Password" id="password" />
+            <small *ngIf="LoginForm.controls['password'].dirty && LoginForm.hasError('required','password')">*password is required</small>
           </form>
         </div>
         <button (click)="onlogin()" type="submit" id="loginButton">login</button>

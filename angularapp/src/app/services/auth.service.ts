@@ -12,7 +12,7 @@ export class AuthService {
   private adminloginurl:string="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/admin/login"
   private adminsignupurl:string="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/admin/signup"
   private userloginurl:string="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/login"
-  private usersignupurl:string="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/signup"
+  private usersignupurl:string="https://8080-cedfeaebafbbabccfffbabacbdeefceabbedabdfbab.project.examly.io/user/signup"
                                
   constructor(private http:HttpClient) { }
   adminsignup(adminobj:any){
