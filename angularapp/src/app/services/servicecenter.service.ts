@@ -8,16 +8,24 @@ import { Observable } from 'rxjs';
 })
 export class ServicecenterService {
 
-  constructor(private http:HttpClient ) { }
-  baseURl ="https://localhost:7052/api/ServiceCenter/serviceCenter";
-  getService():Observable<serviceCenter[]>{
-    return this.http.get<serviceCenter[]>(this.baseURl)
+  constructor(private http: HttpClient) { }
+  editserviceCenterURL = "https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/admin/editServiceCenter";
+  deleteserviceCenterURL = "https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/admin/deleteServiceCenter";
+  getserviceCenterURL = "https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/admin/getservicecenter";
+  imageserviceCenterURL = "https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/admin/image"
 
-    } 
-  updateservice(ser:serviceCenter):Observable<serviceCenter>{
-    return this.http.put<serviceCenter>(this.baseURl+','+ser.id,ser)
+  getService(): Observable<serviceCenter[]> {
+    return this.http.get<serviceCenter[]>(this.getserviceCenterURL)
+
   }
-  deleteservice(id:number):Observable<serviceCenter>{
-    return this.http.delete<serviceCenter>(this.baseURl+'/'+id)
+  updateservice(ser: serviceCenter): Observable<serviceCenter> {
+    return this.http.put<serviceCenter>(this.editserviceCenterURL + '/' + ser.serviceCenterID, ser)
   }
+  deleteservice(id: string): Observable<serviceCenter> {
+    return this.http.delete<serviceCenter>(this.deleteserviceCenterURL + '/' + id)
   }
+  getimage(id: string): Observable<serviceCenter> {
+    return this.http.get<serviceCenter>(this.imageserviceCenterURL + '/' + id)
+  }
+}
+

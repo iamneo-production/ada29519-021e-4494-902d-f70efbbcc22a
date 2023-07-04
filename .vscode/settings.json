@@ -1,5 +1,6 @@
 {
     "csharp.showOmnisharpLogOnError": true,
     "omnisharp.analyzeOpenDocumentsOnly": true,
-    "omnisharp.autoStart": true
+    "omnisharp.autoStart": true,
+    "csharp.suppressDotnetInstallWarning": true
 }

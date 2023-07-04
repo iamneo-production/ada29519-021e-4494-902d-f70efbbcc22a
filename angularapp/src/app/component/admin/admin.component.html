@@ -1,14 +1,3 @@
-<!-- <nav class="navbar">
-    <div class="navdiv">
-        <div class="logo"><a href="#">Cooling master</a> </div>
-        <ul>
-            <li><a href="admin/addServiceCenter">ADD SERVICE CENTER</a></li>
-            <li><a href="admin/editServiceCenter">EDIT SERVICE CENTER</a></li>
-            <button><a href="/login">logout</a></button>
-        </ul>
-    </div>
-</nav> -->
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color:darkblue" >
         <div class="container-fluid">
@@ -23,8 +12,11 @@
               </li>
             
               <li class="nav-item" routerLinkActive="active">
-                  <a class="nav-link" [routerLink]="'/login'" id="logout">Logout</a>
+                  <a class="nav-link" [routerLink]="'/admin/dashboard'" id="dashboard">Dashboard</a>
               </li>
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="'/login'" id="logout">Logout</a>
+            </li>
             </ul>
           </div>
           </div>
