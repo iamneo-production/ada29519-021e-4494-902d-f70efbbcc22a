@@ -1,0 +1,52 @@
+<div class="login-page">
+  <div class="blur-background"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-6 col-md-8 offset-md-4">
+        <div class="card login-card bg-blur">
+          <div class="card-header">
+            <h3 class="text-center">Login</h3>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fas fa-user fa-lg"></i>
+                  </span>
+                  <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+                </div>
+                <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger small mt-1">
+                  <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</div>
+                  <div *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email address.</div>
+                </div>
+
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fas fa-lock fa-lg"></i>
+                  </span>
+                  <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+                </div>
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger small mt-1">
+                  <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</div>
+                  <div *ngIf="loginForm.get('password')?.errors?.['minlength']">Password should be at least 8 characters long.</div>
+                </div>
+
+              </div>
+              <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+          <div class="card-footer">
+            <p class="text-center">Don't have an account?<a routerLink="/signup">Sign up</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

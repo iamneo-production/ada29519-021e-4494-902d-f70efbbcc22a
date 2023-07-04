@@ -1,0 +1,66 @@
+.card {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  
+  .form-outline .form-label {
+    top: -10px;
+    left: 10px;
+    font-size: 16px;
+    color: #999;
+  }
+  
+  .form-outline input.form-control:focus:not([readonly]) {
+    box-shadow: none;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+  
+  .btn-primary:focus,
+  .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+  }
+  
+  .btn-primary.disabled,
+  .btn-primary:disabled {
+    background-color: #007bff;
+    border-color: #007bff;
+    opacity: 0.65;
+  }
+  
+  .btn-primary:not(:disabled):not(.disabled):active,
+  .btn-primary:not(:disabled):not(.disabled).active,
+  .show>.btn-primary.dropdown-toggle {
+    background-color: #0062cc;
+    border-color: #005cbf;
+  }
+  
+  .btn-primary:not(:disabled):not(.disabled):active:focus,
+  .btn-primary:not(:disabled):not(.disabled).active:focus,
+  .show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+  }
+  
+  /* Responsive CSS for smaller screens */
+  
+  @media screen and (max-width: 768px) {
+    .card-body {
+      padding: 2rem;
+    }
+  
+    .order-2 {
+      order: 1 !important;
+    }
+  
+    .order-1 {
+      order: 2 !important;
+    }
+  }
+  

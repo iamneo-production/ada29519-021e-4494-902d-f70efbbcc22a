@@ -1,0 +1,65 @@
+<app-admin-header></app-admin-header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="https://usefuldiyprojects.com/wp-content/uploads/2021/06/AC-Unit-repair-usefuldiyprojects-2-scaled.jpeg" alt="Service Center Image">
+      <p>Service Center Details:</p>
+      <ul>
+        <li>Location: XYZ</li>
+        <li>Contact: 1234567890</li>
+        <li>Email: abc@xyz.com</li>
+        <li class="list-group-item">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+      </ul>
+    </div>
+
+    <div class="col-md-8">
+      <h2>Add New Service Center</h2>
+  <form [formGroup]="addCenterForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="centerName" class="form-label">Center Name</label>
+      <input formControlName="centerName" required type="text" class="form-control">
+      <div *ngIf="addCenterForm.get('centerName')?.invalid && addCenterForm.get('centerName')?.touched" class="text-danger">
+        Center name is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input formControlName="address" required type="text" class="form-control">
+      <div *ngIf="addCenterForm.get('address')?.invalid && addCenterForm.get('address')?.touched" class="text-danger">
+        Address is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Mail ID</label>
+      <input formControlName="address" required type="text" class="form-control">
+      <div *ngIf="addCenterForm.get('address')?.invalid && addCenterForm.get('address')?.touched" class="text-danger">
+        Address is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input formControlName="phone" required type="tel" class="form-control">
+      <div *ngIf="addCenterForm.get('phone')?.invalid && addCenterForm.get('phone')?.touched" class="text-danger">
+        Phone is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Image URL</label>
+      <input formControlName="address" required type="url" class="form-control">
+      <div *ngIf="addCenterForm.get('address')?.invalid && addCenterForm.get('address')?.touched" class="text-danger">
+        Address is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Center Descprition</label>
+      <input formControlName="address" required type="text" class="form-control">
+      <div *ngIf="addCenterForm.get('address')?.invalid && addCenterForm.get('address')?.touched" class="text-danger">
+        Address is required
+      </div>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</div>
+</div>
