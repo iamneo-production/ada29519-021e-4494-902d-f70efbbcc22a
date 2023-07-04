@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AC_SERVICE_API.Migrations
 {
     [DbContext(typeof(AC_ServerDbContext))]
-    [Migration("20230617035100_initiallSetup")]
-    partial class initiallSetup
+    [Migration("20230704083905_secondsetup")]
+    partial class secondsetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

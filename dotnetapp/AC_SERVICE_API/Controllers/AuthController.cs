@@ -85,6 +85,13 @@ namespace loginAPI.Controllers
             {
                 return BadRequest();
             }
+
+          /*  here changed //Already exists
+             var Users=_context.Users.Where(x=>x.email==userobj.email && x.userName==userobj.userName);
+            
+            if(Users!=null){
+               return Conflict("User is Already Exists");
+            } */ 
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
             var loginObj = new LoginModel
