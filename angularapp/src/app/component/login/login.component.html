@@ -8,10 +8,13 @@
       <h1 style="color:azure;text-align: center;">LOGIN</h1>
       <div class="inputs">
         <form [formGroup]="LoginForm">
+          <label for="email">Enter Your Email:</label>
           <input formControlName="email" type="email" placeholder="Email" id="email" />
-          <small *ngIf="LoginForm.controls['email'].dirty && LoginForm.hasError('email','email')">*email is  required</small>
-          <input formControlName="password" type="password" placeholder="password" id="password" />
-          <small *ngIf="LoginForm.controls['password'].dirty && LoginForm.hasError('required','password')">*password is required</small>
+          <small *ngIf="LoginForm.controls['email'].dirty && LoginForm.hasError('email','email')">Email is required</small>
+          
+          <label for="password">Enter Your Password:</label>
+          <input formControlName="password" type="password" placeholder="Password" id="password" />
+          <small *ngIf="LoginForm.controls['password'].dirty && LoginForm.hasError('required','password')">Password is required</small>
         </form>
       </div>
       <button (click)="onlogin()" type="submit" id="loginButton">

@@ -14,21 +14,28 @@
                   <option  value="user">User</option>
                   <option  value="admin">Admin</option>
                 </select> -->
+                <label for="userRole">Select User Type (Admin/User):</label>
           <input formControlName="userRole" type="text" placeholder="userRole" id="admin/user" />
           <small *ngIf="SignupForm.controls['userRole'].dirty && SignupForm.hasError('required','userRole')">userType is required</small>
 
+
+          <label for="email">Enter Your Email:</label>
           <input formControlName="email" type="email" placeholder="Email" id="email" />
           <small *ngIf="SignupForm.controls['email'].dirty && SignupForm.hasError('email','email')">Email is required</small>
 
+          <label for="username">Enter Username:</label>
           <input formControlName="username" type="text" placeholder="Username" id="username" />
           <small *ngIf="SignupForm.controls['username'].dirty && SignupForm.hasError('required','username')">user name is required</small>
 
+          <label for="mobilenumber">Enter Your Mobile Number:</label>
           <input formControlName="mobilenumber" type="tel" placeholder="Mobile number" id="mobileNumber" />
           <small *ngIf="SignupForm.controls['mobilenumber'].dirty && SignupForm.hasError('required','mobilenumber')">mobileNumber is required</small>
 
+          <label for="password">Enter Your Password:</label>
           <input formControlName="password" type="password" placeholder="Password" id="password" />
           <small *ngIf="SignupForm.controls['password'].dirty && SignupForm.hasError('required','password')">password is required</small>
 
+          <label for="confirmpassword">Confirm Password:</label>
           <input formControlName="confirmpassword" type="password" placeholder="Confirm Password" id="confirmPassword" />
           <small *ngIf="SignupForm.controls['confirmpassword'].dirty && SignupForm.get('confirmpassword')?.hasError('passwordMismatch')">password is required</small>
         </form>
