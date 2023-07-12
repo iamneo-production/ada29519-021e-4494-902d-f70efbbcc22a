@@ -25,11 +25,11 @@
     </div>
     <div class="temp" *ngIf="servicesarr.length>0">
       <div *ngFor="let ser of servicesarr |filter:search; let i=index" routerLink="/user/dashboard" class="grid-item"
-        (click)="getServiceCenter('grid' + (i+1), ser.serviceCenterName, ser.serviceCenterPhone, ser.serviceCenteramailId, ser.serviceCenterImageUrl)">
+        (click)="getServiceCenter('grid' + (i+1), ser.serviceCenterName, ser.serviceCenterPhone, ser.serviceCenteramailId, ser.serviceCenterImageUrl,ser.serviceCenterDescription)">
         <div class="item" [id]="'grid' + (i+1)">
           <img [src]="ser.serviceCenterImageUrl" alt="Grid Image" class="grid-image" />
           <div class="grid-details">
-            <h3 class="grid-name">{{ ser.serviceCenterName }}</h3>
+            <h3 class="grid-name" style="text-transform: capitalize;" >{{ ser.serviceCenterName }}</h3>
             <h3 style="align-items: center;">{{ getStarRating(getAverageRating(ser.serviceCenteramailId)) }}</h3>
             <h4 class="grid-place">Address: </h4>
             <p class="h6">{{ ser.serviceCenterAddress }}</p>

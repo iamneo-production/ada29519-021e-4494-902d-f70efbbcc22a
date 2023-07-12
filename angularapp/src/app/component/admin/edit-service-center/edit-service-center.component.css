@@ -59,11 +59,11 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.alert {
+/* .alert {
   padding: 15px;
   background-color:palevioletred;
   color: white;
-}
+} */
 .inputs {
   margin-bottom: 20px;
 }
@@ -103,6 +103,7 @@ button[type="submit"] {
 
 small {
   color: red;
+  font-size: 13px;
 }
 .grid-item {
   border: 1px solid #00ecfd;
@@ -172,4 +173,15 @@ p {
   .grid-item {
     width: calc(100% - 20px);
   }
+}
+
+
+.popup-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
 }

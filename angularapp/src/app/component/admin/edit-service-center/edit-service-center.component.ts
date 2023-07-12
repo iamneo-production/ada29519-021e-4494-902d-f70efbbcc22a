@@ -12,15 +12,17 @@ import { ServicecenterService } from 'src/app/services/servicecenter.service';
 export class EditServiceCenterComponent implements OnInit {
   servicesarr: serviceCenter[] = [];
   editCenter!: FormGroup
+  successmessage:string
+  errormessage:string
   constructor(private fb: FormBuilder, private services: ServicecenterService) {
     this.editCenter = this.fb.group({
       serviceCenterID: ['',Validators.required],
-      serviceCenterName: ['',Validators.required],
-      serviceCenterPhone: ['',Validators.required],
-      serviceCenterAddress: ['',Validators.required],
-      serviceCenterImageUrl: ['',Validators.required],
-      serviceCenteramailId: ['',Validators.required],
-      serviceCenterDescription: ['',Validators.required]
+      serviceCenterName:['',[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+      serviceCenterPhone:['',[Validators.required,Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
+      serviceCenterAddress:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9\\s.,#\\-]+$')]],
+      serviceCenterImageUrl: ['', [Validators.required, Validators.pattern(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/i)]],
+      serviceCenteramailId:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      serviceCenterDescription:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]]
     })
   }
   ngOnInit(): void {
@@ -44,23 +46,46 @@ export class EditServiceCenterComponent implements OnInit {
       serviceCenterDescription: ser.serviceCenterDescription
     })
   }
+  errpopup(){
+    this.errormessage=""
+  }
   onedit() {
     if (this.editCenter.valid) {
       this.services.updateservice(this.editCenter.value).subscribe(Response => {
         this.getservice();
+        this.successmessage="service center updated successfully"
+        setTimeout(() => {
+          this.successmessage = null;
+        }, 5000);
       });
     } else {
-      ValidateForm.validateAllFormFileds(this.editCenter);
-      alert("Form is invalid");
+      if(this.editCenter.pristine){
+        this.errormessage="Enter Details of Service Center"
+        setTimeout(() => {
+          this.successmessage = null;
+        }, 5000);
+      }
+      else{
+        ValidateForm.validateAllFormFileds(this.editCenter);
+        this.errormessage="Enter Valid Service Center Details"
+        setTimeout(() => {
+          this.successmessage = null;
+        }, 5000);
+
+      }
     }
   }
 
 
   ondelete(id: string) {
-    console.log(id)
+
     this.services.deleteservice(id).subscribe((res: any) => {
-      console.log(res);
+      this.successmessage=res.message
+      setTimeout(() => {
+        this.successmessage = null;
+      }, 5000);
       this.getservice();
     });
+    
   }
 }

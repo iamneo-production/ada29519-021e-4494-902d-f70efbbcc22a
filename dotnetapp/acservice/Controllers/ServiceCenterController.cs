@@ -36,7 +36,7 @@ namespace acservice.Controllers
   
             return Ok(new
             {
-                Message = "Service center added"
+                Message = "Service center added successfully"
             });
 
         }
@@ -68,7 +68,7 @@ namespace acservice.Controllers
 
             return Ok(new
             {
-                Message = "Service center updated"
+                Message = "Service Center Updated successfully"
             });
         }
         [HttpDelete("deleteServiceCenter/{id}")]
@@ -86,7 +86,7 @@ namespace acservice.Controllers
 
             return Ok(new
             {
-                Message = "Service center deleted"
+                Message = "Service Center Deleted successfully"
             });
         }
 
