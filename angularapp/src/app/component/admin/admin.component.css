@@ -1,7 +1,13 @@
 a{
     color: white;
     font-size: 1.5rem;
+    
 
+}
+.account{
+    color: white;
+    font-size:1.5rem;
+    align-content: right;
 }
 
 a:hover{

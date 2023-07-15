@@ -1,5 +1,15 @@
 <app-user></app-user>
 <body>
+  <div class="popup-container" *ngIf="successmessage">
+    <span class="alert alert-success" role="alert">
+      <i class="bi bi-check-circle-fill"></i>      {{successmessage}}
+    </span>
+  </div>
+  <div class="popup-container" *ngIf="errormessage">
+    <span class="alert alert-danger" role="alert"  (click)="errpopup()">
+      <i class="bi bi-x-square-fill" ></i>      {{errormessage}}
+    </span>
+  </div>
   <div class="bgcolor" id="myBookingBody">
     <div class="container">
       <br>
@@ -19,7 +29,7 @@
         <tbody>
           <tr *ngFor="let app of AppointmentArr ;let i=index">
             <td>{{ i + 1 }}</td>
-            <td id="centerName{{i+1}}">{{app.servicecenter}}</td>
+            <td id="centerName{{i+1}}" style="text-transform: capitalize;" >{{app.servicecenter}}</td>
             <td>{{app.date}}</td>
             <td>{{app.time}}</td>
             <td>
@@ -60,24 +70,31 @@
           </div>
           <div class="modal-body">
             <form [formGroup]="EditAppointment">
-
-              <input type="text" placeholder="Enter the name of the product" id="editProductName" formControlName="productName">
+              <label><h5>Enter Name of AC:</h5></label>
+              <input type="text" placeholder="Enter the name of the AC" id="editProductName" formControlName="productName">
               <small *ngIf="EditAppointment.controls['productName'].dirty && EditAppointment.hasError('required','productName')">Product name is required</small>
+              <small *ngIf="EditAppointment.controls['productName'].dirty && EditAppointment.hasError('pattern','productName')">Only Alphabets Allowed</small>
 
-              <input type="text" placeholder="Enter the model no of the product" id="editModelNo" formControlName="productModelNo">
+              <label><h5>Enter the Model number of AC:</h5></label>
+              <input type="text" placeholder="Enter the model no of the AC" id="editModelNo" formControlName="productModelNo">
+              <small *ngIf="EditAppointment.controls['productModelNo'].dirty && EditAppointment.hasError('pattern','productModelNo')">Invalid Model Number</small>
+
               <small *ngIf="EditAppointment.controls['productModelNo'].dirty && EditAppointment.hasError('required','productModelNo')">productModelNo is required</small>
-
-              <input type="date" placeholder="Enter the date of purchase" id="editDateOfPurchase" formControlName="dateOfPurchase">
+              <label><h5>Enter Date of Purchase of AC:</h5></label>
+              <input type="date" placeholder="Enter the date of purchase of AC" id="editDateOfPurchase" placeholder="Enter the dateOfPurchase" formControlName="dateOfPurchase"(change)="onDateSelected()" [max]="tdy">
               <small *ngIf="EditAppointment.controls['dateOfPurchase'].dirty && EditAppointment.hasError('required','dateOfPurchase')">ProductDateOfPurchase is required</small>
 
+              <label><h5>Enter the Contact Number:</h5></label>
               <input type="tel" placeholder="Enter the contact number" id="editContactNumber" formControlName="contactNumber">
-              <small *ngIf="EditAppointment.controls['contactNumber'].dirty && EditAppointment.hasError('required','contactNumber')">contactNumber is required</small>
-
-              <textarea placeholder="Enter problem of the product" id="enterProblem" formControlName="problemDescription"></textarea>
+              <small *ngIf="EditAppointment.controls['contactNumber'].dirty && EditAppointment.hasError('required','contactNumber')">Contact Number is required</small>
+              <small *ngIf="EditAppointment.controls['contactNumber'].dirty && EditAppointment.hasError('pattern','contactNumber')">Invalid Contact Number (10 digits only)</small>
+              <label><h5>Enter Problem Description of AC:</h5></label>
+              <textarea placeholder="Enter problem of the AC" id="enterProblem" formControlName="problemDescription"></textarea>
               <small *ngIf="EditAppointment.controls['problemDescription'].dirty && EditAppointment.hasError('required','problemDescription')">problemDescription is required</small>
+              <small *ngIf="EditAppointment.controls['problemDescription'].dirty && EditAppointment.hasError('pattern','problemDescription')">Only Alphabets allowed</small>
               <br>
 
-              <h3>Book the Slots</h3>
+              <label><h5>Book the Slots</h5></label>
               <div class="slots">
                 <select id="selectDate" formControlName="date" placeholder="Choose the DATE">
                   <option value="" disabled selected>Select a date</option>

@@ -1,13 +1,12 @@
 .backgroundui {
-    font-family: Arial, sans-serif;
-    background-image: url("https://uniquecoolingsolution.com/images/ban1.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  body{
-  background-color: lightblue;
-  }
-  @import '~bootstrap/dist/css/bootstrap.css';
-  @import "~bootstrap-icons/font/bootstrap-icons.css";
-  
-  
+  font-family: Arial, sans-serif;
+  background-image: url("https://uniquecoolingsolution.com/images/ban1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body{
+background-color: lightblue;
+}
+@import '~bootstrap/dist/css/bootstrap.css';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+

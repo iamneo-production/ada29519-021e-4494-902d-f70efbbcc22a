@@ -27,6 +27,9 @@ import { AdmindashboardComponent } from './component/admin/admindashboard/admind
 
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,7 @@ import { AdmindashboardComponent } from './component/admin/admindashboard/admind
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    Ng2SearchPipeModule   
+    Ng2SearchPipeModule
   ],
   providers: [ShareService],
   bootstrap: [AppComponent]
