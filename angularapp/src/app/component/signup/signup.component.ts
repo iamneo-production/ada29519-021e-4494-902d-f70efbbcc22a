@@ -12,50 +12,77 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class SignupComponent implements OnInit {
 
+  signupButtonText: string = "signup"
   SignupForm!: FormGroup;
+  errormessage: string = ''
+  successmessage = ''
+
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private share: ShareService) {
 
   }
   ngOnInit(): void {
     this.SignupForm = this.fb.group({
-      userRole: ['', Validators.required],
-      email: ['', [Validators.email, Validators.required]],
-      username: ['', Validators.required],
-      mobilenumber: ['', Validators.required],
-      password: ['', Validators.required],
+      UserRole: ['', Validators.required],
+      Email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      UserName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+      MobileNumber: ['', [Validators.required, Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
+      Password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
       confirmpassword: ['', Validators.required]
     }, {
       validator: this.passwordMatchValidator //using 'this' keyword to refer to instance method
     })
   }
+
   onsignup() {
 
     if (this.SignupForm.valid) {
-      const usertype = this.SignupForm.get('userRole')?.value
-      console.log(this.SignupForm.value);
+      this.signupButtonText = 'Loading...';
+      const usertype = this.SignupForm.get('UserRole')?.value
+      const smail = this.SignupForm.get('Email')?.value
+      const spwd = this.SignupForm.get('Password')?.value
+      const signupData = {
+        UserRole: usertype,
+        Email: smail,
+        UserName: this.SignupForm.get('UserName')?.value,
+        MobileNumber: this.SignupForm.get('MobileNumber')?.value,
+        Password: spwd
+      };
+
       if (usertype === 'admin') {
-        this.auth.adminsignup(this.SignupForm.value)
-        .subscribe({
-          next: (res => {
-            alert(res.message)
-            this.SignupForm.reset();
-            this.router.navigate(['login']);
-          })
-          , error: (err => {
-            alert(err?.error.message)
-          })
-        })
-      }
-      else {
-        this.auth.usersignup(this.SignupForm.value)
+        this.auth.adminsignup(signupData)
           .subscribe({
             next: (res => {
-              alert(res.message)
+              localStorage.setItem("Semail", smail)
+              localStorage.setItem("Spwd", spwd)
               this.SignupForm.reset();
               this.router.navigate(['login']);
             })
             , error: (err => {
-              alert(err?.error.message)
+              this.signupButtonText = 'signup'
+              this.errormessage = err?.error.message
+              setTimeout(() => {
+                this.errormessage = '';
+              }, 5000);
+            })
+          })
+      }
+      else {
+        this.auth.usersignup(signupData)
+        
+          .subscribe({
+            next: (res => {
+              localStorage.setItem("Semail", smail)
+              localStorage.setItem("Spwd", spwd)
+
+              this.SignupForm.reset();
+              this.router.navigate(['login']);
+            })
+            , error: (err => {
+              this.signupButtonText = 'signup'
+              this.errormessage = err?.error.message
+              setTimeout(() => {
+                this.errormessage = '';
+              }, 5000);
             })
           })
       }
@@ -64,13 +91,16 @@ export class SignupComponent implements OnInit {
     }
     else {
       ValidateForm.validateAllFormFileds(this.SignupForm);
-      alert("Form is invalid");
+      this.errormessage = 'Enter valid Details'
+      setTimeout(() => {
+        this.errormessage = '';
+      }, 5000);
     }
 
 
   }
   private passwordMatchValidator(form: FormGroup) {
-    const password = form.get('password')?.value;
+    const password = form.get('Password')?.value;
     const confirmPassword = form.get('confirmpassword')?.value;
 
     if (password !== confirmPassword) {
@@ -81,6 +111,3 @@ export class SignupComponent implements OnInit {
   }
 
 }
-
-
-

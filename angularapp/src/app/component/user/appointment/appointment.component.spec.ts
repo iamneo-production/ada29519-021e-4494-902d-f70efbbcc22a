@@ -11,7 +11,9 @@ describe('AppointmentComponent', () => {
       declarations: [ AppointmentComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(AppointmentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

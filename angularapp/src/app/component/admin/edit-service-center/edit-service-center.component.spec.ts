@@ -11,7 +11,9 @@ describe('EditServiceCenterComponent', () => {
       declarations: [ EditServiceCenterComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(EditServiceCenterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

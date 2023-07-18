@@ -11,7 +11,9 @@ describe('AddServiceCenterComponent', () => {
       declarations: [ AddServiceCenterComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(AddServiceCenterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
