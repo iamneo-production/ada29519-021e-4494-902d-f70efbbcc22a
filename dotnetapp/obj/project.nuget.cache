@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kSoFfxtoh/3NKHSQZVJKaM6Fj0d1ZQtmfVgI+3//EGh6WKvj/rRKvycBGad7V/ZGVhag/+54o3vpTi1DumXwKQ==",
+  "dgSpecHash": "bipYWZI+0h6cJN6HvAYe2aAxrFyuX0ue0sxw0AVEAyRm0QKPT0JcPJWM+yxlYckFntxIEZChsiD2t6KZwRAXCw==",
   "success": true,
   "projectFilePath": "/home/coder/project/workspace/dotnetapp/dotnetapp.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "/home/coder/.nuget/packages/microsoft.entityframeworkcore.inmemory/6.0.0/microsoft.entityframeworkcore.inmemory.6.0.0.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.entityframeworkcore.relational/6.0.0/microsoft.entityframeworkcore.relational.6.0.0.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.entityframeworkcore.sqlserver/6.0.0/microsoft.entityframeworkcore.sqlserver.6.0.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/microsoft.entityframeworkcore.tools/6.0.0/microsoft.entityframeworkcore.tools.6.0.0.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.extensions.caching.abstractions/6.0.0/microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.extensions.caching.memory/6.0.0/microsoft.extensions.caching.memory.6.0.0.nupkg.sha512",
@@ -39,6 +40,11 @@
     "/home/coder/.nuget/packages/moq/4.18.4/moq.4.18.4.nupkg.sha512",
     "/home/coder/.nuget/packages/netstandard.library/2.0.0/netstandard.library.2.0.0.nupkg.sha512",
     "/home/coder/.nuget/packages/nunit/3.13.0/nunit.3.13.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/pdfsharpcore/1.1.21/pdfsharpcore.1.1.21.nupkg.sha512",
+    "/home/coder/.nuget/packages/polybioz.htmlrenderer.pdfsharp.core/1.0.0/polybioz.htmlrenderer.pdfsharp.core.1.0.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.core/1.0.0-beta0008/sixlabors.core.1.0.0-beta0008.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.fonts/1.0.0-beta0009/sixlabors.fonts.1.0.0-beta0009.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.imagesharp/1.0.0-beta0006/sixlabors.imagesharp.1.0.0-beta0006.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

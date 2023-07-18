@@ -1,42 +1,90 @@
-<div class="backgroundui">
-  <div class="bgcolor">
-    <div class="left">
-        <h1 style="color:azure">Welcome to AC Service Management System</h1>
-        <h3 style="color:azure">Please register and login to book appointments.</h3>
+<div class="popup-container" *ngIf="errormessage">
+  <span class="alert alert-danger" role="alert">
+    <i class="bi bi-x-square-fill"></i> {{errormessage}}
+  </span>
+</div>
+<div class="popup-container" *ngIf="successmessage">
+  <span class="alert alert-success" role="alert">
+    <i class="bi bi-check-circle-fill"></i>      {{successmessage}}
+  </span>
+</div>
+<body>
+  <div class="wrapper">
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-6 side-image">
+          <img
+            src="https://img.freepik.com/free-vector/air-conditioning-refrigeration-services-abstract-concept-illustration-installation-repair-maintenance-air-conditioners-climate-control-systems-equipment_335657-704.jpg?size=626&ext=jpg"
+            alt="">
+          <div class="text">
+            <p>COOLING KING AC Service Appointment System</p>
+            <p><i>Please Signup...</i></p>
+          </div>
+        </div>
+        <div class="col-md-6 right">
+          <div class="input-box">
+            <header>Sign Up</header>
+            <form [formGroup]="SignupForm">
+
+              <div class="input-field">
+                <select formControlName="UserRole" id="userRole" class="input" required>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+                <small class="text-danger" *ngIf="SignupForm.controls['UserRole'].touched && SignupForm.hasError('required','UserRole')">User role is required</small>
+                <label for="userRole">Select User Role (Admin/User):</label>
+              </div>
+
+              <div class="input-field">
+                <input type="text" class="input" id="email" required autocomplete="off" formControlName="Email" />
+                <small class="text-danger" *ngIf="SignupForm.controls['Email'].touched && SignupForm.hasError('pattern','Email')">Invalid email</small>
+                <small class="text-danger" *ngIf="SignupForm.controls['Email'].touched && SignupForm.hasError('required','Email')">Email is required</small>
+                <label for="email">Email</label>
+              </div>
+
+              <div class="input-field">
+                <input formControlName="UserName" type="text" class="input" id="UserName" required />
+                <small class="text-danger" *ngIf="SignupForm.controls['UserName'].touched && SignupForm.hasError('required','UserName')">Username is required</small>
+                <small class="text-danger"  *ngIf="SignupForm.controls['UserName'].touched && SignupForm.hasError('pattern','UserName')">Invalid  name</small>
+                <label for="username">User Name</label>
+              </div>
+
+              <div class="input-field">
+                <input formControlName="MobileNumber" type="tel" class="input" id="MobileNumber" required />
+                <small class="text-danger" *ngIf="SignupForm.controls['MobileNumber'].touched && SignupForm.hasError('required','MobileNumber')">Mobile number is required</small>
+                <small class="text-danger" *ngIf="SignupForm.controls['MobileNumber'].touched && SignupForm.hasError('pattern','MobileNumber')">Invalid mobile number (10 digits only)</small>
+                <label for="mobilenumber">Mobile Number</label>
+              </div>
+
+              <div class="input-field">
+                <input formControlName="Password" type="password" class="input" id="password" required />
+                <small class="text-danger"  *ngIf="SignupForm.controls['Password'].touched && SignupForm.hasError('required','Password')">Password is required</small>
+                <small class="text-danger"  *ngIf="SignupForm.controls['Password'].touched && SignupForm.hasError('pattern','Password')">The password must be at least 8 characters long and include at least one special character, one uppercase letter, and one lowercase letter.</small>
+                <label for="password">Password</label>
+              </div>
+              
+              <div class="input-field">
+                <input formControlName="confirmpassword" type="password" class="input" id="confirmPassword" required />
+                <small class="text-danger" *ngIf="SignupForm.controls['confirmpassword'].touched && SignupForm.get('confirmpassword')?.hasError('passwordMismatch')">Password  Does Not Match</small>
+                <label for="confirmpassword">Confirm Password</label>
+              </div>
+
+            </form>
+
+            <div class="input-field">
+              <button (click)="onsignup()" id="loginButton" type="submit" class="submit">
+                <span *ngIf="signupButtonText === 'signup'">Signup</span>
+                <span *ngIf="signupButtonText !== 'signup'">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </span>
+              </button>
+            </div>
+            <div class="signin">
+              <span>Already registered? <a routerLink="/login" id="signinLink">Login</a></span>
+            </div>
+          </div>
+        </div>
       </div>
-  <div class="right">
-    <h1 style="color:azure;text-align: center;">REGISTER</h1>
-    <div class="inputs">
-      <br>
-      <form [formGroup]="SignupForm">
-        <!-- <select formControlName="userRole" id="admin/user">
-          <option value="">select</option>
-          <option  value="user">User</option>
-          <option  value="admin">Admin</option>
-        </select> -->
-
-        <input formControlName="userRole" type="text" placeholder="UserRole" id="admin/user" />
-
-        <small *ngIf="SignupForm.controls['userRole'].dirty && SignupForm.hasError('required','userRole')">userType is required</small>
-  
-        <input formControlName="email" type="email" placeholder="Email" id="email" />
-        <small *ngIf="SignupForm.controls['email'].dirty && SignupForm.hasError('email','email')">Email is required</small>
-  
-        <input formControlName="username" type="text" placeholder="Username" id="username" />
-        <small *ngIf="SignupForm.controls['username'].dirty && SignupForm.hasError('required','username')">user name is required</small>
-  
-        <input formControlName="mobilenumber" type="tel" placeholder="Mobile number" id="mobileNumber" />
-        <small *ngIf="SignupForm.controls['mobilenumber'].dirty && SignupForm.hasError('required','mobilenumber')">mobileNumber is required</small>
-  
-        <input formControlName="password" type="password" placeholder="Password" id="password" />
-        <small *ngIf="SignupForm.controls['password'].dirty && SignupForm.hasError('required','password')">password is required</small>
-  
-        <input formControlName="confirmpassword" type="password" placeholder="Confirm Password" id="confirmPassword" />
-        <small *ngIf="SignupForm.controls['confirmpassword'].dirty && SignupForm.get('confirmpassword')?.hasError('passwordMismatch')">password is required</small>
-      </form>
     </div>
-    <button (click)="onsignup()" type="submit" id="submitButton">Submit</button>
-    <p class="message" style="color:azure">Already registered? <a style="color:azure" routerLink="/login" id="signinLink">Login</a></p>
   </div>
-  </div>
-  </div>
+</body>
