@@ -17,8 +17,4 @@ export class ShareService {
     this.serviceimage=data4;
     console.log(this.serviceName)
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
