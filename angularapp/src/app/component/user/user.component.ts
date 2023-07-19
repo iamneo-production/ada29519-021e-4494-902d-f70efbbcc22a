@@ -1,15 +1,21 @@
+<<<<<<< HEAD
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/helpers/account';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AccountService } from 'src/app/services/account.service';
+=======
+import { Component, OnInit } from '@angular/core';
+import { ShareService } from 'src/app/services/share.service';
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+<<<<<<< HEAD
 export class UserComponent implements OnInit{
   userarr:Account[]=[]
   confirmpassword=''
@@ -164,3 +170,13 @@ export class UserComponent implements OnInit{
     localStorage.clear()
   }
 }
+=======
+export class UserComponent implements OnInit {
+
+  constructor(private share:ShareService){}
+  ngOnInit(): void {
+    // console.log(this.share.getMessage())
+  }
+
+}
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

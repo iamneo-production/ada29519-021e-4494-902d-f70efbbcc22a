@@ -12,6 +12,7 @@ import { ServicecenterService } from 'src/app/services/servicecenter.service';
 export class EditServiceCenterComponent implements OnInit {
   servicesarr: serviceCenter[] = [];
   editCenter!: FormGroup
+<<<<<<< HEAD
   successmessage: string = ''
   errormessage: string = ''
   update:boolean=false
@@ -25,6 +26,17 @@ export class EditServiceCenterComponent implements OnInit {
       serviceCenterImageUrl: ['', Validators.required],
       serviceCenteramailId: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       serviceCenterDescription: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]]
+=======
+  constructor(private fb: FormBuilder, private services: ServicecenterService) {
+    this.editCenter = this.fb.group({
+      serviceCenterID: ['',Validators.required],
+      serviceCenterName: ['',Validators.required],
+      serviceCenterPhone: ['',Validators.required],
+      serviceCenterAddress: ['',Validators.required],
+      serviceCenterImageUrl: ['',Validators.required],
+      serviceCenteramailId: ['',Validators.required],
+      serviceCenterDescription: ['',Validators.required]
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
     })
   }
   ngOnInit(): void {
@@ -32,12 +44,20 @@ export class EditServiceCenterComponent implements OnInit {
   }
   getservice() {
     this.services.getService().subscribe(Response => {
+<<<<<<< HEAD
       
+=======
+      console.log(Response)
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
       this.servicesarr = Response;
     })
   }
   updateform(ser: serviceCenter) {
+<<<<<<< HEAD
     
+=======
+    console.log(ser)
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
     this.editCenter.setValue({
       serviceCenterID: ser.serviceCenterID,
       serviceCenterName: ser.serviceCenterName,
@@ -48,6 +68,7 @@ export class EditServiceCenterComponent implements OnInit {
       serviceCenterDescription: ser.serviceCenterDescription
     })
   }
+<<<<<<< HEAD
   errpopup() {
     this.errormessage = ""
   }
@@ -90,11 +111,22 @@ export class EditServiceCenterComponent implements OnInit {
         }, 5000);
 
       }
+=======
+  onedit() {
+    if (this.editCenter.valid) {
+      this.services.updateservice(this.editCenter.value).subscribe(Response => {
+        this.getservice();
+      });
+    } else {
+      ValidateForm.validateAllFormFileds(this.editCenter);
+      alert("Form is invalid");
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
     }
   }
 
 
   ondelete(id: string) {
+<<<<<<< HEAD
 
     this.services.deleteservice(id).subscribe((res: any) => {
       this.successmessage = res.message
@@ -111,3 +143,12 @@ export class EditServiceCenterComponent implements OnInit {
     });
   }
 }
+=======
+    console.log(id)
+    this.services.deleteservice(id).subscribe((res: any) => {
+      console.log(res);
+      this.getservice();
+    });
+  }
+}
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

@@ -1,4 +1,5 @@
 <body>
+<<<<<<< HEAD
     <nav class="navbar navbar-expand-lg navbar-light p-3 " style="background-color: darkblue;position: sticky; top: 0; z-index: 100;">
       <div class="container-fluid">
         <a class="navbar-brand" routerLink="/user/homepage">Cool King</a>
@@ -84,3 +85,32 @@
       <i class="bi bi-x-square-fill" ></i>      {{errormessage}}
     </span>
   </div>
+=======
+  <nav class="navbar navbar-expand-lg navbar-light p-3" style="background-color:darkblue" >
+      <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="'/admin/admindashboard'">Cool King</a>  
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="nav justify-content-center ">
+            <li class ="nav-item " routerLinkActive="active">
+              <a class="nav-link" [routerLink]="'/admin/admindashboard'" id="adminDashboard">DashBoard</a>
+            </li>
+            
+            <li class ="nav-item " routerLinkActive="active">
+              <a class="nav-link" [routerLink]="'/admin/addServiceCenter'" id="adminAddCenter">Add Center</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+              <a class="nav-link" [routerLink]="'/admin/editServiceCenter'" id="adminCenterProfile">Center Profile</a>
+            </li>
+            
+          
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="'/login'" id="logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+      
+    
+  </body>
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

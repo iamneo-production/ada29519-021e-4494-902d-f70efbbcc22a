@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     background-image: url('https://wallpaperaccess.com/full/7233921.jpg');
     background-attachment: fixed;
@@ -9,3 +10,98 @@ body{
     align-items: center;
     justify-content: center;
   }
+=======
+h3 {
+  text-align: center;
+}
+
+p {
+  padding-left: 10px;
+}
+
+.body {
+  padding-bottom: 60px;
+  padding-top: 50px;
+}
+
+body {
+  background-color: lightblue;
+}
+
+.grid-item {
+  
+  /* width: calc(33.33% - 20px); */
+  width: calc(33.33% - 20px);
+  border-radius: 20px;
+  height: 550px;
+  background-color: lavender;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  float: left;
+ }
+ 
+
+
+/* .grid-item:nth-child(4n+1) {
+  clear: left;
+} */
+
+
+.grid-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.grid-item h3 {
+ 
+  margin-bottom: 10px;
+}
+
+.grid-item p {
+  margin-bottom: 10px;
+}
+
+.grid-item button {
+  background-color: #090c09;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.grid-item button:hover {
+  background-color: #27702a;
+}
+
+p {
+ 
+  color: black;
+  overflow: hidden;
+}
+/* 
+@media (max-width: 768px) {
+ 
+  .grid-item {
+    width: calc(50% - 20px);
+  }
+} */
+
+/* @media (max-width: 576px) {
+  
+  .grid-item {
+    width: calc(100% - 20px);
+  }
+} */
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

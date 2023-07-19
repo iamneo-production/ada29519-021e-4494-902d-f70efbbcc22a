@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Appointment } from 'src/app/helpers/appointment';
@@ -8,6 +9,13 @@ import { serviceCenter } from 'src/app/helpers/serviceCenter';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ServicecenterService } from 'src/app/services/servicecenter.service';
+=======
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Appointment } from 'src/app/helpers/appointment';
+import ValidateForm from 'src/app/helpers/validateForm';
+import { AppointmentService } from 'src/app/services/appointment.service';
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 import { ShareService } from 'src/app/services/share.service';
 
 @Component({
@@ -17,14 +25,23 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class DashboardComponent implements OnInit {
 
+<<<<<<< HEAD
   book='book'
   tdy: string = ''
+=======
+  serviceName: string = '';
+  servicePhone: string = '';
+  servicemailid: string = ''
+  serviceimage: string = ''
+  grid: string = ""
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 
   productdetails!: FormGroup;
   appointmentdetails: any[] = [];
   availableSlots: any[] = [];
   existingAppointments: Appointment[] = []
 
+<<<<<<< HEAD
   // service center
   serviceimage = ''
   serviceName = ''
@@ -40,10 +57,13 @@ export class DashboardComponent implements OnInit {
 
   servicecenterid = localStorage.getItem("serviceCenterID") || ""
 
+=======
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
   constructor(
     private fb: FormBuilder,
     private appointment: AppointmentService,
     private share: ShareService,
+<<<<<<< HEAD
     private router: Router,
     private service: ServicecenterService,
     private review: AppointmentService
@@ -86,10 +106,46 @@ export class DashboardComponent implements OnInit {
           );
           timeSlot.isBooked = isBooked;
           console.log(timeSlot)
+=======
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.grid = localStorage.getItem('grid') || ''
+    this.productdetails = this.fb.group({
+      productName: ['', Validators.required],
+      productModelNo: ['', Validators.required],
+      dateOfPurchase: ['', [Validators.required, this.validatePastDate]],
+      contactNumber: ['', Validators.required],
+      problemDescription: ['', Validators.required],
+      time: ['', Validators.required],
+      date: ['', Validators.required],
+      maildid: this.share.Mailid,
+      servicecenter: localStorage.getItem('serviceCenterName') || "",
+      servicecentermailid: localStorage.getItem('serviceCenteramailId') || ""
+    });
+    
+
+    this.serviceName = localStorage.getItem('serviceCenterName') || "";
+    this.servicePhone = localStorage.getItem('serviceCenterPhone') || "";
+    this.servicemailid = localStorage.getItem('serviceCenteramailId') || "";
+
+    this.serviceimage = localStorage.getItem('serviceCenterImageUrl') || "";
+    this.generateAvailableSlots();
+    this.appointment.getExistingAppointments().subscribe(existingAppointments => {
+      this.existingAppointments = existingAppointments;
+      this.availableSlots.forEach(slot => {
+        slot.times.forEach((timeSlot: { time: string; isBooked: boolean; }) => {
+          const isBooked = existingAppointments.some(appointment => appointment.servicecenter === this.serviceName &&
+            appointment.date === slot.date && appointment.time === timeSlot.time
+          );
+          timeSlot.isBooked = isBooked;
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
         });
       });
     });
 
+<<<<<<< HEAD
 
   }
   getservicecenter() {
@@ -111,6 +167,19 @@ getreview(){
 }
 
 
+=======
+  }
+  validatePastDate(control: FormControl) {
+    const selectedDate = new Date(control.value);
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set current date to the beginning of the day
+
+    if (selectedDate >= currentDate) {
+      return { futureDate: true };
+    }
+    return null;
+  }
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
   generateAvailableSlots() {
     const days = 5; // Number of days to show slots for
     const timeSlots = [
@@ -121,15 +190,37 @@ getreview(){
     ];
 
     const today = new Date();
+<<<<<<< HEAD
     this.availableSlots = []; // Clear the array before generating new slots
     let isAllSlotsBooked = true;
     for (let i = 1; i < days + 1; i++) {
+=======
+    // const currentTime = today.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true });
+    //console.log(currentTime)
+    this.availableSlots = []; // Clear the array before generating new slots
+    let isAllSlotsBooked = true;
+    for (let i = 1; i < days+1; i++) {
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
       const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const year = date.getFullYear();
       const dateString = `${day}-${month}-${year}`;
 
+<<<<<<< HEAD
+=======
+      // const filteredTimeSlots = timeSlots.filter(timeSlot => {
+      //   const startTime = timeSlot.time.split(' - ')[0];
+      //   return today.toDateString() !== date.toDateString() || startTime >= currentTime;
+      // });
+  
+      // const slot = {
+      //   date: dateString,
+      //   times: filteredTimeSlots.map(time => ({ time: time.time, isBooked: time.isBooked }))
+      // };
+      // console.log(slot)
+
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
       const slot = {
         date: dateString,
         times: timeSlots.map(time => ({ time: time.time, isBooked: time.isBooked }))
@@ -138,7 +229,11 @@ getreview(){
       // Check if any slot is available for the current day
       const isAnySlotAvailable = timeSlots.some(timeSlot =>
         !this.existingAppointments.some(appointment =>
+<<<<<<< HEAD
           appointment.serviceCenterId === this.servicecenterid &&
+=======
+          appointment.servicecenter === this.serviceName &&
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
           appointment.date === dateString &&
           appointment.time === timeSlot.time
         )
@@ -152,6 +247,7 @@ getreview(){
       this.availableSlots.push(slot);
     }
 
+<<<<<<< HEAD
     return this.availableSlots;
   }
   onDateSelected() {
@@ -211,3 +307,36 @@ getreview(){
   }
 
 }
+=======
+
+  }
+
+
+
+  onbook() {
+    const selectedDate = this.productdetails.value.date;
+    const selectedTime = this.productdetails.value.time;
+
+    const isSlotBooked = this.existingAppointments.some(appointment => appointment.servicecenter === this.serviceName &&
+      appointment.date === selectedDate && appointment.time === selectedTime
+    );
+
+    if (isSlotBooked) {
+      console.log('Selected slot is already booked');
+    } else {
+      if (this.productdetails.valid) {
+        console.log(this.productdetails.value);
+        this.appointment.bookappointment(this.productdetails.value).subscribe(response => {
+          console.log(response);
+        });
+        this.router.navigate(['user/appointment'])
+      }
+      else {
+        ValidateForm.validateAllFormFileds(this.productdetails);
+        alert("Form is invalid");
+      }
+    }
+  }
+}
+
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

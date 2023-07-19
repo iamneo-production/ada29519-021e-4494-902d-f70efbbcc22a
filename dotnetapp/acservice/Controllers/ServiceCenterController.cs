@@ -102,6 +102,21 @@ namespace acservice.Controllers
 
             return Ok(serviceCenter);
         }
+<<<<<<< HEAD
+=======
+        [HttpGet("image/{id}")]
+        public async Task<IActionResult> GetServiceImage(string id)
+        {
+            var service = await _context.Services.FirstOrDefaultAsync(s => s.serviceCenteramailId == id);
+
+            if (service == null || string.IsNullOrEmpty(service.serviceCenterImageUrl))
+            {
+                return NotFound(new { Message = "No image found" });
+            }
+
+            return Ok(service);
+        }
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 
 
 

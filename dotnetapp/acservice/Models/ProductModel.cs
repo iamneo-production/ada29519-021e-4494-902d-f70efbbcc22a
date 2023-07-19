@@ -25,6 +25,10 @@ namespace acservice.Models
 
         public string maildid { get; set; }
         public string servicecenter { get; set; }
+<<<<<<< HEAD
+=======
+        public string servicecentermailid { get; set; }
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 
     }
 }

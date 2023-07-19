@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 */ .wrapper {
   background: #c3c3c3;
   padding: 0 20px 0 20px;
@@ -186,3 +187,61 @@ body{
   align-items: center;
   justify-content: center;
 }
+=======
+.bgcolor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1{
+  margin-right: 40px;
+}
+
+.left {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.right {
+  width: 50%;
+}
+
+h6 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.inputs {
+  margin-bottom: 20px;
+}
+
+select,
+input[type="email"],
+input[type="text"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+small {
+  color:red;
+  font-size: 12px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

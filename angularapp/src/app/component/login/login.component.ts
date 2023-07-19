@@ -15,23 +15,35 @@ export class LoginComponent implements OnInit {
 
   loginButtonText: string = 'login';
   LoginForm!: FormGroup;
+<<<<<<< HEAD
   errormessage:string=''
   successmessage=''
+=======
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
+<<<<<<< HEAD
     private elRef: ElementRef,
    
+=======
+    private elRef: ElementRef
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
   ) {}
 
   ngOnInit(): void {
     const storedEmail = localStorage.getItem('Semail');
     const storedPassword = localStorage.getItem('Spwd');
     this.LoginForm = this.fb.group({
+<<<<<<< HEAD
       Email: [storedEmail || '', [Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       Password: [storedPassword || '', Validators.required]
+=======
+      email: [storedEmail || '', [Validators.email, Validators.required]],
+      password: [storedPassword || '', Validators.required]
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
     });
 
     if (storedEmail && storedPassword) {
@@ -43,12 +55,16 @@ export class LoginComponent implements OnInit {
       });
     }
   }
+<<<<<<< HEAD
   
+=======
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 
   onlogin() {
     if (this.LoginForm.valid) {
       this.loginButtonText = 'Loading...';
       console.log(this.LoginForm.value);
+<<<<<<< HEAD
       const passwordValue = this.LoginForm.get('Password')?.value;
       const email = this.LoginForm.get('Email')?.value;
       console.log(email)
@@ -74,11 +90,25 @@ export class LoginComponent implements OnInit {
             
 
             // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
+=======
+      const passwordValue = this.LoginForm.get('password')?.value;
+      const email = this.LoginForm.get('email')?.value;
+      localStorage.setItem('email', email);
+      if (passwordValue === 'admin') {
+        this.auth.adminlogin(this.LoginForm.value).subscribe({
+          next: (res) => {
+            this.router.navigate(['admin/admindashboard']);
+          },
+          error: (err) => {
+            this.loginButtonText = 'login';
+            alert(err?.error.message);
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
           }
         });
       } else {
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
+<<<<<<< HEAD
             this.successmessage=res.message
             setTimeout(() => {
               this.successmessage = '';
@@ -105,10 +135,18 @@ export class LoginComponent implements OnInit {
 
 
             // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
+=======
+            this.router.navigate(['user']);
+          },
+          error: (err) => {
+            this.loginButtonText = 'login';
+            alert(err?.error.message);
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
           }
         });
       }
     } else {
+<<<<<<< HEAD
       if(this.LoginForm.pristine){
         this.errormessage='Enter your email and password'
         setTimeout(() => {
@@ -123,6 +161,10 @@ export class LoginComponent implements OnInit {
       }, 5000);
       }
       
+=======
+      ValidateForm.validateAllFormFileds(this.LoginForm);
+      alert('Form is invalid');
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
     }
   }
 }

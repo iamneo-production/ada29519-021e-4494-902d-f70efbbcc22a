@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css?family=Lato');
@@ -214,3 +215,16 @@ h1{
 }
   @import '~bootstrap/dist/css/bootstrap.css';
   /* @import "~bootstrap-icons/font/bootstrap-icons.css"; */
+=======
+.backgroundui {
+  font-family: Arial, sans-serif;
+  background-image: url("https://img.freepik.com/free-photo/blue-teal-sand-paper_53876-92791.jpg?size=626&ext=jpg&ga=GA1.2.1796158635.1680273435&semt=ais");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body{
+background-color: lightblue;
+}
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

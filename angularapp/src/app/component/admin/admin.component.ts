@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -5,12 +6,16 @@ import { Account } from 'src/app/helpers/account';
 
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AccountService } from 'src/app/services/account.service';;
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
+<<<<<<< HEAD
 export class AdminComponent implements OnInit{
   userarr:Account[]=[]
   confirmpassword=''
@@ -165,3 +170,13 @@ export class AdminComponent implements OnInit{
     localStorage.clear()
   }
 }
+=======
+export class AdminComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba

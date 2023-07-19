@@ -46,6 +46,15 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+<<<<<<< HEAD
+=======
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -56,6 +65,13 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+<<<<<<< HEAD
+=======
+            "Polybioz.HtmlRenderer.PdfSharp.Core": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"

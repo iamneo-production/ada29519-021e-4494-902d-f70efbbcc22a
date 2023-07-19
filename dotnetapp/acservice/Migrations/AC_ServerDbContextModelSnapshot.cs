@@ -42,6 +42,24 @@ namespace acservice.Migrations
                     b.ToTable("Admins");
                 });
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity("acservice.Models.BillModel", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("billpdf")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Bills");
+                });
+
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
             modelBuilder.Entity("acservice.Models.LoginModel", b =>
                 {
                     b.Property<int>("id")
@@ -91,6 +109,12 @@ namespace acservice.Migrations
                     b.Property<string>("servicecenter")
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< HEAD
+=======
+                    b.Property<string>("servicecentermailid")
+                        .HasColumnType("nvarchar(max)");
+
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
                     b.Property<string>("time")
                         .HasColumnType("nvarchar(max)");
 
@@ -99,6 +123,30 @@ namespace acservice.Migrations
                     b.ToTable("Products");
                 });
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity("acservice.Models.ReviewModels", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("review")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("servicecentermailid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reviews");
+                });
+
+>>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
             modelBuilder.Entity("acservice.Models.ServiceCenterModel", b =>
                 {
                     b.Property<string>("serviceCenterID")
