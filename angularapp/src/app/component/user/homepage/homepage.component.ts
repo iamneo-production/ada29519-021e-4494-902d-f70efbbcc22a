@@ -48,12 +48,13 @@ export class HomepageComponent implements OnInit {
   }
   
 
-  getServiceCenter(grid:string,serviceCenterName: string,serviceCenterPhone:string,serviceCenteramailId:string,serviceCenterImageUrl:string) {
+  getServiceCenter(grid:string,serviceCenterName: string,serviceCenterPhone:string,serviceCenteramailId:string,serviceCenterImageUrl:string,serviceCenterDescription:string) {
     localStorage.setItem("serviceCenterName",serviceCenterName)
     localStorage.setItem("serviceCenterPhone",serviceCenterPhone)
     localStorage.setItem("serviceCenteramailId",serviceCenteramailId)
     localStorage.setItem("serviceCenterImageUrl",serviceCenterImageUrl)
     localStorage.setItem("grid",grid)
+    localStorage.setItem("servicecenterdescription",serviceCenterDescription)
 
   }
 

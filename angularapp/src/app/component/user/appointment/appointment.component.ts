@@ -17,6 +17,8 @@ export class AppointmentComponent implements OnInit {
   AppointmentArr: Appointment[] = []
   availableSlots: any[] = [];
   existingAppointments: Appointment[] = []
+  loadingStates: string[] = [];
+
 
   EditAppointment!: FormGroup
   review!: FormGroup
@@ -29,18 +31,28 @@ export class AppointmentComponent implements OnInit {
   centerName: string = '';
   mailid: string = ""
   dbt: string = "download"
+  tdy:string=''
+  errormessage:string
+  successmessage:string
 
-  constructor(private appointments: AppointmentService, private fb: FormBuilder, private share: ShareService, private image: ServicecenterService) { }
+  constructor(private appointments: AppointmentService, private fb: FormBuilder, private share: ShareService, private image: ServicecenterService) { 
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    this.tdy = `${year}-${month}-${day}`;
+  
+  }
 
   ngOnInit(): void {
-
+    this.getappointment()
     this.EditAppointment = this.fb.group({
       id: [""],
-      productName: ['', Validators.required],
-      productModelNo: ['', Validators.required],
+      productName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s.,#\\-]+$')]],
+      productModelNo: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s\\/\\-]+$')]],
       dateOfPurchase: ['', Validators.required],
-      contactNumber: ['', Validators.required],
-      problemDescription: ['', Validators.required],
+      contactNumber: ['', [Validators.required,Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
+      problemDescription: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]],
       time: ['', Validators.required],
       date: ['', Validators.required],
       maildid: this.share.Mailid,
@@ -52,7 +64,7 @@ export class AppointmentComponent implements OnInit {
       rating: [this.rating]
     })
     this.serviceName = this.share.serviceName;
-    this.getappointment()
+    
     this.generateAvailableSlots()
     this.appointments.getExistingAppointments().subscribe(existingAppointments => {
       this.existingAppointments = existingAppointments;
@@ -72,6 +84,11 @@ export class AppointmentComponent implements OnInit {
       this.AppointmentArr = response;
     })
   }
+  onDateSelected() {
+    const sd = this.EditAppointment.get('dateOfPurchase')?.value
+    console.log('Selected Date:', sd);
+    // You can perform additional validation or actions with the selected date here
+  }
   generateAvailableSlots() {
     const days = 5;
     const timeSlots = [
@@ -84,7 +101,7 @@ export class AppointmentComponent implements OnInit {
     const today = new Date();
     this.availableSlots = []; // Clear the array before generating new slots
     let isAllSlotsBooked = true;
-    for (let i = 0; i < days; i++) {
+    for (let i = 1; i < days+1; i++) {
       const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -132,8 +149,13 @@ export class AppointmentComponent implements OnInit {
   deleteappointment(Id: number) {
     this.appointments.cancelappointment(Id).subscribe(res => {
       console.log(res)
+      this.successmessage="appointment deleted successfully"
+      setTimeout(() => {
+        this.successmessage = null;
+      }, 5000);
       this.getappointment()
     })
+    
   }
 
   Update() {
@@ -149,43 +171,70 @@ export class AppointmentComponent implements OnInit {
     } else {
       if (this.EditAppointment.valid) {
         this.appointments.updateappointment(this.EditAppointment.value).subscribe(response => {
+          this.successmessage="appointment updated successfully"
+      setTimeout(() => {
+        this.successmessage = null;
+      }, 5000);
           console.log(response)
           this.getappointment()
         })
         this.EditAppointment.reset()
       }
       else {
-        ValidateForm.validateAllFormFileds(this.EditAppointment);
-        alert("Form is invalid");
+        if(this.EditAppointment.pristine){
+          this.errormessage="Enter Your AC & Appointment Details"
+      setTimeout(() => {
+        this.errormessage = null;
+      }, 5000);
+          alert('')
+        }
+        else{
+          ValidateForm.validateAllFormFileds(this.EditAppointment);
+          this.errormessage="Enter Valid Ac Details and Appointment Details"
+          setTimeout(() => {
+            this.errormessage = null;
+          }, 5000);
+        }
       }
     }
 
   }
 
-
   isserviceover(dt: any) {
-    
     const currentDate = new Date();
-    const currentDay = String(currentDate.getDate()).padStart(2, '0');
-    const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const currentYear = String(currentDate.getFullYear());
-    const currentDateFormatted = `${currentDay}-${currentMonth}-${currentYear}`;
-
-    return dt < currentDateFormatted
+    const currentDay = currentDate.getDate();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentYear = currentDate.getFullYear();
+  
+    const dtParts = dt.split('-');
+    const dtDay = parseInt(dtParts[0], 10);
+    const dtMonth = parseInt(dtParts[1], 10);
+    const dtYear = parseInt(dtParts[2], 10);
+  
+    const currentDateFormatted = new Date(currentYear, currentMonth - 1, currentDay);
+    const dtFormatted = new Date(dtYear, dtMonth - 1, dtDay);
+  
+    console.log(dtFormatted, '<', currentDateFormatted);
+  
+    return dtFormatted < currentDateFormatted;
   }
-  DownloadInvoice(pid: any, uid: any, sid: any) {
-    this.dbt = "loading..."
-
+  
+    
+  DownloadInvoice(pid: any, uid: any, sid: any, index: number) {
+    const id = pid; // Declare and assign the 'id' variable using the 'pid' parameter
+  
+    this.loadingStates[index] = "loading..."; // Set the loading state for the button at the given index
+  
     this.appointments.GenerateInvoicePDF(pid, uid, sid).subscribe(res => {
       const blob: Blob = res.body as Blob;
       const url = window.URL.createObjectURL(blob);
-
+  
       const a = document.createElement('a');
       a.download = pid;
       a.href = url;
       a.click();
+      this.loadingStates[index] = "download"; // Set the download state for the button at the given index
     });
-    this.dbt = "download"
   }
 
 
@@ -213,6 +262,10 @@ export class AppointmentComponent implements OnInit {
     this.review.controls['servicecentermailid'].setValue(this.mailid)
     console.log(this.review.value)
     this.appointments.postreview(this.review.value).subscribe(response => {
+      this.successmessage="review add successfully"
+      setTimeout(() => {
+        this.successmessage = null;
+      }, 5000);
       console.log(response);
       this.review.reset()
     });

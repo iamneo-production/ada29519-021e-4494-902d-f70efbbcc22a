@@ -8,7 +8,9 @@
 }
 .form{
   background-color:lavender;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
   padding: 30px;
 }
 
@@ -33,6 +35,10 @@ textarea {
   box-sizing: border-box;
 }
 
+label h5{
+  color: darkblue;
+}
+
 textarea {
   height: 100px;
 }
@@ -49,4 +55,14 @@ button[type="submit"] {
 
 small {
   color: red;
+  font-size: 18px;
+}
+.popup-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
 }

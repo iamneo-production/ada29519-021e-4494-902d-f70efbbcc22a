@@ -13,6 +13,8 @@ export class AddServiceCenterComponent implements OnInit{
 
   AddserviceButtonText:string="add"
   addCenter!:FormGroup;
+  successmessage:string
+  errormessage:string
 
   constructor(private fb:FormBuilder,private auth:AuthService,private router:Router){
 
@@ -21,13 +23,16 @@ export class AddServiceCenterComponent implements OnInit{
     const randomstring=this.generateRandomString(10)
     this.addCenter=this.fb.group({
       serviceCenterID:[randomstring],
-      serviceCenterName:['',Validators.required],
-      serviceCenterPhone:['',Validators.required],
-      serviceCenterAddress:['',Validators.required],
-      serviceCenterImageUrl:['',Validators.required],
-      serviceCenteramailId:['',Validators.email],
-      serviceCenterDescription:['',Validators.required]
+      serviceCenterName:['',[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+      serviceCenterPhone:['',[Validators.required,Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
+      serviceCenterAddress:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9\\s.,#\\-]+$')]],
+      serviceCenterImageUrl: ['', [Validators.required, Validators.pattern(/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/i)]],
+      serviceCenteramailId:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      serviceCenterDescription:['',[Validators.required,Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]]
     })
+  }
+  errpopup(){
+    this.errormessage=""
   }
   generateRandomString(length: number): string {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -48,9 +53,9 @@ export class AddServiceCenterComponent implements OnInit{
       this.auth.addCenterDB(this.addCenter.value)
       .subscribe({
         next:(res=>{
-          alert(res.message)
+          this.successmessage=res.message
           this.addCenter.reset();
-          this.router.navigate(['admin/editServiceCenter'])
+           this.router.navigate(['admin/editServiceCenter'])
         })
         ,error:(err=>{
           this.AddserviceButtonText="add"
@@ -60,8 +65,14 @@ export class AddServiceCenterComponent implements OnInit{
 
     }
     else{
-      ValidateForm.validateAllFormFileds(this.addCenter);
-      alert("Form is invalid");
+      if(this.addCenter.pristine){
+        this.errormessage='Fill the service center details'
+      }
+      else if(this.addCenter.invalid){
+        
+        ValidateForm.validateAllFormFileds(this.addCenter);
+      this.errormessage='Fill the valid details'
+      }
     }
   }
 

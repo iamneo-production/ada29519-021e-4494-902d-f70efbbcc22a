@@ -108,7 +108,7 @@ namespace acservice.Controllers
             {
                 return NotFound(new
                 {
-                    Message = "No appointments found"
+                    Message = "No Appointments Found"
                 });
             }
 
@@ -168,7 +168,7 @@ namespace acservice.Controllers
                 htmlcontent += "<h2 style='text-align:right'>Invoice Date:" + pd.date + "</h2>";
 
                 htmlcontent += "<h3 style='text-align:left>Customer : " + ud.userName + "</h3>";
-                htmlcontent += "<h3 style='text-align:left>Contact : " + ud.mobileNumber + " </h3>";
+                // htmlcontent += "<h3 style='text-align:left>Contact : " + ud.mobileNumber + " </h3>";
                 htmlcontent += "<h3 style='text-align:left>Email :" + ud.email + "</h3>";
                 htmlcontent += "<h3 style='text-align:left>Contact Number :" + ud.mobileNumber + "</h3>";
                 htmlcontent += "<div>";
@@ -189,7 +189,7 @@ namespace acservice.Controllers
             {
                 htmlcontent += "<tr>";
                 htmlcontent += "<td>" + pd.problemDescription + "</td>";
-                htmlcontent += "<td>$200</td>";
+                htmlcontent += "<td>Rs:200</td>";
                 htmlcontent += "</tr>";
                 
             }
@@ -209,9 +209,9 @@ namespace acservice.Controllers
             if (pd != null)
             {
                 htmlcontent += "<tr>";
-                htmlcontent += "<td style='border: 1px solid #000'>$200 </td>";
-                htmlcontent += "<td style='border: 1px solid #000'>$20</td>";
-                htmlcontent += "<td style='border: 1px solid #000'>$220</td>";
+                htmlcontent += "<td style='border: 1px solid #000'>Rs:200 </td>";
+                htmlcontent += "<td style='border: 1px solid #000'>Rs:20</td>";
+                htmlcontent += "<td style='border: 1px solid #000'>Rs:220</td>";
                 htmlcontent += "</tr>";
             }
             htmlcontent += "</table>";

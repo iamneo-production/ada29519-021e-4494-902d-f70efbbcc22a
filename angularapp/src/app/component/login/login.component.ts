@@ -15,19 +15,21 @@ export class LoginComponent implements OnInit {
 
   loginButtonText: string = 'login';
   LoginForm!: FormGroup;
+  errormessage:string
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    private elRef: ElementRef
+    private elRef: ElementRef,
+   
   ) {}
 
   ngOnInit(): void {
     const storedEmail = localStorage.getItem('Semail');
     const storedPassword = localStorage.getItem('Spwd');
     this.LoginForm = this.fb.group({
-      email: [storedEmail || '', [Validators.email, Validators.required]],
+      email: [storedEmail || '', [Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       password: [storedPassword || '', Validators.required]
     });
 
@@ -40,6 +42,9 @@ export class LoginComponent implements OnInit {
       });
     }
   }
+  errpopup(){
+    this.errormessage=""
+  }
 
   onlogin() {
     if (this.LoginForm.valid) {
@@ -51,27 +56,45 @@ export class LoginComponent implements OnInit {
       if (passwordValue === 'admin') {
         this.auth.adminlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            this.router.navigate(['admin']);
+            this.router.navigate(['admin/dashboard']);
           },
           error: (err) => {
             this.loginButtonText = 'login';
             alert(err?.error.message);
+            this.errormessage=err?.error.message
+            
+
+            // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
           }
         });
       } else {
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            this.router.navigate(['user']);
+            if(res.userRole==='user')
+              this.router.navigate(['user/homepage']);
+            else
+              this.router.navigate(['admin/dashboard']);
+
           },
           error: (err) => {
             this.loginButtonText = 'login';
-            alert(err?.error.message);
+            this.errormessage=err?.error.message;
+            this.errormessage=err?.error.message
+
+
+            // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
           }
         });
       }
     } else {
-      ValidateForm.validateAllFormFileds(this.LoginForm);
-      alert('Form is invalid');
+      if(this.LoginForm.pristine){
+        this.errormessage='Enter your email and password'
+      }
+      else{
+        ValidateForm.validateAllFormFileds(this.LoginForm);
+      this.errormessage='Enter valid email and password'
+      }
+      
     }
   }
 }

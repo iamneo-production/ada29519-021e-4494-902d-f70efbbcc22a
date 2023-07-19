@@ -31,12 +31,17 @@ namespace acservice.Controllers
             {
                 return BadRequest();
             }
-            var admin = await _context.Users.FirstOrDefaultAsync(x => x.email == adminobj.email && x.password == adminobj.password);
+            var admin = await _context.Users.FirstOrDefaultAsync(x => x.email == adminobj.email);
             if (admin == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            return Ok(new { Message="Login success" });
+            var pwd = await _context.Users.FirstOrDefaultAsync(x => x.email == adminobj.email && x.password == adminobj.password);
+             if (admin == null)
+            {
+                return NotFound(new { Message = "Password wrong" });
+            }
+            return Ok(new { Message="Login success" ,admin.userRole});
         }
 
 
@@ -47,12 +52,17 @@ namespace acservice.Controllers
             {
                 return BadRequest();
             }
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.email == userobj.email && x.password == userobj.password);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.email == userobj.email );
             if (user == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            return Ok(new { Message = "Login success" });
+            var pwd = await _context.Users.FirstOrDefaultAsync(x => x.email == userobj.email && x.password == userobj.password);
+            if (pwd == null)
+            {
+                return NotFound(new { Message = "Wrong password" });
+            }
+            return Ok(new { Message = "Login successfull" ,user.userRole});
         }
 
 
@@ -63,6 +73,13 @@ namespace acservice.Controllers
             if (userobj == null)
             {
                 return BadRequest();
+            }
+            var email = await _context.Users.FirstOrDefaultAsync(x => x.email == userobj.email);
+            if(email!=null){
+                return BadRequest(new
+            {
+                Message = "Admin already exists"
+            });
             }
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
@@ -87,6 +104,13 @@ namespace acservice.Controllers
             if (userobj == null)
             {
                 return BadRequest();
+            }
+            var email = await _context.Users.FirstOrDefaultAsync(x => x.email == userobj.email);
+            if(email!=null){
+                return BadRequest(new
+                {
+                    Message = "User already exists"
+                });
             }
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
