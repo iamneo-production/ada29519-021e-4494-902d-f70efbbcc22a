@@ -7,16 +7,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppointmentService {
-  getappointmentURL ="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointments"
-  bookappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
-  editappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
-  deleteappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
+  getappointmentURL ="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointments"
+  bookappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
+  editappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
+  deleteappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
+  feedbackURl="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/review"
+  getfeedbackURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/getreview"
+  billURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/generatebill"
   id=localStorage.getItem('email')
 
   constructor(private http:HttpClient) { }
   getappointment():Observable<Appointment[]>{
     return this.http.get<Appointment[]>(this.getappointmentURL+'/'+this.id)
   }
+  getreview(mid: string):Observable<any>{
+    return this.http.get<any>(`${this.getfeedbackURL}/${mid}`);
+  }
+  
   bookappointment(app:Appointment):Observable<Appointment>{
     
     return this.http.post<Appointment>(this.bookappointmentURL,app)
@@ -30,4 +37,11 @@ export class AppointmentService {
   getExistingAppointments():Observable<Appointment[]>{
     return this.http.get<Appointment[]>(this.getappointmentURL)
   }
+  postreview(userobj:any){
+    return this.http.post<any>(`${this.feedbackURl}`,userobj)
+  }
+  GenerateInvoicePDF(pid:any,uid:any,sid:any){
+    return this.http.get(this.billURL+'/'+pid+'/'+uid+'/'+sid,{observe:'response',responseType:'blob'}); 
+  }
+
 }

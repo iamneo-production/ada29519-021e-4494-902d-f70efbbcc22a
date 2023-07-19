@@ -1,8 +1,5 @@
 <app-admin></app-admin>
-
 <body>
-
-  
   <div class="container col">
       <div class="form">
             <h2 style="text-align: center;">ADD SERVICE CENTER</h2>
@@ -26,7 +23,12 @@
               <small *ngIf="addCenter.controls['serviceCenterDescription'].dirty && addCenter.hasError('required','serviceCenterDescription')">Center Description is required</small>
     
               <br><br>
-              <button (click)="onadd()" type="submit" id="addButton" style="align-content: center;">ADD</button>
+              <button (click)="onadd()" type="submit" id="addButton" style="align-content: center;">
+                <span *ngIf="AddserviceButtonText === 'add'">ADD SERVICE</span>
+                <span *ngIf="AddserviceButtonText !== 'add'">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </span>
+              </button>
             </form>
           </div>
           

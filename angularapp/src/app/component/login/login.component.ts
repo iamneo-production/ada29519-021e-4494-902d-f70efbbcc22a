@@ -9,9 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   @ViewChild('loginButton') loginButton!: ElementRef;
 
+  loginButtonText: string = 'login';
   LoginForm!: FormGroup;
 
   constructor(
@@ -22,8 +24,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const storedEmail = localStorage.getItem('semail');
-    const storedPassword = localStorage.getItem('spassword');
+    const storedEmail = localStorage.getItem('Semail');
+    const storedPassword = localStorage.getItem('Spwd');
     this.LoginForm = this.fb.group({
       email: [storedEmail || '', [Validators.email, Validators.required]],
       password: [storedPassword || '', Validators.required]
@@ -33,14 +35,15 @@ export class LoginComponent implements OnInit {
       setTimeout(() => {
         const loginButton = this.elRef.nativeElement.querySelector('#loginButton');
         loginButton.click(); 
-        localStorage.removeItem('semail')
-        localStorage.removeItem('spassword')
+        localStorage.removeItem('Semail')
+        localStorage.removeItem('Spwd')
       });
     }
   }
 
   onlogin() {
     if (this.LoginForm.valid) {
+      this.loginButtonText = 'Loading...';
       console.log(this.LoginForm.value);
       const passwordValue = this.LoginForm.get('password')?.value;
       const email = this.LoginForm.get('email')?.value;
@@ -48,20 +51,20 @@ export class LoginComponent implements OnInit {
       if (passwordValue === 'admin') {
         this.auth.adminlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            alert(res.message);
-            this.router.navigate(['admin']);
+            this.router.navigate(['admin/admindashboard']);
           },
           error: (err) => {
+            this.loginButtonText = 'login';
             alert(err?.error.message);
           }
         });
       } else {
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            alert(res.message);
             this.router.navigate(['user']);
           },
           error: (err) => {
+            this.loginButtonText = 'login';
             alert(err?.error.message);
           }
         });

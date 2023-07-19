@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddServiceCenterComponent } from './component/admin/add-service-center/add-service-center.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { AdmindashboardComponent } from './component/admin/admindashboard/admindashboard.component';
 import { EditServiceCenterComponent } from './component/admin/edit-service-center/edit-service-center.component';
 import { LoginComponent } from './component/login/login.component';
 import { SignupComponent } from './component/signup/signup.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'admin', component: AdminComponent },
+  {path:'admin/admindashboard',component:AdmindashboardComponent},
   { path: 'admin/addServiceCenter', component: AddServiceCenterComponent },
   { path: 'admin/editServiceCenter', component: EditServiceCenterComponent },
   { path: 'user', component: UserComponent },

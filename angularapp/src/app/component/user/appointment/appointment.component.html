@@ -1,7 +1,5 @@
 <app-user></app-user>
-
 <body>
-
   <div class="bgcolor" id="myBookingBody">
     <div class="container">
       <br>
@@ -25,17 +23,31 @@
             <td>{{app.date}}</td>
             <td>{{app.time}}</td>
             <td>
-              <button type="button" class="btn btn-primary" (click)="fillappointment(app)" id="editBooking" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                EDIT
+              <button type="submit" class="btn btn-primary" *ngIf="!isserviceover(app.date)"(click)="fillappointment(app)" id="editBooking" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="bi-pencil-square"></i>
               </button>
-              <button type="button" class="btn btn-primary" (click)="deleteappointment(app.id)" id="deleteBooking">
-                DELETE
+              <button type="submit" class="btn btn-primary" *ngIf="!isserviceover(app.date)"(click)="deleteappointment(app.id)" id="deleteBooking">
+                <i class="bi-trash"></i>
+              </button>
+              <button type="submit" *ngIf="isserviceover(app.date)"(click)="DownloadInvoice(app.id, app.maildid, app.servicecentermailid, i)" id="{{app.id}}">
+                <span *ngIf="loadingStates[i] !=='loading...' "><i class="bi bi-download"></i></span>
+                <span *ngIf="loadingStates[i] === 'loading...'">
+                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </span>
+              </button>
+
+              <button type="submit" *ngIf="isserviceover(app.date)" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#submitmodel" (click)="serviceimg(app.servicecentermailid)">
+                <i class="bi-layout-text-sidebar-reverse"></i>
               </button>
             </td>
           </tr>
         </tbody>
-
       </table>
+    </div>
+
+    <div class="alert">
+      The bill is available only on the day after the service is completed.
     </div>
 
 
@@ -48,40 +60,25 @@
           </div>
           <div class="modal-body">
             <form [formGroup]="EditAppointment">
-              <input type="text" placeholder="Enter the name of the product" id="editProductName"
-                formControlName="productName">
-              <small
-                *ngIf="EditAppointment.controls['productName'].dirty && EditAppointment.hasError('required','productName')">Product
-                name is required</small>
 
-              <input type="text" placeholder="Enter the model no of the product" id="editModelNo"
-                formControlName="productModelNo">
-              <small
-                *ngIf="EditAppointment.controls['productModelNo'].dirty && EditAppointment.hasError('required','productModelNo')">productModelNo
-                is required</small>
+              <input type="text" placeholder="Enter the name of the product" id="editProductName" formControlName="productName">
+              <small *ngIf="EditAppointment.controls['productName'].dirty && EditAppointment.hasError('required','productName')">Product name is required</small>
 
-              <input type="date" placeholder="Enter the date of purchase" id="editDateOfPurchase"
-                formControlName="dateOfPurchase">
-              <small
-                *ngIf="EditAppointment.controls['dateOfPurchase'].dirty && EditAppointment.hasError('required','dateOfPurchase')">ProductDateOfPurchase
-                is required</small>
+              <input type="text" placeholder="Enter the model no of the product" id="editModelNo" formControlName="productModelNo">
+              <small *ngIf="EditAppointment.controls['productModelNo'].dirty && EditAppointment.hasError('required','productModelNo')">productModelNo is required</small>
 
-              <input type="tel" placeholder="Enter the contact number" id="editContactNumber"
-                formControlName="contactNumber">
-              <small
-                *ngIf="EditAppointment.controls['contactNumber'].dirty && EditAppointment.hasError('required','contactNumber')">contactNumber
-                is required</small>
+              <input type="date" placeholder="Enter the date of purchase" id="editDateOfPurchase" formControlName="dateOfPurchase">
+              <small *ngIf="EditAppointment.controls['dateOfPurchase'].dirty && EditAppointment.hasError('required','dateOfPurchase')">ProductDateOfPurchase is required</small>
 
-              <textarea placeholder="Enter problem of the product" id="enterProblem"
-                formControlName="problemDescription"></textarea>
-              <small
-                *ngIf="EditAppointment.controls['problemDescription'].dirty && EditAppointment.hasError('required','problemDescription')">problemDescription
-                is required</small>
+              <input type="tel" placeholder="Enter the contact number" id="editContactNumber" formControlName="contactNumber">
+              <small *ngIf="EditAppointment.controls['contactNumber'].dirty && EditAppointment.hasError('required','contactNumber')">contactNumber is required</small>
+
+              <textarea placeholder="Enter problem of the product" id="enterProblem" formControlName="problemDescription"></textarea>
+              <small *ngIf="EditAppointment.controls['problemDescription'].dirty && EditAppointment.hasError('required','problemDescription')">problemDescription is required</small>
               <br>
+
               <h3>Book the Slots</h3>
-
               <div class="slots">
-
                 <select id="selectDate" formControlName="date" placeholder="Choose the DATE">
                   <option value="" disabled selected>Select a date</option>
                   <ng-container *ngFor="let slot of availableSlots">
@@ -91,7 +88,6 @@
                 <small *ngIf="EditAppointment.controls['date'].dirty && EditAppointment.hasError('required', 'date')">
                   Date is required
                 </small>
-
 
                 <select id="selectTime" formControlName="time" placeholder="Choose the time slot">
                   <option value="" disabled selected>Select a time</option>
@@ -104,23 +100,46 @@
                     </ng-container>
                   </ng-container>
                 </select>
-                <small
-                  *ngIf="EditAppointment.controls['time'].dirty && EditAppointment.controls['time'].hasError('required')">
-                  Time is required
-                </small>
-
+                <small *ngIf="EditAppointment.controls['time'].dirty && EditAppointment.controls['time'].hasError('required')"> Time is required </small>
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary"data-bs-dismiss="modal"(click)="Update()" id="updateBooking">Save changes</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="Update()" id="updateBooking">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="submitmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">CUSTOMER FEEDBACK</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h1>{{centerName}}</h1>
+            <img src="{{imageurl}}" width="450" height="350">
+            <br>
+            <form [formGroup]="review">
+              <textarea placeholder="Hey! How was the service..." id="Review" formControlName="review"></textarea>
+              <small *ngIf="review.controls['review'].dirty && EditAppointment.hasError('required','review')">review is required</small>
+              <label>Rating:</label>
+              <div class="rating">
+                <span class="star" *ngFor="let star of getStarsArray()" [ngClass]="{ 'filled': star <= rating }" (click)="rate(star)">
+                  <i class="bi bi-star-fill"></i>
+                </span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="reviews()" id="submitreview">submit</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-
-
 </body>

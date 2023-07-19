@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ShareService {
-
   serviceName:string=''
   serviceNumber:string=''
   serviceemailid:string=''

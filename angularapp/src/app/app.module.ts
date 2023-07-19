@@ -18,7 +18,8 @@ import { UserComponent } from './component/user/user.component';
 import { AppointmentComponent } from './component/user/appointment/appointment.component';
 import { DashboardComponent } from './component/user/dashboard/dashboard.component';
 import { HomepageComponent } from './component/user/homepage/homepage.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdmindashboardComponent } from './component/admin/admindashboard/admindashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,14 +31,16 @@ import { HomepageComponent } from './component/user/homepage/homepage.component'
     UserComponent,
     AppointmentComponent,
     DashboardComponent,
-    HomepageComponent
+    HomepageComponent,
+    AdmindashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [ShareService,AuthService,AppointmentService,ServicecenterService],
   bootstrap: [AppComponent]

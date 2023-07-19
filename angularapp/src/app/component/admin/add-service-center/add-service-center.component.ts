@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,11 +9,12 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './add-service-center.component.html',
   styleUrls: ['./add-service-center.component.css']
 })
-export class AddServiceCenterComponent implements OnInit {
+export class AddServiceCenterComponent implements OnInit{
 
+  AddserviceButtonText:string="add"
   addCenter!:FormGroup;
 
-  constructor(private fb:FormBuilder,private auth:AuthService){
+  constructor(private fb:FormBuilder,private auth:AuthService,private router:Router){
 
   }
   ngOnInit(): void {
@@ -39,21 +41,19 @@ export class AddServiceCenterComponent implements OnInit {
     return result;
   }
   
-  // onadd(){
-  //   console.log(this.addCenter.value)
-  // }
   onadd(){
     if(this.addCenter.valid){
-
-
+      this.AddserviceButtonText="loading..."
       console.log(this.addCenter.value);
       this.auth.addCenterDB(this.addCenter.value)
       .subscribe({
         next:(res=>{
           alert(res.message)
           this.addCenter.reset();
+          this.router.navigate(['admin/editServiceCenter'])
         })
         ,error:(err=>{
+          this.AddserviceButtonText="add"
           alert(err?.error.message)
         })
       })
@@ -64,6 +64,5 @@ export class AddServiceCenterComponent implements OnInit {
       alert("Form is invalid");
     }
   }
-
 
 }
