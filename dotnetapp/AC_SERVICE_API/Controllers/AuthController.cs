@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace loginAPI.Controllers
+namespace AC_Service_API.Controllers
 { 
     [ApiController]
 
@@ -33,7 +33,7 @@ namespace loginAPI.Controllers
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            return Ok(new { Message="Login success" });
+            return Created("",new { Message="Login success" });
         }
 
 
@@ -49,7 +49,7 @@ namespace loginAPI.Controllers
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            return Ok(new { Message = "Login success" });
+            return Created("",new { Message = "Login success" });
         }
 
 
@@ -72,7 +72,7 @@ namespace loginAPI.Controllers
                 };
                 await _context.Admins.AddAsync(admin);
                 await _context.SaveChangesAsync();
-            return Ok(new
+            return Created("",new
             {
                 Message = "Admin added"
             });
@@ -94,7 +94,7 @@ namespace loginAPI.Controllers
             };
             await _context.LoginModels.AddAsync(loginObj);
             await _context.SaveChangesAsync();
-            return Ok(new
+            return Created("",new
             {
                 Message = "User added"
             });

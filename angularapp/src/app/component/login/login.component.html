@@ -2,7 +2,7 @@
     <div class="bgcolor">
       <div class="left">
        
-        <h1 style="color:azure">Welcome to AC Service Management System</h1>
+        <h1 style="color:azure">Welcome to AC Service Appointment System</h1>
         <h3 style="color:azure">Please login to book appointments.</h3>
   
       </div>
@@ -18,7 +18,7 @@
             <small *ngIf="LoginForm.controls['password'].dirty && LoginForm.hasError('required','password')">*password isrequired</small>
           </form>
         </div>
-        <button (click)="onlogin()" type="submit" id="loginButton">login</button>
+        <button (click)="onlogin()" type="submit" id="loginButton">Login</button>
         <p style="color:azure">New User/admin? <a routerLink="/signup" id="signupLink">Sign up</a>.</p>
       </div>
     </div>

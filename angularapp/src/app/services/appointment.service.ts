@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppointmentService {
-  getappointmentURL ="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointments"
-  bookappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
-  editappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
-  deleteappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
+  getappointmentURL ="https://8080-cedfeaebafbbabccfffbabacbdeedecebedadbdbbef.project.examly.io/user/appointments"
+  bookappointmentURL="https://8080-cedfeaebafbbabccfffbabacbdeedecebedadbdbbef.project.examly.io/user/appointment"
+  editappointmentURL="https://8080-cedfeaebafbbabccfffbabacbdeedecebedadbdbbef.project.examly.io/user/editappointment"
+  deleteappointmentURL="https://8080-cedfeaebafbbabccfffbabacbdeedecebedadbdbbef.project.examly.io/user/cancelappointment"
   id=localStorage.getItem('email')
 
   constructor(private http:HttpClient) { }
