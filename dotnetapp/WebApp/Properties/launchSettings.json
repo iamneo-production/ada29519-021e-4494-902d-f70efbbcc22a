@@ -1,0 +1,52 @@
+﻿{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:9263",
+      "sslPort": 44398
+    }
+  },
+  "profiles": {
+    "WebApp": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+<<<<<<< Updated upstream
+      "applicationUrl": "https://localhost:7079;http://localhost:5061",
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+      "applicationUrl": "http://0.0.0.0:8080",
+=======
+      "applicationUrl": "https://localhost:7079;http://localhost:5061",
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+=======
+      "applicationUrl": "https://localhost:7079;http://localhost:5061",
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+=======
+      "applicationUrl": "https://localhost:7079;http://localhost:5061",
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+=======
+      "applicationUrl": "https://localhost:7079;http://localhost:5061",
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+=======
+      "applicationUrl": "https://localhost:7079;http://localhost:5061",
+>>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
+>>>>>>> Stashed changes
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
