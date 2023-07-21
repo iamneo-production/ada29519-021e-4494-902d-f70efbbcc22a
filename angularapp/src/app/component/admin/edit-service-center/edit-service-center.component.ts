@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { serviceCenter } from 'src/app/helpers/serviceCenter';
-import ValidateForm from 'src/app/helpers/validateForm';
 import { ServicecenterService } from 'src/app/services/servicecenter.service';
 
 @Component({
@@ -12,19 +11,15 @@ import { ServicecenterService } from 'src/app/services/servicecenter.service';
 export class EditServiceCenterComponent implements OnInit {
   servicesarr: serviceCenter[] = [];
   editCenter!: FormGroup
-  successmessage: string = ''
-  errormessage: string = ''
-  update:boolean=false
-  EditserviceButtonText='edit'
   constructor(private fb: FormBuilder, private services: ServicecenterService) {
     this.editCenter = this.fb.group({
-      serviceCenterID: ['', Validators.required],
-      serviceCenterName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
-      serviceCenterPhone: ['', [Validators.required, Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
-      serviceCenterAddress: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s.,#\\-]+$')]],
-      serviceCenterImageUrl: ['', Validators.required],
-      serviceCenteramailId: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
-      serviceCenterDescription: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]]
+      serviceCenterID: [''],
+      serviceCenterName: [''],
+      serviceCenterPhone: [''],
+      serviceCenterAddress: [''],
+      serviceCenterImageUrl: [''],
+      serviceCenteramailId: [''],
+      serviceCenterDescription: ['']
     })
   }
   ngOnInit(): void {
@@ -32,12 +27,12 @@ export class EditServiceCenterComponent implements OnInit {
   }
   getservice() {
     this.services.getService().subscribe(Response => {
-      
+      console.log(Response)
       this.servicesarr = Response;
     })
   }
   updateform(ser: serviceCenter) {
-    
+    console.log(ser)
     this.editCenter.setValue({
       serviceCenterID: ser.serviceCenterID,
       serviceCenterName: ser.serviceCenterName,
@@ -48,66 +43,19 @@ export class EditServiceCenterComponent implements OnInit {
       serviceCenterDescription: ser.serviceCenterDescription
     })
   }
-  errpopup() {
-    this.errormessage = ""
-  }
   onedit() {
-    if (this.editCenter.valid) {
-      this.EditserviceButtonText = "loading..."
-      this.services.updateservice(this.editCenter.value).subscribe({
-        next: (res => {
-          this.getservice()
-          this.successmessage = "Service Center Updated Successfully"
-          setTimeout(() => {
-            this.successmessage = ''
-          }, 5000);
-          this.update=true
-          this.EditserviceButtonText = "edit"
-          document.getElementById('closemodal')?.click();
-        })
-        , error: (err => {
-          this.errormessage = err?.error.message
-          setTimeout(() => {
-            this.errormessage = '';
-          }, 5000);
-          this.EditserviceButtonText = "edit"
-        })
-      })
-
-
-    } else {
-      if (this.editCenter.pristine) {
-        this.errormessage = "Enter Details of Service Center"
-        setTimeout(() => {
-          this.successmessage = '';
-        }, 5000);
-      }
-      else {
-        ValidateForm.validateAllFormFileds(this.editCenter);
-        this.errormessage = "Enter Valid Service Center Details"
-        setTimeout(() => {
-          this.successmessage = '';
-        }, 5000);
-
-      }
-    }
-  }
-
-
-  ondelete(id: string) {
-
-    this.services.deleteservice(id).subscribe((res: any) => {
-      this.successmessage = res.message
-      setTimeout(() => {
-        this.successmessage = '';
-      }, 5000);
+    this.services.updateservice(this.editCenter.value).subscribe(Response => {
       this.getservice();
     });
-
   }
-  showFieldErrors() {
-    Object.keys(this.editCenter.controls).forEach((key) => {
-      this.editCenter.get(key)?.markAsTouched();
+  ondelete(id:string){
+    console.log(id)
+    this.services.deleteservice(id).subscribe((res: any)=>{
+      console.log(res);
+      this.getservice();
     });
+  }
+  scrollPageToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

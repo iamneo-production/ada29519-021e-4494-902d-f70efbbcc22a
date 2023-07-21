@@ -1,6 +1,7 @@
 export interface Appointment{
     id:number
-    userEmailId:string
+    maildid:string
+    servicecenter:string
     productName:string
     productModelNo:string
     dateOfPurchase:string
@@ -8,10 +9,5 @@ export interface Appointment{
     problemDescription:string
     date:string
     time:string
-    serviceCenterId:string
 
 }
-export interface AppointmentResponse {
-    product: Appointment;
-    serviceCenterName: string;
-  }

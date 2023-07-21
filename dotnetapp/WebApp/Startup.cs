@@ -10,29 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-using WebApp.Context;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
->>>>>>> Stashed changes
 
 namespace WebApp
 {
@@ -42,33 +19,6 @@ namespace WebApp
         {
             Configuration = configuration;
         }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCors(option =>{option.AddPolicy("Mypolicy", builder =>{builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();});});
-            services.AddSwaggerGen(c =>{c.SwaggerDoc("v2", new OpenApiInfo { Title = "WebApp", Version = "v2" });});
-            services.AddAuthorization(); // add the required services for authorization
-            services.AddControllers(); 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServerConnStr")));
-            
-          }
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
->>>>>>> Stashed changes
 
         public IConfiguration Configuration { get; }
 
@@ -78,31 +28,6 @@ namespace WebApp
             {
                 app.UseDeveloperExceptionPage();
             }
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            app.UseSwagger();
-
-            app.UseSwaggerUI(c =>{c.SwaggerEndpoint("/swagger/v2/swagger.json", "WebApp");});
-            
-            app.UseCors("Mypolicy");
-
-            app.UseAuthentication();
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
-=======
->>>>>>> e94c7ec3019a41deb2d24763c3202d6d092d3d61
->>>>>>> Stashed changes
 
             app.UseHttpsRedirection();
 
