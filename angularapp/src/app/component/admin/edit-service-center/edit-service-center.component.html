@@ -42,6 +42,7 @@
                 NO service found
             </div>
             <div class="temp" *ngIf="servicesarr.length>0" id="adminProfileView">
+<<<<<<< HEAD
                 <div *ngFor="let ser of servicesarr" class="grid-item">
                     <div class="item">
                         <img src="{{ser.serviceCenterImageUrl}}" alt="Grid Image" class="grid-image">
@@ -52,6 +53,18 @@
                             <button type="button" class="btn btn-primary" (click)="updateform(ser)" id="editCenter" data-bs-toggle="modal" data-bs-target="#exampleModal">EDIT</button>
                             <button (click)="ondelete(ser.serviceCenterID)" id="deleteCenter">Delete</button>
                         </div>
+=======
+                <div *ngFor="let ser of servicesarr" class="gray-container">
+                    <img src="{{ser.serviceCenterImageUrl}}" width="450" height="250">
+
+                    <div>
+                        <h3>Center Name: {{ser.serviceCenterName}}</h3>
+                        <h3>Contact Number: {{ser.serviceCenterPhone}}</h3>
+                        <h3>Contact MailID: {{ser.serviceCenteramailId}}</h3>
+                        <button (click)="updateform(ser);scrollPageToTop()" id="editCenter">Edit</button>
+
+                        <button (click)="ondelete(ser.serviceCenterID)" id="deleteCenter">Delete</button>
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
                     </div>
                 </div>
             </div>

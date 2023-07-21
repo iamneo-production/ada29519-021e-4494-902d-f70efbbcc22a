@@ -42,6 +42,7 @@ namespace acservice.Migrations
                     b.ToTable("Admins");
                 });
 
+<<<<<<< HEAD:dotnetapp/acservice/Migrations/AC_ServerDbContextModelSnapshot.cs
 <<<<<<< HEAD
 =======
             modelBuilder.Entity("acservice.Models.BillModel", b =>
@@ -60,6 +61,8 @@ namespace acservice.Migrations
                 });
 
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e:dotnetapp/AC_SERVICE_API/Migrations/AC_ServerDbContextModelSnapshot.cs
             modelBuilder.Entity("acservice.Models.LoginModel", b =>
                 {
                     b.Property<int>("id")
@@ -123,6 +126,7 @@ namespace acservice.Migrations
                     b.ToTable("Products");
                 });
 
+<<<<<<< HEAD:dotnetapp/acservice/Migrations/AC_ServerDbContextModelSnapshot.cs
 <<<<<<< HEAD
 =======
             modelBuilder.Entity("acservice.Models.ReviewModels", b =>
@@ -147,6 +151,8 @@ namespace acservice.Migrations
                 });
 
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e:dotnetapp/AC_SERVICE_API/Migrations/AC_ServerDbContextModelSnapshot.cs
             modelBuilder.Entity("acservice.Models.ServiceCenterModel", b =>
                 {
                     b.Property<string>("serviceCenterID")

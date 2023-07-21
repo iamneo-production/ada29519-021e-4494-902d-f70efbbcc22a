@@ -23,6 +23,7 @@
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/Microsoft.IdentityModel.Tokens.dll
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/Microsoft.OpenApi.dll
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/PdfSharpCore.dll
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/HtmlRenderer.Core.dll
@@ -31,6 +32,8 @@
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/SixLabors.Fonts.dll
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/SixLabors.ImageSharp.dll
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/Swashbuckle.AspNetCore.Swagger.dll
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/coder/project/workspace/dotnetapp/acservice/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ServicecenterService {
 
+<<<<<<< HEAD
   constructor(private http: HttpClient) { }
   editserviceCenterURL = "https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/editServiceCenter";
   deleteserviceCenterURL = "https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/deleteServiceCenter";
@@ -15,6 +16,14 @@ export class ServicecenterService {
   imageserviceCenterURL = "https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/image"
 
   getService(): Observable<serviceCenter[]> {
+=======
+  constructor(private http:HttpClient ) { }
+  editserviceCenterURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/editServiceCenter";
+  deleteserviceCenterURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/deleteServiceCenter";
+  getserviceCenterURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/getservicecenter"
+                        
+  getService():Observable<serviceCenter[]>{
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
     return this.http.get<serviceCenter[]>(this.getserviceCenterURL)
 
   }

@@ -85,19 +85,27 @@ select {
 }
 
 button[type="submit"] {
+<<<<<<< HEAD
   padding: 10px 20px ;
+=======
+  padding: 10px 20px;
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
   background-color: palevioletred;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+<<<<<<< HEAD
   margin-right: 10px;
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
 }
 
 small {
   color: red;
 }
+<<<<<<< HEAD
 
 .rating {
   font-size: 24px;
@@ -130,5 +138,10 @@ form {
   border-radius: 20px;
 }
 
+=======
+.space {
+  margin-left: 10px; /* Adjust the margin as needed */
+}
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
 
 

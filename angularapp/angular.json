@@ -28,10 +28,14 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
+<<<<<<< HEAD
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
+=======
+            "scripts": []
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
           },
           "configurations": {
             "production": {
@@ -97,10 +101,14 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
+<<<<<<< HEAD
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
+=======
+            "scripts": []
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
           }
         },
         "lint": {

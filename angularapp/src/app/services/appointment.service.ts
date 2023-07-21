@@ -11,9 +11,12 @@ export class AppointmentService {
   bookappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
   editappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
   deleteappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
+<<<<<<< HEAD
   feedbackURl="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/review"
   getfeedbackURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/getreview"
   billURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/generatebill"
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
   id=localStorage.getItem('email')
 
   constructor(private http:HttpClient) { }

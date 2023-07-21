@@ -13,6 +13,7 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class DashboardComponent implements OnInit {
 
+
   serviceName: string = '';
   servicePhone: string = '';
   servicemailid: string = ''
@@ -146,6 +147,7 @@ export class DashboardComponent implements OnInit {
     if (isSlotBooked) {
       console.log('Selected slot is already booked');
     } else {
+<<<<<<< HEAD
       if (this.productdetails.valid) {
         console.log(this.productdetails.value);
         this.appointment.bookappointment(this.productdetails.value).subscribe(response => {
@@ -157,6 +159,14 @@ export class DashboardComponent implements OnInit {
         ValidateForm.validateAllFormFileds(this.productdetails);
         alert("Form is invalid");
       }
+=======
+      // Proceed with the booking
+      console.log(this.productdetails.value);
+      this.appointment.bookappointment(this.productdetails.value).subscribe(response => {
+        console.log(response);
+        this.productdetails.reset()
+      });
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
     }
   }
 }

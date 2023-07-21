@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
 // using System;
 // using System.Collections.Generic;
 // using System.Linq;
@@ -58,8 +61,11 @@
 //         }
 //     }
 // }
+<<<<<<< HEAD
 =======
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,9 +82,13 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using acservice.Database;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
 namespace acservice
 {
     public class Startup
@@ -94,9 +104,13 @@ namespace acservice
         public void ConfigureServices(IServiceCollection services)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -105,6 +119,7 @@ namespace acservice
 
             // Configure database
             // var cs = Configuration.GetConnectionString("connectionString");
+<<<<<<< HEAD
 <<<<<<< HEAD
             var connectionString = "User ID=sa;password=examlyMssql@123;server=localhost;Database=BackEND;trusted_connection=false; Persist Security Info=False;Encrypt=False";
             
@@ -115,6 +130,11 @@ namespace acservice
             services.AddDbContext<AC_ServerDbContext>(options => options.UseSqlServer(connectionString));
            
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+            var connectionString = "User ID=sa;password=examlyMssql@123;server=localhost;Database=BackEND;trusted_connection=false; Persist Security Info=False;Encrypt=False";
+            
+            services.AddDbContext<AC_ServerDbContext>(options => options.UseSqlServer(connectionString));
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "acservice", Version = "v1" });
@@ -131,9 +151,13 @@ namespace acservice
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "acservice v1"));
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
             app.UseCors("MyPolicy");
             app.UseHttpsRedirection();
 
@@ -149,6 +173,10 @@ namespace acservice
     }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e

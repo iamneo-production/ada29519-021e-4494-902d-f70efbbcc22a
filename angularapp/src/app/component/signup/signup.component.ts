@@ -37,13 +37,21 @@ export class SignupComponent implements OnInit {
       const smail=this.SignupForm.get('email')?.value
       const spwd=this.SignupForm.get('password')?.value
       console.log(this.SignupForm.value);
+<<<<<<< HEAD
       
+=======
+      localStorage.setItem("Semail",smail)
+      localStorage.setItem("Spwd",spwd)
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
       if (usertype === 'admin') {
         this.auth.adminsignup(this.SignupForm.value)
         .subscribe({
           next: (res => {
+<<<<<<< HEAD
             localStorage.setItem("Semail",smail)
       localStorage.setItem("Spwd",spwd)
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
             this.SignupForm.reset();
             this.router.navigate(['login']);
           })
@@ -57,8 +65,11 @@ export class SignupComponent implements OnInit {
         this.auth.usersignup(this.SignupForm.value)
           .subscribe({
             next: (res => {
+<<<<<<< HEAD
               localStorage.setItem("Semail",smail)
       localStorage.setItem("Spwd",spwd)
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e
               
               this.SignupForm.reset();
               this.router.navigate(['login']);

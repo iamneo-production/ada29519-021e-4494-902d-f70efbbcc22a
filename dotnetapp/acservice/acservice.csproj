@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0" />
+<<<<<<< HEAD:dotnetapp/acservice/acservice.csproj
 <<<<<<< HEAD
 =======
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0">
@@ -14,6 +15,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
 >>>>>>> 65f1ff9b176ea10d1839b5fc68f69c97f92469ba
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e:dotnetapp/AC_SERVICE_API/AC_SERVICE_API.csproj
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

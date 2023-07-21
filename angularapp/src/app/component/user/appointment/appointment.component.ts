@@ -227,6 +227,7 @@ export class AppointmentComponent implements OnInit {
       this.centerName = Res.serviceCenterName
 
     })
+    this.EditAppointment.reset()
   }
 
   rate(star: number) {

@@ -35,11 +35,14 @@
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.0",
+<<<<<<< HEAD:dotnetapp/acservice/bin/Debug/net5.0/acservice.deps.json
 <<<<<<< HEAD
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.0",
 =======
           "Microsoft.EntityFrameworkCore.Design": "5.0.0",
+=======
+>>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e:dotnetapp/AC_SERVICE_API/bin/Debug/net5.0/AC_SERVICE_API.deps.json
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.0",
           "Polybioz.HtmlRenderer.PdfSharp.Core": "1.0.0",
