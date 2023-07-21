@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Reviews } from 'src/app/helpers/reviews';
+import { Reviews } from 'src/app/helpers/review';
+// import { Reviews } from 'src/app/helpers/reviews';
 import { serviceCenter } from 'src/app/helpers/serviceCenter';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ServicecenterService } from 'src/app/services/servicecenter.service';
@@ -34,13 +35,13 @@ export class HomepageComponent implements OnInit {
   
   getAverageRatings() {
     this.servicesarr.forEach(service => {
-      this.review.getreview(service.serviceCenteramailId).subscribe(res => {
+      this.review.getreview(service.serviceCenterID).subscribe(res => {
         this.ratingsMap[service.serviceCenteramailId] = res;
       });
     });
   }
   getAverageRating(mailid: string): number {
-    return this.ratingsMap[mailid] || 0;
+    return this.ratingsMap[mailid] || 1;
   }
   getStarRating(rating: number): string {
     const roundedRating = Math.round(rating);
@@ -48,14 +49,8 @@ export class HomepageComponent implements OnInit {
   }
   
 
-  getServiceCenter(grid:string,serviceCenterName: string,serviceCenterPhone:string,serviceCenteramailId:string,serviceCenterImageUrl:string,serviceCenterDescription:string) {
-    localStorage.setItem("serviceCenterName",serviceCenterName)
-    localStorage.setItem("serviceCenterPhone",serviceCenterPhone)
-    localStorage.setItem("serviceCenteramailId",serviceCenteramailId)
-    localStorage.setItem("serviceCenterImageUrl",serviceCenterImageUrl)
-    localStorage.setItem("grid",grid)
-    localStorage.setItem("servicecenterdescription",serviceCenterDescription)
-
+  getServiceCenter(serviceCenterID:string) {
+    localStorage.setItem('serviceCenterID',serviceCenterID)
   }
 
 

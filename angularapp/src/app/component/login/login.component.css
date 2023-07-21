@@ -1,151 +1,188 @@
-.bgcolor {
+*/ .wrapper {
+  background: #c3c3c3;
+  padding: 0 20px 0 20px;
+
+}
+
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
-.left {
-  text-align: center;
-  margin-bottom: 20px;
+
+.row {
+  width: 900px;
+  height: 500px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
 }
-.right {
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(243, 241, 241, 0.192);
-  align-items: center;
-  padding: 40px;
-  width: 50%;
+
+.side-image {
+  background-image: url("https://img.freepik.com/premium-vector/realistic-vector-background-climat-control-concept-cooling-air-conditioning-system-living-r_134830-1168.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 10px 0 0 10px;
 }
-.left h1{
-  margin-right: 40px;
+
+img {
+  width: 35px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
 }
-h5 {
-  font-size: 20px;
-  margin-bottom: 20px;
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-p {
+
+.text p {
+  color: #000000;
   font-size: 18px;
-  margin-bottom: 20px;
+  text-align: center;
 }
 
-.inputs {
-  margin-bottom: 20px;
+i {
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
 }
 
-input[type="email"],
-input[type="password"] {
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.input-box {
+  width: 330px;
+  box-sizing: border-box;
+}
+
+.input-box header {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 0 10px 0 10px;
+}
+
+.input {
+  height: 45px;
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-label {
-  color: #007bff;
-  font-size: 16px;
-  margin-bottom: 5px;
-  display: block;
-  font-weight: bold;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin-bottom: 20px;
+  color: #40414a;
 }
 
-small {
-  color:rgb(239, 11, 11);
+.input-box .input-field label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.input-field .input:focus~label {
+  top: -10px;
   font-size: 13px;
 }
 
-.btn-primary {
-  width: 50%;
-  background-color: #20c80e;
-  border-color: #045f1f;
-  padding: 12px 24px;
-  font-size: 20px;
-  border-radius: 25px;
-  display: block;
-  margin: 0 auto;
+.input-field .input:valid~label {
+  top: -10px;
+  font-size: 13px;
+  color: #5d5076;
 }
 
-.btn-primary:hover {
-  background-color: #402cd5;
-  border-color: #2c3ad5;
+.input-field .input:focus,
+.input-field .input:valid {
+  border-bottom: 1px solid #743ae1;
 }
 
-.btn-primary:focus {
-  box-shadow: none;
-}
-.card-header {
-  background-color: #6d93eca0;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-color: #045f1f;
-  padding: 15px;
-}
-a {
-  color: rgb(50, 64, 216);
-  text-decoration: none;
+.submit {
+  border: none;
+  outline: none;
+  height: 45px;
+  background: #ececec;
+  border-radius: 5px;
+  transition: .4s;
 }
 
-a:hover {
-  text-decoration: underline;
+.submit:hover {
+  background: rgba(37, 95, 156, 0.9);
+  color: #fff;
 }
-.card-body {
-  background-color: rgba(163, 245, 147, 0.39);
-  backdrop-filter: blur(2px);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(224, 219, 219, 0.192);
-  padding: 30px;
-}
-h1.title {
-  color: rgb(22, 228, 22);
-  font-size: 24px;
+
+.signin {
   text-align: center;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-.form-control {
-  height: 50px;
-  font-size: 18px;
-  border-radius: 15px;
-  padding: 10px;
+  font-size: small;
+  margin-top: 25px;
 }
 
-.form-select {
-  height: 50px;
-  font-size: 18px;
-  border-radius: 15px;
-  padding: 10px;
-}
-.card-footer {
-  background-color: #abde7f94;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  padding: 20px;
-  text-align: center;
-}
-
-.card-footer p {
-  margin: 0;
-}
-
-.card-footer a {
-  color: #6c757d;
+span a {
   text-decoration: none;
+  font-weight: 700;
+  color: #000;
+  transition: .5s;
 }
 
-.card-footer a:hover {
+span a:hover {
   text-decoration: underline;
+  color: #000;
 }
-.popup-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px;
-  border-radius: 4px;
+
+@media only screen and (max-width: 768px) {
+  .side-image {
+    border-radius: 10px 10px 0 0;
+  }
+
+  img {
+    width: 35px;
+    position: absolute;
+    top: 20px;
+    left: 47%;
+  }
+
+  .text {
+    position: absolute;
+    top: 70%;
+    text-align: center;
+  }
+
+  .text p,
+  i {
+    font-size: 17px;
+  }
+
+  .row {
+    max-width: 420px;
+    width: 100%;
+  }
+}
+
+body{
+  background-image: url('https://wallpaperaccess.com/full/7233921.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
-
-
-
-
