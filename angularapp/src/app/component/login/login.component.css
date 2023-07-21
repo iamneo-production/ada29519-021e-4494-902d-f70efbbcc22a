@@ -1,0 +1,151 @@
+.bgcolor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.left {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.right {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(243, 241, 241, 0.192);
+  align-items: center;
+  padding: 40px;
+  width: 50%;
+}
+.left h1{
+  margin-right: 40px;
+}
+h5 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.inputs {
+  margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+label {
+  color: #007bff;
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: bold;
+}
+
+small {
+  color:rgb(239, 11, 11);
+  font-size: 13px;
+}
+
+.btn-primary {
+  width: 50%;
+  background-color: #20c80e;
+  border-color: #045f1f;
+  padding: 12px 24px;
+  font-size: 20px;
+  border-radius: 25px;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-primary:hover {
+  background-color: #402cd5;
+  border-color: #2c3ad5;
+}
+
+.btn-primary:focus {
+  box-shadow: none;
+}
+.card-header {
+  background-color: #6d93eca0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-color: #045f1f;
+  padding: 15px;
+}
+a {
+  color: rgb(50, 64, 216);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+.card-body {
+  background-color: rgba(163, 245, 147, 0.39);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(224, 219, 219, 0.192);
+  padding: 30px;
+}
+h1.title {
+  color: rgb(22, 228, 22);
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.form-control {
+  height: 50px;
+  font-size: 18px;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.form-select {
+  height: 50px;
+  font-size: 18px;
+  border-radius: 15px;
+  padding: 10px;
+}
+.card-footer {
+  background-color: #abde7f94;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-footer p {
+  margin: 0;
+}
+
+.card-footer a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.card-footer a:hover {
+  text-decoration: underline;
+}
+.popup-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+

@@ -1,0 +1,55 @@
+
+
+.carousel {
+    background-color: lightblue;
+    width: 90%;
+    height: 1%;
+    margin: 5%;
+    border-radius: 5px;
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  
+  .carousel-item {
+    flex: 0 0 100%;
+    position: relative;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-item.active {
+    transform: translateX(0);
+  }
+  
+  .carousel-item h3 {
+    margin-top: 5px;
+  }
+  
+  .carousel-item p {
+    margin-top: 3px;
+  }
+  
+  /* Animation and Transition Effects */
+  .carousel-item {
+    animation: slide-in 1s ease-in-out forwards;
+  }
+  
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .carousel-item:not(.active) {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+  }
+  
