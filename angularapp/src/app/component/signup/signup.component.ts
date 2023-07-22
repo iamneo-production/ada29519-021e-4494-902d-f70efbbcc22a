@@ -12,37 +12,49 @@ import { ShareService } from 'src/app/services/share.service';
 })
 export class SignupComponent implements OnInit {
 
+  signupButtonText:string="signup"
   SignupForm!: FormGroup;
+  errormessage:string
+  
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private share: ShareService) {
 
   }
   ngOnInit(): void {
     this.SignupForm = this.fb.group({
       userRole: ['', Validators.required],
-      email: ['', [Validators.email, Validators.required]],
-      username: ['', Validators.required],
-      mobilenumber: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmpassword: ['', Validators.required]
+      email: ['', [Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      username: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
+      mobilenumber: ['',[Validators.required,Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
+      password: ['', [Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
+      confirmpassword: ['',Validators.required]
     }, {
       validator: this.passwordMatchValidator //using 'this' keyword to refer to instance method
     })
   }
+  errpopup(){
+    this.errormessage=""
+  }
   onsignup() {
 
     if (this.SignupForm.valid) {
+      this.signupButtonText = 'Loading...';
       const usertype = this.SignupForm.get('userRole')?.value
+      const smail=this.SignupForm.get('email')?.value
+      const spwd=this.SignupForm.get('password')?.value
       console.log(this.SignupForm.value);
+      
       if (usertype === 'admin') {
         this.auth.adminsignup(this.SignupForm.value)
         .subscribe({
           next: (res => {
-            alert(res.message)
+            localStorage.setItem("Semail",smail)
+      localStorage.setItem("Spwd",spwd)
             this.SignupForm.reset();
             this.router.navigate(['login']);
           })
           , error: (err => {
-            alert(err?.error.message)
+            this.signupButtonText = 'signup'
+            this.errormessage=err?.error.message
           })
         })
       }
@@ -50,12 +62,15 @@ export class SignupComponent implements OnInit {
         this.auth.usersignup(this.SignupForm.value)
           .subscribe({
             next: (res => {
-              alert(res.message)
+              localStorage.setItem("Semail",smail)
+              localStorage.setItem("Spwd",spwd)
+              
               this.SignupForm.reset();
               this.router.navigate(['login']);
             })
             , error: (err => {
-              alert(err?.error.message)
+              this.signupButtonText = 'signup'
+              this.errormessage=err?.error.message
             })
           })
       }
@@ -64,7 +79,7 @@ export class SignupComponent implements OnInit {
     }
     else {
       ValidateForm.validateAllFormFileds(this.SignupForm);
-      alert("Form is invalid");
+      this.errormessage="fill account details bellow"
     }
 
 
@@ -81,6 +96,4 @@ export class SignupComponent implements OnInit {
   }
 
 }
-
-
 
