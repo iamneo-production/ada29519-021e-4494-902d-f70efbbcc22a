@@ -20,6 +20,7 @@ export class CarouselComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
     this.stopCarousel();
   }
+  // Get review for that service center
   getreviews(){
     this.review.getreviews(localStorage.getItem("serviceCenterID")||'').subscribe(res=>{
       this.carouselItems=res

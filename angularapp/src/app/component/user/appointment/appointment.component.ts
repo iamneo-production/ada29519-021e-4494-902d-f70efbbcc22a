@@ -14,23 +14,18 @@ import ValidateForm from 'src/app/helpers/validateForm';
 })
 export class AppointmentComponent implements OnInit {
 
-
+// Declarations
   AppointmentArr: AppointmentResponse[] = []
   availableSlots: any[] = [];
   existingAppointments: Appointment[] = []
   loadingStates: string[] = [];
-
   Email = localStorage.getItem('Email') || ""
-
   book='book'
-
   EditAppointment!: FormGroup
   review!: FormGroup
-
   imageurl: any
   rating: number = 0;
   showDownloadButton = false;
-
   serviceName: string = '';
   centerName: string = '';
   serviceCenterId: string = ""
@@ -41,6 +36,7 @@ export class AppointmentComponent implements OnInit {
   servicecenterid = localStorage.getItem('serviceCenterID') || ''
 
   constructor(private appointments: AppointmentService, private fb: FormBuilder, private share: ShareService, private image: ServicecenterService) {
+    // Operations On Date
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
@@ -72,6 +68,7 @@ export class AppointmentComponent implements OnInit {
     })
 
     this.generateAvailableSlots()
+    // operations to check availability of slots
     this.appointments.getExistingAppointments().subscribe(existingAppointments => {
       this.existingAppointments = existingAppointments;
       this.availableSlots.forEach(slot => {
@@ -84,18 +81,17 @@ export class AppointmentComponent implements OnInit {
       });
     });
   }
+  // To get Appointments
   getappointment() {
     this.appointments.getappointment(this.Email).subscribe(response => {
-      console.log(response);
       this.AppointmentArr = response;
-      console.log(this.AppointmentArr)
     })
   }
+  // To avaid choosing future date
   onDateSelected() {
     const sd = this.EditAppointment.get('dateOfPurchase')?.value
-    console.log('Selected Date:', sd);
-    // You can perform additional validation or actions with the selected date here
   }
+  // operations to generate and check availability of slots
   generateAvailableSlots() {
     const days = 5;
     const timeSlots = [
@@ -136,8 +132,8 @@ export class AppointmentComponent implements OnInit {
     }
 
   }
+  // To Fill the Details in edit Form
   fillappointment(app: Appointment) {
-    console.log(app)
 
     this.EditAppointment.setValue({
       id: app.id,
@@ -153,9 +149,9 @@ export class AppointmentComponent implements OnInit {
     })
 
   }
+  // to cancel bookings
   deleteappointment(Id: number) {
     this.appointments.cancelappointment(Id).subscribe(res => {
-      console.log(res)
       this.successmessage = "appointment deleted successfully"
       setTimeout(() => {
         this.successmessage = '';
@@ -164,20 +160,9 @@ export class AppointmentComponent implements OnInit {
     })
 
   }
-
+// Update the booking
   Update() {
-    const selectedDate = this.EditAppointment.controls['date'].value;
-    const selectedTime = this.EditAppointment.controls['time'].value;
-
-    const isSlotBooked = this.existingAppointments.some(appointment => appointment.serviceCenterId === this.serviceName &&
-      appointment.date === selectedDate && appointment.time === selectedTime
-    );
-
-    if (isSlotBooked) {
-      console.log('Selected slot is already booked');
-    } else {
-      this.book='loading....'
-      console.log("hello")
+    this.book='loading....'
       if (this.EditAppointment.valid) {
         this.appointments.updateappointment(this.EditAppointment.value).subscribe(response => {
           this.successmessage = "appointment updated successfully"
@@ -185,7 +170,6 @@ export class AppointmentComponent implements OnInit {
             this.successmessage = '';
           }, 5000);
           document.getElementById('closemodal')?.click();
-          console.log(response)
           this.getappointment()
         })
         this.EditAppointment.reset()
@@ -210,11 +194,10 @@ export class AppointmentComponent implements OnInit {
           this.book='book'
         }
       }
-    }
     
 
   }
-
+// To check if service is over or not
   isserviceover(dt: any) {
     const currentDate = new Date();
     const currentDay = currentDate.getDate();
@@ -229,34 +212,29 @@ export class AppointmentComponent implements OnInit {
     const currentDateFormatted = new Date(currentYear, currentMonth - 1, currentDay);
     const dtFormatted = new Date(dtYear, dtMonth - 1, dtDay);
 
-    console.log(dtFormatted, '<', currentDateFormatted);
-
+    
     if (dtFormatted < currentDateFormatted)
       return true
     else if (dtFormatted > currentDateFormatted)
       return false
     else {
-      console.log("both are sequenceEqual")
       return 'same'
     }
 
   }
-
+// to Download the bill
 
   DownloadInvoice(pid: any, uid: any, sid: any, index: number) {
-    const id = pid; // Declare and assign the 'id' variable using the 'pid' parameter
-
-    this.loadingStates[index] = "loading..."; // Set the loading state for the button at the given index
-
+    const id = pid; 
+    this.loadingStates[index] = "loading..."; 
     this.appointments.GenerateInvoicePDF(pid, uid, sid).subscribe(res => {
       const blob: Blob = res.body as Blob;
       const url = window.URL.createObjectURL(blob);
-
       const a = document.createElement('a');
       a.download = pid;
       a.href = url;
       a.click();
-      this.loadingStates[index] = "download"; // Set the download state for the button at the given index
+      this.loadingStates[index] = "download"; 
     });
   }
 
@@ -272,7 +250,7 @@ export class AppointmentComponent implements OnInit {
 
     })
   }
-
+// Start Ratings
   rate(star: number) {
     this.rating = star;
     this.review.controls['rating'].setValue(star);
@@ -280,6 +258,7 @@ export class AppointmentComponent implements OnInit {
   getStarsArray(): number[] {
     return [1, 2, 3, 4, 5];
   }
+  // to Post the review
   reviews() {
     this.review.setValue({
       UserEmailId: localStorage.getItem('Email'),
@@ -287,16 +266,15 @@ export class AppointmentComponent implements OnInit {
       review: this.review.get('review')?.value,
       rating: this.rating
     })
-    console.log(this.review.value)
     this.appointments.postreview(this.review.value).subscribe(response => {
       this.successmessage = "review add successfully"
       setTimeout(() => {
         this.successmessage = "";
       }, 5000);
-      console.log(response);
       this.review.reset()
     });
   }
+  // TO CHECK THE INVALID FIELD 
   showFieldErrors() {
     Object.keys(this.EditAppointment.controls).forEach((key) => {
       this.EditAppointment.get(key)?.markAsTouched();

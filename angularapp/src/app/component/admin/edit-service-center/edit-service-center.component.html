@@ -1,5 +1,7 @@
 <app-admin style="position: sticky; top: 0; z-index: 100;"></app-admin>
+
 <body>
+    <!-- Popup Messages -->
     <div class="popup-container" *ngIf="successmessage">
         <span class="alert alert-success" role="alert">
           <i class="bi bi-check-circle-fill"></i>      {{successmessage}}
@@ -10,6 +12,7 @@
           <i class="bi bi-x-square-fill" ></i>      {{errormessage}}
         </span>
   </div>
+  <!-- Show Service Centers -->
     <div class="form1">
         <div class="grid-container">
             <div *ngIf="servicesarr.length==0" class="alert">
@@ -34,6 +37,7 @@
         </div>
     </div>
 </body>
+<!-- Modal Forms to Edit the Serivce Center -->
 <div class="modal fade" id="editservice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

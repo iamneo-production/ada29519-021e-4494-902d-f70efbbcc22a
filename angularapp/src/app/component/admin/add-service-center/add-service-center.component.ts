@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AddServiceCenterComponent implements OnInit {
 
+// Declarations
   AddserviceButtonText: string = "add"
   addCenter!: FormGroup;
   successmessage: string = ''
@@ -31,14 +32,11 @@ export class AddServiceCenterComponent implements OnInit {
       serviceCenterDescription: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]]
     })
   }
-  errpopup() {
-    this.errormessage = ""
-  }
 
+  // Add Service Center API CALL
   onadd() {
     if (this.addCenter.valid) {
       this.AddserviceButtonText = "loading..."
-      console.log(this.addCenter.value);
       this.auth.addCenterDB(this.addCenter.value)
         .subscribe({
           next: (res => {
@@ -73,6 +71,7 @@ export class AddServiceCenterComponent implements OnInit {
       }
     }
   }
+// SHOW INVALID INPUTS AFTER SUBMIT THE FORM
   showFieldErrors() {
     Object.keys(this.addCenter.controls).forEach((key) => {
       this.addCenter.get(key)?.markAsTouched();

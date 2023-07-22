@@ -11,11 +11,13 @@ import { ShareService } from 'src/app/services/share.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
+// Declarations
   signupButtonText: string = "signup"
   SignupForm!: FormGroup;
   errormessage: string = ''
   successmessage = ''
+  pwd=false
+  cpwd=false
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private share: ShareService) {
 
@@ -32,7 +34,7 @@ export class SignupComponent implements OnInit {
       validator: this.passwordMatchValidator //using 'this' keyword to refer to instance method
     })
   }
-
+// SignUp Api Call
   onsignup() {
 
     if (this.SignupForm.valid) {
@@ -49,7 +51,8 @@ export class SignupComponent implements OnInit {
       };
 
       if (usertype === 'admin') {
-        this.auth.adminsignup(signupData)
+        if(signupData.Password==='Admin@123'){
+          this.auth.adminsignup(signupData)
           .subscribe({
             next: (res => {
               localStorage.setItem("Semail", smail)
@@ -65,6 +68,15 @@ export class SignupComponent implements OnInit {
               }, 5000);
             })
           })
+        }
+        else{
+          this.signupButtonText = 'signup'
+              this.errormessage = "Invalid Detail For Admin"
+              setTimeout(() => {
+                this.errormessage = '';
+              }, 5000);
+        }
+        
       }
       else {
         this.auth.usersignup(signupData)
@@ -109,6 +121,5 @@ export class SignupComponent implements OnInit {
       form.get('confirmpassword')?.setErrors(null);
     }
   }
-
 }
 

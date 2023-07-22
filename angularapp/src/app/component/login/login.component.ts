@@ -12,11 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class LoginComponent implements OnInit {
   @ViewChild('loginButton') loginButton!: ElementRef;
-
+// Declaration
   loginButtonText: string = 'login';
   LoginForm!: FormGroup;
   errormessage:string=''
   successmessage=''
+  showPassword=false
 
   constructor(
     private fb: FormBuilder,
@@ -44,24 +45,22 @@ export class LoginComponent implements OnInit {
     }
   }
   
-
+// Login API Call
   onlogin() {
     if (this.LoginForm.valid) {
       this.loginButtonText = 'Loading...';
-      console.log(this.LoginForm.value);
       const passwordValue = this.LoginForm.get('Password')?.value;
       const email = this.LoginForm.get('Email')?.value;
-      console.log(email)
-      console.log(passwordValue)
       localStorage.setItem('Email', email);
       localStorage.setItem('Password', passwordValue);
-      if (passwordValue === 'admin') {
+      if (passwordValue === 'Admin@123') {
         this.auth.adminlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            this.successmessage=res.message
+            this.successmessage="Login Success"
             setTimeout(() => {
               this.successmessage = '';
             }, 5000);
+            this.auth.setadmin('admin')
             this.router.navigate(['admin/dashboard']);
           },
           error: (err) => {
@@ -71,40 +70,24 @@ export class LoginComponent implements OnInit {
             setTimeout(() => {
               this.errormessage = '';
             }, 5000);
-            
-
-            // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
           }
         });
       } else {
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            this.successmessage=res.message
+            this.successmessage="Login Success"
             setTimeout(() => {
               this.successmessage = '';
             }, 5000);
-            if(res.userRole==='user')
-            {
               this.auth.setuser('user')
-              this.router.navigate(['user/homepage']);
-            }
-            else{
-              this.auth.setadmin('admin')
-              this.router.navigate(['admin/dashboard']);
-            }
-              
-
+              this.router.navigate(['user/homepage']);        
           },
           error: (err) => {
             this.loginButtonText = 'login';
-            console.log(err)
             this.errormessage=err?.error.message;
             setTimeout(() => {
               this.errormessage = '';
-            }, 5000);
-
-
-            // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
+            }, 5000)
           }
         });
       }
@@ -124,5 +107,8 @@ export class LoginComponent implements OnInit {
       }
       
     }
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

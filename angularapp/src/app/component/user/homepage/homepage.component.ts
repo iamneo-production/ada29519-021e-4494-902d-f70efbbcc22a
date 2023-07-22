@@ -12,6 +12,7 @@ import { ShareService } from 'src/app/services/share.service';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
+  // DECALRATIONS
   servicesarr: serviceCenter[] = [];
   reviewarr:Reviews[]=[]
   search:string=""
@@ -23,6 +24,7 @@ export class HomepageComponent implements OnInit {
     
     this.getservice();
   }
+  // GET ALL SERVICE CENTERS
   getservice() {
     this.services.getService().subscribe(Response => {
       console.log(Response)
@@ -32,7 +34,7 @@ export class HomepageComponent implements OnInit {
    
   }
   
-  
+  // FOR RATINGS
   getAverageRatings() {
     this.servicesarr.forEach(service => {
       this.review.getreview(service.serviceCenterID).subscribe(res => {

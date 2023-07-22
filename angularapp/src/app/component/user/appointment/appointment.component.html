@@ -1,6 +1,7 @@
 <app-user style="position: sticky; top: 0; z-index: 100;"></app-user>
 
 <body>
+  <!-- Popup Messages -->
   <div class="popup-container" *ngIf="successmessage">
     <span class="alert alert-success" role="alert">
       <i class="bi bi-check-circle-fill"></i>      {{successmessage}}
@@ -11,6 +12,7 @@
       <i class="bi bi-x-square-fill" ></i>      {{errormessage}}
     </span>
   </div>
+  <!-- Bookings -->
   <div class="bgcolor" id="myBookingBody">
     <div class="container">
       <br>
@@ -33,6 +35,7 @@
             <td id="centerName{{i+1}}" style="text-transform: capitalize;" >{{app.serviceCenterName}}</td>
             <td>{{app.product.date}}</td>
             <td>{{app.product.time}}</td>
+            <!-- Buttons to do Operations -->
             <td>
               <div *ngIf="isserviceover(app.product.date)!='same'">
               <div *ngIf="!isserviceover(app.product.date)">
@@ -72,13 +75,13 @@
         </tbody>
       </table>
     </div>
-
+<!-- ALERT MESSAGES -->
     <div class="alert">
       You canwhnot edit or cancel the appointment on the day of service.<br>
       The bill is available only on the day after the service is completed.
     </div>
 
-
+<!-- MODAL FORM FOR EDIT APPOINTMENT -->
     <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -165,7 +168,7 @@
         </div>
       </div>
     </div>
-
+<!-- MODAL FORM FOR POST REVIEW -->
     <div class="modal fade" id="submitmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

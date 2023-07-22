@@ -16,7 +16,7 @@ import { ShareService } from 'src/app/services/share.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+// DECALRATIONS
   book='book'
   tdy: string = ''
 
@@ -43,10 +43,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private appointment: AppointmentService,
-    private share: ShareService,
-    private router: Router,
     private service: ServicecenterService,
-    private review: AppointmentService
   ) {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -73,25 +70,19 @@ export class DashboardComponent implements OnInit {
     this.generateAvailableSlots();
     this.appointment.getExistingAppointments().subscribe(existingAppointments => {
       this.existingAppointments = existingAppointments;
-      console.log(this.existingAppointments)
-      for (let i = 0; i < this.existingAppointments.length; i++) {
-        const appointment = this.existingAppointments[i].serviceCenterId.toString();
-        console.log(appointment, "=", this.servicecenterid, appointment === this.servicecenterid);
-      }
-      console.log(this.existingAppointments.some(appointment => appointment.serviceCenterId === this.servicecenterid))
       this.availableSlots.forEach(slot => {
         slot.times.forEach((timeSlot: { time: string; isBooked: boolean; }) => {
           const isBooked = existingAppointments.some(appointment => appointment.serviceCenterId.toString() === this.servicecenterid.toString() &&
             appointment.date === slot.date && appointment.time === timeSlot.time
           );
           timeSlot.isBooked = isBooked;
-          console.log(timeSlot)
         });
       });
     });
 
 
   }
+  // GET THE SERVICE CENTER
   getservicecenter() {
     this.service.getimage(this.servicecenterid).subscribe(res => {
       this.serviceimage = res.serviceCenterImageUrl
@@ -101,18 +92,16 @@ export class DashboardComponent implements OnInit {
       this.servicecenterdescription = res.serviceCenterDescription
     })
   }
-
+// GET THE REVIEW FOR THAT SERVICE CENTER
 getreview(){
   this.appointment.getreviews(this.servicecenterid).subscribe(res=>{
-    console.log(res)
     this.reviewarr=res
-    console.log(this.reviewarr)
   })
 }
 
-
+// TO GENERATE THE SLOTS AND CHECK THA AVAILABILITY
   generateAvailableSlots() {
-    const days = 5; // Number of days to show slots for
+    const days = 5; 
     const timeSlots = [
       { time: '08:00 AM - 10:00 AM', isBooked: false },
       { time: '11:00 AM - 01:00 PM', isBooked: false },
@@ -121,7 +110,7 @@ getreview(){
     ];
 
     const today = new Date();
-    this.availableSlots = []; // Clear the array before generating new slots
+    this.availableSlots = []; 
     let isAllSlotsBooked = true;
     for (let i = 1; i < days + 1; i++) {
       const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
@@ -156,24 +145,20 @@ getreview(){
   }
   onDateSelected() {
     const sd = this.productdetails.get('dateOfPurchase')?.value
-    console.log('Selected Date:', sd);
   }
 
-
+// GET THE REVIEWS
   getAverageRating(){
     this.appointment.getreview(this.servicecenterid).subscribe(res=>{
-      console.log(res)
       const roundedRating = Math.round(res);
     this.rating='⭐'.repeat(roundedRating);
-    console.log(this.rating)
     })
   }
 
-
+// POST THE BOOKINGS
   onbook() {
     this.book='loading'
     if (this.productdetails.valid) {
-      console.log(this.productdetails.value);
       this.appointment.bookappointment(this.productdetails.value).subscribe(response => {
         this.successmessage = "Appointment Booked"
         setTimeout(() => {
@@ -204,6 +189,7 @@ getreview(){
       }
     }
   }
+  // CHECK THE INVALID FIELD
   showFieldErrors() {
     Object.keys(this.productdetails.controls).forEach((key) => {
       this.productdetails.get(key)?.markAsTouched();

@@ -33,32 +33,6 @@
                 <h6>Email ID:{{userarr && userarr.length > 0 ? userarr[0].email : 'xyz@gmail.com'}}</h6>
                 <h6>Mobile Number:{{userarr && userarr.length > 0 ? userarr[0].mobileNumber : 'MobileNumber'}}</h6>
 
-                <hr>
-                <h6>EDIT</h6>
-                <div class="button-container">
-                  <button style="width: 90%;"type="submit" class="btn btn-primary" (click)="pwdchange()"><i class="bi-pencil-square"></i>
-                    PASSWORD </button>
-                </div>
-                <div *ngIf="pwd">
-                  <input type="password" placeholder="Old Password"  [(ngModel)]="confirmpassword">
-                <form [formGroup]="userForm">
-                  <input type="password" placeholder="new Password" formControlName="Password">
-                  <small *ngIf="userForm.controls['Password'].dirty && userForm.hasError('required','Password') " class="text-danger">Password is required</small>
-                  <small *ngIf="userForm.controls['Password'].dirty && userForm.hasError('pattern','Password')"class="text-danger">The password must be at least 8 characters long and include at least one special character, one uppercase letter, and one lowercase letter.</small>
-
-                  <input type="password" placeholder="confirm Password" formControlName="confirmpassword">
-                  <small *ngIf="userForm.controls['confirmpassword'].dirty && userForm.get('confirmpassword')?.hasError('passwordMismatch')"class="text-danger">Password Does Not Match</small>
-
-                  <div class="button-container">
-                    <button style="width: 50%;" (click)="Passwordchange(confirmpassword)" type="submit" class="btn btn-success"><i class="bi bi-save">
-                        save</i></button>
-                    <button style="width: 50%;" (click)="rollback()" class="btn btn-secondary"><i class="bi bi-x">
-                        cancel</i></button>
-                  </div>
-                </form>
-                </div>
-                
-                <hr>
                 
                   <a style="width: 90% ;margin: 10px;" class="btn btn-secondary" (click)="logout()" routerLink="/login"><i
                       class="bi bi-box-arrow-left"></i></a>

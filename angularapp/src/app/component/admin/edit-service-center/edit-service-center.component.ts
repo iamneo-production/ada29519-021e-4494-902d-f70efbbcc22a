@@ -10,12 +10,14 @@ import { ServicecenterService } from 'src/app/services/servicecenter.service';
   styleUrls: ['./edit-service-center.component.css']
 })
 export class EditServiceCenterComponent implements OnInit {
+// Decalrations
   servicesarr: serviceCenter[] = [];
   editCenter!: FormGroup
   successmessage: string = ''
   errormessage: string = ''
   update:boolean=false
   EditserviceButtonText='edit'
+
   constructor(private fb: FormBuilder, private services: ServicecenterService) {
     this.editCenter = this.fb.group({
       serviceCenterID: ['', Validators.required],
@@ -30,14 +32,14 @@ export class EditServiceCenterComponent implements OnInit {
   ngOnInit(): void {
     this.getservice();
   }
+// Get All Service Center
   getservice() {
-    this.services.getService().subscribe(Response => {
-      
+    this.services.getService().subscribe(Response => { 
       this.servicesarr = Response;
     })
   }
+// fill Form to edit those service Center
   updateform(ser: serviceCenter) {
-    
     this.editCenter.setValue({
       serviceCenterID: ser.serviceCenterID,
       serviceCenterName: ser.serviceCenterName,
@@ -48,9 +50,7 @@ export class EditServiceCenterComponent implements OnInit {
       serviceCenterDescription: ser.serviceCenterDescription
     })
   }
-  errpopup() {
-    this.errormessage = ""
-  }
+// Edit Service Center API CALL
   onedit() {
     if (this.editCenter.valid) {
       this.EditserviceButtonText = "loading..."
@@ -73,8 +73,6 @@ export class EditServiceCenterComponent implements OnInit {
           this.EditserviceButtonText = "edit"
         })
       })
-
-
     } else {
       if (this.editCenter.pristine) {
         this.errormessage = "Enter Details of Service Center"
@@ -93,9 +91,8 @@ export class EditServiceCenterComponent implements OnInit {
     }
   }
 
-
+// Delete service Center
   ondelete(id: string) {
-
     this.services.deleteservice(id).subscribe((res: any) => {
       this.successmessage = res.message
       setTimeout(() => {
@@ -105,6 +102,7 @@ export class EditServiceCenterComponent implements OnInit {
     });
 
   }
+// Show Error in inputs After submit Form
   showFieldErrors() {
     Object.keys(this.editCenter.controls).forEach((key) => {
       this.editCenter.get(key)?.markAsTouched();
