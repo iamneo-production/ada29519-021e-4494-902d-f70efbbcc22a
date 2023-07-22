@@ -1,12 +1,12 @@
-using AC_Service_API.Database;
-using AC_Service_API.Models;
+using AC_SERVICE_API.Database;
+using AC_SERVICE_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace AC_Service_API.Controllers
+namespace AC_SERVICE_API.Controllers
 {
     [Route("admin")]
     [ApiController]

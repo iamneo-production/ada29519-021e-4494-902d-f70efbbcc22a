@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using AC_Service_API.Models;
+using AC_SERVICE_API.Models;
 
-namespace AC_Service_API.Database
+namespace AC_SERVICE_API.Database
 {
     public class AC_ServerDbContext:DbContext
     {

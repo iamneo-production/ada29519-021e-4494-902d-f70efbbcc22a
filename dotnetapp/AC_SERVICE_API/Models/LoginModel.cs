@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace AC_Service_API.Models
+namespace AC_SERVICE_API.Models
 {
     public class LoginModel
     {

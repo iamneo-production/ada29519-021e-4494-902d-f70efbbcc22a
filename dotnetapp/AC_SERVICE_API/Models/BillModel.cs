@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace AC_Service_API.Models
+namespace AC_SERVICE_API.Models
 {
     public class BillModel
     {

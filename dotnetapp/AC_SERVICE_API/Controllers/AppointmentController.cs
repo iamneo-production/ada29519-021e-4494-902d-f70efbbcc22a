@@ -1,5 +1,5 @@
-using AC_Service_API.Database;
-using AC_Service_API.Models;
+using AC_SERVICE_API.Database;
+using AC_SERVICE_API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace AC_Service_API.Controllers
+namespace AC_SERVICE_API.Controllers
 {
     [Route("user")]
     [ApiController]
@@ -38,7 +38,7 @@ public async Task<IActionResult> SaveAppointment([FromBody] ProductModel product
         var appointments = await _context.Products.ToListAsync();
         return Ok(appointments);
     }
-    catch (Exception ex)
+    catch (Exception )
     {
         return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while saving the appointment.");
     }

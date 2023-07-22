@@ -1,4 +1,4 @@
-namespace AC_Service_API.Models
+namespace AC_SERVICE_API.Models
 {
     public class UserModel
     {
