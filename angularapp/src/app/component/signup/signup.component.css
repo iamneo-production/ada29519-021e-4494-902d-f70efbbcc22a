@@ -20,7 +20,7 @@
 }
 
 .side-image {
-  background-image: url("https://img.freepik.com/premium-vector/realistic-vector-background-climat-control-concept-cooling-air-conditioning-system-living-r_134830-1168.jpg");
+  background-image: url("https://images.jdmagicbox.com/comp/pune/y4/020pxx20.xx20.230303182117.u5y4/catalogue/perfect-air-conditioning-hadapsar-pune-ac-repair-and-services-7ty7wdy6ci.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -44,8 +44,13 @@ img {
 
 .text p {
   color: #000000;
+  margin-left: 55%;
   font-size: 18px;
   text-align: center;
+  width: 90%;
+  border-radius: 10%;
+  background-color: hsla(39, 100%, 50%, 0.5);
+
 }
 
 i {
@@ -166,7 +171,7 @@ span a:hover {
 
   .text p,
   i {
-    font-size: 17px;
+    display:none;
   }
 
   .row {

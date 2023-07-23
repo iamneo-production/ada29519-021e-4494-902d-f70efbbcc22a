@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kYWkhbZkG53JqXkfK71x26Yvn1We3yCr+kmk9jUmH8Y3y/pogIwgRi0Q6S3v0z/cmmZAUROPfDEFS6mhcoxdZg==",
+  "dgSpecHash": "g+lCAS1gqg5ue0tpzl9qitZJblnYdsXE16oJUhtuNGCtmlZ55RLxKF3jrb6wdrziK9J9K2csQW4NaYmWsS/Vvw==",
   "success": true,
   "projectFilePath": "/home/coder/project/workspace/dotnetapp/TestProject/TestProject.csproj",
   "expectedPackageFiles": [
@@ -47,6 +47,11 @@
     "/home/coder/.nuget/packages/nunit/3.13.3/nunit.3.13.3.nupkg.sha512",
     "/home/coder/.nuget/packages/nunit.analyzers/3.3.0/nunit.analyzers.3.3.0.nupkg.sha512",
     "/home/coder/.nuget/packages/nunit3testadapter/4.2.1/nunit3testadapter.4.2.1.nupkg.sha512",
+    "/home/coder/.nuget/packages/pdfsharpcore/1.1.21/pdfsharpcore.1.1.21.nupkg.sha512",
+    "/home/coder/.nuget/packages/polybioz.htmlrenderer.pdfsharp.core/1.0.0/polybioz.htmlrenderer.pdfsharp.core.1.0.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.core/1.0.0-beta0008/sixlabors.core.1.0.0-beta0008.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.fonts/1.0.0-beta0009/sixlabors.fonts.1.0.0-beta0009.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.imagesharp/1.0.0-beta0006/sixlabors.imagesharp.1.0.0-beta0006.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

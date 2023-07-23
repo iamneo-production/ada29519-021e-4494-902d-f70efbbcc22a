@@ -7,11 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-<<<<<<< HEAD:dotnetapp/Program.cs
 namespace dotnetapp
-=======
-namespace acservice
->>>>>>> d0569e4f3a0fc1311b5f2bfdf431ff18b4694f3e:dotnetapp/acservice/Program.cs
 {
     public class Program
     {

@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,9 +8,9 @@ import { Account } from '../helpers/account';
   providedIn: 'root'
 })
 export class AccountService {
-  getaccounturl="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/getaccount"
-  deleteaccounturl="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/deleteaccount"
-  editaccounturl="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/editaccount"
+  getaccounturl="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/getaccount"
+  deleteaccounturl="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/deleteaccount"
+  editaccounturl="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/editaccount"
   // eid=localStorage.getItem('email')
 
   constructor(private http:HttpClient) { }

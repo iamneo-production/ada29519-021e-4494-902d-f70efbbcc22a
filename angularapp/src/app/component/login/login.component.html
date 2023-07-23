@@ -21,11 +21,12 @@
             src="https://img.freepik.com/free-vector/air-conditioning-refrigeration-services-abstract-concept-illustration-installation-repair-maintenance-air-conditioners-climate-control-systems-equipment_335657-704.jpg?size=626&ext=jpg"
             alt="">
           <div class="text">
-            <p>COOLING KING AC Service Appointment System</p>
-            <p><i>Please login...</i></p>
+            <p>COOLING KING AC Service Appointment System <br> Please login...</p>
+            
             
           </div>
         </div>
+        <!-- Login Form -->
         <div class="col-md-6 right">
           <div class="input-box">
             <header>Login</header>
@@ -39,7 +40,9 @@
               </div>
 
               <div class="input-field">
-                <input type="password" class="input" id="password" required formControlName="Password" />
+                <input type="{{ showPassword ? 'text' : 'password' }}" class="input" id="password" required formControlName="Password" />
+                <i class="bi bi-eye-slash-fill eye-icon" *ngIf="!showPassword" (click)="togglePasswordVisibility()" ></i>
+                <i class="bi bi-eye-fill eye-icon" *ngIf="showPassword" (click)="togglePasswordVisibility()" ></i>
                 <small class="text-danger" *ngIf="LoginForm.controls['Password'].touched && LoginForm.hasError('required','Password')">Password is required</small>
                 <label for="password">Password</label>
               </div>

@@ -17,10 +17,10 @@
             src="https://img.freepik.com/free-vector/air-conditioning-refrigeration-services-abstract-concept-illustration-installation-repair-maintenance-air-conditioners-climate-control-systems-equipment_335657-704.jpg?size=626&ext=jpg"
             alt="">
           <div class="text">
-            <p>COOLING KING AC Service Appointment System</p>
-            <p><i>Please Signup...</i></p>
+            <p >COOLING KING AC Service Appointment System <br>Please Signup... </p>
           </div>
         </div>
+        <!-- Sign UP Form -->
         <div class="col-md-6 right">
           <div class="input-box">
             <header>Sign Up</header>
@@ -57,16 +57,17 @@
               </div>
 
               <div class="input-field">
-                <input formControlName="Password" type="password" class="input" id="password" required />
+                <input formControlName="Password" type="{{ pwd ? 'text' : 'password' }}"class="input" id="password" required />
                 <small class="text-danger"  *ngIf="SignupForm.controls['Password'].touched && SignupForm.hasError('required','Password')">Password is required</small>
                 <small class="text-danger"  *ngIf="SignupForm.controls['Password'].touched && SignupForm.hasError('pattern','Password')">The password must be at least 8 characters long and include at least one special character, one uppercase letter, and one lowercase letter.</small>
                 <label for="password">Password</label>
               </div>
               
               <div class="input-field">
-                <input formControlName="confirmpassword" type="password" class="input" id="confirmPassword" required />
+                <input formControlName="confirmpassword" type="{{ cpwd ? 'text' : 'password' }}" class="input" id="confirmPassword" required />
                 <small class="text-danger" *ngIf="SignupForm.controls['confirmpassword'].touched && SignupForm.get('confirmpassword')?.hasError('passwordMismatch')">Password  Does Not Match</small>
                 <label for="confirmpassword">Confirm Password</label>
+                
               </div>
 
             </form>

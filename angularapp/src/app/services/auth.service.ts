@@ -6,12 +6,12 @@ import {HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private addserviceCenterURL:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/addServiceCenter";
-  private AddBookingURL:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/api/Appointment/appointment_booking";
-  private adminloginurl:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/login"
-  private adminsignupurl:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/signup"
-  private userloginurl:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/login"
-  private usersignupurl:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/signup"
+  private addserviceCenterURL:string="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/admin/addServiceCenter";
+  private AddBookingURL:string="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/api/Appointment/appointment_booking";
+  private adminloginurl:string="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/admin/login"
+  private adminsignupurl:string="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/admin/signup"
+  private userloginurl:string="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/login"
+  private usersignupurl:string="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/signup"
                                
   constructor(private http:HttpClient) { }
   adminsignup(adminobj:any){
