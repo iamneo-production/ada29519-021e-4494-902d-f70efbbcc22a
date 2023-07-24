@@ -5,18 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AC_SERVICE_API.Models;
 
-namespace AC_SERVICE_API.Database
+namespace AC_SERVICE_API.DataDbContext
 {
-    public class AC_ServerDbContext:DbContext
+    public class AcServiceDbContext:DbContext
     {
-      public AC_ServerDbContext(DbContextOptions<AC_ServerDbContext>options):base(options)
+      public AcServiceDbContext(DbContextOptions<AcServiceDbContext>options):base(options)
         {
             
         }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<UserModel> Users { get; set; } 
         public DbSet<ServiceCenterModel> Services { get; set; }
-
         public DbSet<AdminModel> Admins { get; set; }
         public DbSet<LoginModel> LoginModels { get; set; }
         public DbSet<ReviewModel> Reviews{get;set;}

@@ -1,7 +1,5 @@
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/obj/Debug/net6.0/AC_SERVICE_API.csproj.AssemblyReference.cache
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/obj/Debug/net6.0/AC_SERVICE_API.GeneratedMSBuildEditorConfig.editorconfig
-/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/obj/Debug/net6.0/AC_SERVICE_API.AssemblyInfoInputs.cache
-/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/obj/Debug/net6.0/AC_SERVICE_API.AssemblyInfo.cs
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/obj/Debug/net6.0/AC_SERVICE_API.csproj.CoreCompileInputs.cache
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/obj/Debug/net6.0/AC_SERVICE_API.MvcApplicationPartsAssemblyInfo.cs
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/obj/Debug/net6.0/AC_SERVICE_API.MvcApplicationPartsAssemblyInfo.cache
@@ -29,6 +27,12 @@
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/Microsoft.OpenApi.dll
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll
+/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/PdfSharpCore.dll
+/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/HtmlRenderer.Core.dll
+/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/HtmlRenderer.PdfSharp.Core.dll
+/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/SixLabors.Core.dll
+/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/SixLabors.Fonts.dll
+/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/SixLabors.ImageSharp.dll
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/coder/project/workspace/dotnetapp/AC_SERVICE_API/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll

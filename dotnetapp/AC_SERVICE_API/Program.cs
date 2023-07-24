@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using AC_SERVICE_API.Database;
+using AC_SERVICE_API.DataDbContext;
 using Microsoft.EntityFrameworkCore;
 
 namespace AC_SERVICE_API

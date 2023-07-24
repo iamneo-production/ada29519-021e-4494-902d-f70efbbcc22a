@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "netrM+a1kXZWHj0uH1paj+7iqxetc7UbVsCaUWb7MbXwEz6UVY1dfp6zJQgJrPoKA9/8rpSogYzOzcSupBVx7g==",
+  "dgSpecHash": "vZcnSAOM3XF/HZsQMZSbV/qqjRkL8sEI8cbY9WmqwWlUuMJ9JkNd+IOBoSjueRO6sAxbJazQDIrPs9MZjc/NRA==",
   "success": true,
   "projectFilePath": "/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/AC_SERVICE_API.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,11 @@
     "/home/coder/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/pdfsharpcore/1.1.21/pdfsharpcore.1.1.21.nupkg.sha512",
+    "/home/coder/.nuget/packages/polybioz.htmlrenderer.pdfsharp.core/1.0.0/polybioz.htmlrenderer.pdfsharp.core.1.0.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.core/1.0.0-beta0008/sixlabors.core.1.0.0-beta0008.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.fonts/1.0.0-beta0009/sixlabors.fonts.1.0.0-beta0009.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.imagesharp/1.0.0-beta0006/sixlabors.imagesharp.1.0.0-beta0006.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
