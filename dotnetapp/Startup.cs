@@ -82,6 +82,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using dotnetapp.DataDbContext;
 using dotnetapp.Controllers;
 
+
 namespace dotnetapp
 {
     public class Startup
@@ -105,6 +106,7 @@ namespace dotnetapp
             });
             var connectionString = "User ID=sa;password=examlyMssql@123;server=localhost;Database=acserviceapi;trusted_connection=false; Persist Security Info=False;Encrypt=False";
             services.AddDbContext<AcServiceDbContext>(options => options.UseSqlServer(connectionString));
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
