@@ -11,8 +11,8 @@ using dotnetapp.DataDbContext;
 namespace dotnetapp.Migrations
 {
     [DbContext(typeof(AcServiceDbContext))]
-    [Migration("20230711091817_iInitialSetup")]
-    partial class iInitialSetup
+    [Migration("20230723094123_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,16 +50,19 @@ namespace dotnetapp.Migrations
 
             modelBuilder.Entity("dotnetapp.Models.BillModel", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("billpdf")
+                    b.Property<string>("Billpdf")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.Property<string>("UserEmailId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Bills");
                 });
@@ -91,6 +94,12 @@ namespace dotnetapp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ServiceCenterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmailId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("contactNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -100,9 +109,6 @@ namespace dotnetapp.Migrations
                     b.Property<string>("dateOfPurchase")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("maildid")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("problemDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -110,12 +116,6 @@ namespace dotnetapp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("productName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("servicecenter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("servicecentermailid")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("time")
@@ -134,13 +134,16 @@ namespace dotnetapp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("rating")
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("review")
+                    b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("servicecentermailid")
+                    b.Property<int>("ServiceCenterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmailId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -150,8 +153,11 @@ namespace dotnetapp.Migrations
 
             modelBuilder.Entity("dotnetapp.Models.ServiceCenterModel", b =>
                 {
-                    b.Property<string>("serviceCenterID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("serviceCenterID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("serviceCenterID"), 1L, 1);
 
                     b.Property<string>("serviceCenterAddress")
                         .HasColumnType("nvarchar(max)");

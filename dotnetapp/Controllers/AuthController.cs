@@ -1,35 +1,3 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Diagnostics;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using Microsoft.AspNetCore.Mvc;
-// using Microsoft.Extensions.Logging;
-
-// namespace dotnetapp.Controllers
-// {
-//     [Route("[controller]")]
-//     public class AuthController : Controller
-//     {
-//         private readonly ILogger<AuthController> _logger;
-
-//         public AuthController(ILogger<AuthController> logger)
-//         {
-//             _logger = logger;
-//         }
-
-//         public IActionResult Index()
-//         {
-//             return View();
-//         }
-
-//         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-//         public IActionResult Error()
-//         {
-//             return View("Error!");
-//         }
-//     }
-// }
 
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.DataDbContext;
@@ -40,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 
 namespace dotnetapp.Controllers
@@ -62,12 +31,12 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
-            var admin = await _context.Users.FirstOrDefaultAsync(x => x.Email == adminobj.Email && x.Password == adminobj.Password);
+            var admin = await _context.Admins.FirstOrDefaultAsync(x => x.Email == adminobj.Email && x.Password == adminobj.Password);
             if (admin == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-           // Replace with your actual URI format
+           
 
             return Created("", true);
         }
@@ -80,12 +49,12 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == userobj.Email && x.Password == userobj.Password);
+            var user = await _context.LoginModels.FirstOrDefaultAsync(x => x.Email == userobj.Email && x.Password == userobj.Password);
             if (user == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-           // Replace with your actual URI format
+           
 
             return Created("", true);
         }
@@ -99,15 +68,20 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
+            if(userobj.UserRole != "demo"){
+                var email = await _context.Admins.FirstOrDefaultAsync(x => x.Email == userobj.Email);
+            if (email != null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Admin already exists"
+                });
+            }
+            }
+            
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
-            var loginObj = new LoginModel
-            {
-                Email = userobj.Email,
-                Password = userobj.Password
-            };
-            await _context.LoginModels.AddAsync(loginObj);
-            await _context.SaveChangesAsync();
+            
             var admin = new AdminModel
                 {
                     Email = userobj.Email,
@@ -119,7 +93,7 @@ namespace dotnetapp.Controllers
                 await _context.SaveChangesAsync();
             
 
-             // Replace with your actual URI format
+            
 
             return Created("", true);
         }
@@ -131,6 +105,18 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
+
+            if(userobj.UserRole != "demo"){
+                 var email = await _context.LoginModels.FirstOrDefaultAsync(x => x.Email == userobj.Email);
+            if (email != null)
+            {
+                return BadRequest(new
+                {
+                    Message = "User already exists"
+                });
+            }
+            }
+           
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
             var loginObj = new LoginModel
@@ -140,8 +126,7 @@ namespace dotnetapp.Controllers
             };
             await _context.LoginModels.AddAsync(loginObj);
             await _context.SaveChangesAsync();
-            // return Created("User added");
-            // Replace with your actual URI format
+            
 
             return Created("", true);
         }

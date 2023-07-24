@@ -1,31 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using dotnetapp.DataDbContext;
 using dotnetapp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using PdfSharpCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using PdfSharpCore.Pdf;
+using PdfSharpCore;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
-using System.IO;
 
-namespace acservice.Controllers
+namespace dotnetapp.Controllers
 {
-    [Route("user")]
     [ApiController]
+    [Route("user")]
     public class AppointmentController : ControllerBase
     {
         private readonly AcServiceDbContext _context;
-        public AppointmentController(AcServiceDbContext dbcontext)
+
+        public AppointmentController(AcServiceDbContext ac_DbContext)
         {
-            _context = dbcontext;
+            _context = ac_DbContext;
         }
-       
-        
         [HttpPost("appointment")]
         public async Task<IActionResult> saveAppointment([FromBody] ProductModel productModel)
         {
@@ -86,11 +83,19 @@ namespace acservice.Controllers
 
             return Ok(product);
         }
-        
+
         [HttpGet("appointments/{id}")]
         public async Task<IActionResult> getAppointment(string id)
         {
-            var appointments = await _context.Products.Where(p => p.maildid == id).ToListAsync();
+            var appointments = await _context.Products
+         .Where(p => p.UserEmailId == id)
+         .Join(
+             _context.Services,
+             product => product.ServiceCenterId,
+             serviceCenter => serviceCenter.serviceCenterID,
+             (product, serviceCenter) => new { Product = product, ServiceCenterName = serviceCenter.serviceCenterName }
+         )
+         .ToListAsync();
 
             if (appointments == null || appointments.Count == 0)
             {
@@ -126,43 +131,66 @@ namespace acservice.Controllers
             await _context.Reviews.AddAsync(review);
             await _context.SaveChangesAsync();
             var reviews = await _context.Reviews.ToListAsync();
-            return Ok(reviews);
+            return Created("",new { 
+                Message="review Posted SuccessFully",reviews });
         }
-        
 
-            [HttpGet("getreview/{id}")]
-            public async Task<IActionResult> getReview(string id)
+
+        [HttpGet("getreview/{id}")]
+        public async Task<IActionResult> getReview(int id)
+        {
+            var reviews = await _context.Reviews.Where(p => p.ServiceCenterId == id).ToListAsync();
+
+            if (reviews == null || reviews.Count == 0)
             {
-                var reviews = await _context.Reviews.Where(p => p.servicecentermailid == id).ToListAsync();
-
-                if (reviews == null || reviews.Count == 0)
-                {
-                    return Ok(0); // Return 0 if there are no reviews
-                }
-
-                // Calculate the average rating
-                double averageRating = reviews.Average(r => r.rating);
-
-                return Ok(averageRating);
+                return Ok(0); // Return 0 if there are no reviews
             }
 
-        [HttpGet("generatebill/{pid}/{uid}/{sid}")]
-        public async Task<IActionResult> generateBill(int pid,string uid,string sid)
+            // Calculate the average rating
+            double averageRating = reviews.Average(r => r.Rating);
+
+            return Ok(averageRating);
+        }
+        [HttpGet("getreviews/{id}")]
+        public async Task<IActionResult> GetReviews(int id)
         {
-            var sd = await _context.Services.FirstOrDefaultAsync(s => s.serviceCenteramailId == sid);
+
+            var appointments = await _context.Reviews
+         .Where(p => p.ServiceCenterId == id)
+         .Join(
+             _context.Users,
+             review => review.UserEmailId,
+             user => user.Email,
+             (review, user) => new { Review = review, user = user.UserName }
+         )
+         .ToListAsync();
+
+            if (appointments == null || appointments.Count == 0)
+            {
+                return NotFound(); // Return 404 if there are no reviews
+            }
+
+            return Ok(appointments);
+        }
+
+
+        [HttpGet("generatebill/{pid}/{uid}/{sid}")]
+        public async Task<IActionResult> generateBill(int pid, string uid, int sid)
+        {
+            var sd = await _context.Services.FirstOrDefaultAsync(s => s.serviceCenterID == sid);
             var pd = await _context.Products.FirstOrDefaultAsync(s => s.Id == pid);
             var ud = await _context.Users.FirstOrDefaultAsync(s => s.Email == uid);
             var doc = new PdfDocument();
             string htmlcontent = "<div style='width:100%; text-align:center'>";
             htmlcontent += "<h2>Welcome to Cooling Management</h2>";
-            htmlcontent += "<h2>"+sd.serviceCenterName+"</h2>";
+            htmlcontent += "<h2>" + sd.serviceCenterName + "</h2>";
             htmlcontent += "<img style='width:80px;height:80%' src='" + sd.serviceCenterImageUrl + "'   />";
-           
-            
 
 
 
-            if (sd != null && pd != null && ud !=null)
+
+
+            if (sd != null && pd != null && ud != null)
             {
                 htmlcontent += "<h2 style='text-align:right'>Invoice No:" + pd.Id + "</h2> ";
                 htmlcontent += "<h2 style='text-align:right'>Invoice Date:" + pd.date + "</h2>";
@@ -191,7 +219,7 @@ namespace acservice.Controllers
                 htmlcontent += "<td>" + pd.problemDescription + "</td>";
                 htmlcontent += "<td>Rs:200</td>";
                 htmlcontent += "</tr>";
-                
+
             }
             htmlcontent += "</tbody>";
 
@@ -228,15 +256,18 @@ namespace acservice.Controllers
             }
             string base64Pdf = Convert.ToBase64String(response);
             // Assuming you have a "Bill" model with a "PdfContent" field to store the PDF
-            var bill = new BillModel {
+            var bill = new BillModel
+            {
                 //id=pid,
-                billpdf= base64Pdf 
+                Billpdf = base64Pdf,
+                
             };
             _context.Bills.Add(bill);
             await _context.SaveChangesAsync();
 
             string FileName = "Invoice_" + pid + ".pdf";
-            return File(response,"application/pdf",FileName);
+            return File(response, "application/pdf", FileName);
         }
+        
     }
 }
