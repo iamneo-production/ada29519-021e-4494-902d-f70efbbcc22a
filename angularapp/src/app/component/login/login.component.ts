@@ -12,10 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 
 export class LoginComponent implements OnInit {
   @ViewChild('loginButton') loginButton!: ElementRef;
-
+// Declaration
   loginButtonText: string = 'login';
   LoginForm!: FormGroup;
-  errormessage:string
+  errormessage:string=''
+  successmessage=''
+  showPassword=false
 
   constructor(
     private fb: FormBuilder,
@@ -29,8 +31,8 @@ export class LoginComponent implements OnInit {
     const storedEmail = localStorage.getItem('Semail');
     const storedPassword = localStorage.getItem('Spwd');
     this.LoginForm = this.fb.group({
-      email: [storedEmail || '', [Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
-      password: [storedPassword || '', Validators.required]
+      Email: [storedEmail || '', [Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
+      Password: [storedPassword || '', Validators.required]
     });
 
     if (storedEmail && storedPassword) {
@@ -42,59 +44,71 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-  errpopup(){
-    this.errormessage=""
-  }
-
+  
+// Login API Call
   onlogin() {
     if (this.LoginForm.valid) {
       this.loginButtonText = 'Loading...';
-      console.log(this.LoginForm.value);
-      const passwordValue = this.LoginForm.get('password')?.value;
-      const email = this.LoginForm.get('email')?.value;
-      localStorage.setItem('email', email);
-      if (passwordValue === 'admin') {
+      const passwordValue = this.LoginForm.get('Password')?.value;
+      const email = this.LoginForm.get('Email')?.value;
+      localStorage.setItem('Email', email);
+      localStorage.setItem('Password', passwordValue);
+      if (passwordValue === 'Admin@123') {
         this.auth.adminlogin(this.LoginForm.value).subscribe({
           next: (res) => {
+            this.successmessage="Login Success"
+            setTimeout(() => {
+              this.successmessage = '';
+            }, 5000);
+            this.auth.setadmin('admin')
             this.router.navigate(['admin/dashboard']);
           },
           error: (err) => {
             this.loginButtonText = 'login';
-            alert(err?.error.message);
+           
             this.errormessage=err?.error.message
-            
-
-            // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
+            setTimeout(() => {
+              this.errormessage = '';
+            }, 5000);
           }
         });
       } else {
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            if(res.userRole==='user')
-              this.router.navigate(['user/homepage']);
-            else
-              this.router.navigate(['admin/dashboard']);
-
+            this.successmessage="Login Success"
+            setTimeout(() => {
+              this.successmessage = '';
+            }, 5000);
+              this.auth.setuser('user')
+              this.router.navigate(['user/homepage']);        
           },
           error: (err) => {
             this.loginButtonText = 'login';
             this.errormessage=err?.error.message;
-            this.errormessage=err?.error.message
-
-
-            // this.toast.error({detail:"ERROR",summary:err?.error.message,sticky:true});
+            setTimeout(() => {
+              this.errormessage = '';
+            }, 5000)
           }
         });
       }
     } else {
       if(this.LoginForm.pristine){
         this.errormessage='Enter your email and password'
+        setTimeout(() => {
+          this.errormessage = '';
+        }, 5000);
       }
       else{
         ValidateForm.validateAllFormFileds(this.LoginForm);
       this.errormessage='Enter valid email and password'
+      setTimeout(() => {
+        this.errormessage = '';
+      }, 5000);
       }
       
     }
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

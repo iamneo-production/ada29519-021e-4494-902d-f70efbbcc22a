@@ -1,68 +1,28 @@
-.container{
-  padding: 16px;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  height: 100vh;
- 
-}
-.form{
-  background-color:lavender;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  padding: 30px;
-}
 
-body{
-  background-color: lightblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+input,textarea{
+  width: 90%;
+  margin-left: 5%;
 }
-
-
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="email"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+label{
+  font-weight: bold;
+  margin-left: 5%;
 }
-
-label h5{
-  color: darkblue;
-}
-
-textarea {
-  height: 100px;
-}
-
-button[type="submit"] {
-  padding: 10px 20px;
-  background-color: palevioletred;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-small {
+small{
   color: red;
-  font-size: 18px;
+  margin-left: 5%;
 }
-.popup-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px;
-  border-radius: 4px;
+button{
+  margin: 5%;
+  width: 90%;
+}
+body{
+  background-image: url('https://wallpaperaccess.com/full/7233921.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 400px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }

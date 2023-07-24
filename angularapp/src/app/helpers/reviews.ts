@@ -1,7 +1,12 @@
 export interface Reviews{
     id:number
-    maildid:string
-    reviews:string
-    ratings:number
-
+    userEmailId:string
+    review:string
+    rating:number
+    serviceCenterId:string
 }
+export interface Reviewresponse {
+    review: Reviews;
+    user: string;
+  }
+  

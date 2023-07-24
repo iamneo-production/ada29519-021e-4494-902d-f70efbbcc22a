@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ShareService } from 'src/app/services/share.service';
 import { AppointmentService } from 'src/app/services/appointment.service';
-import { Appointment } from 'src/app/helpers/appointment';
+import { Appointment, AppointmentResponse } from 'src/app/helpers/appointment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicecenterService } from 'src/app/services/servicecenter.service';
 import ValidateForm from 'src/app/helpers/validateForm';
+
 
 @Component({
   selector: 'app-appointment',
@@ -13,35 +14,35 @@ import ValidateForm from 'src/app/helpers/validateForm';
 })
 export class AppointmentComponent implements OnInit {
 
-
-  AppointmentArr: Appointment[] = []
+// Declarations
+  AppointmentArr: AppointmentResponse[] = []
   availableSlots: any[] = [];
   existingAppointments: Appointment[] = []
   loadingStates: string[] = [];
-
-
+  Email = localStorage.getItem('Email') || ""
+  book='book'
   EditAppointment!: FormGroup
   review!: FormGroup
-
   imageurl: any
   rating: number = 0;
   showDownloadButton = false;
-
   serviceName: string = '';
   centerName: string = '';
-  mailid: string = ""
+  serviceCenterId: string = ""
   dbt: string = "download"
-  tdy:string=''
-  errormessage:string
-  successmessage:string
+  tdy: string = ''
+  errormessage: string = ''
+  successmessage: string = ''
+  servicecenterid = localStorage.getItem('serviceCenterID') || ''
 
-  constructor(private appointments: AppointmentService, private fb: FormBuilder, private share: ShareService, private image: ServicecenterService) { 
+  constructor(private appointments: AppointmentService, private fb: FormBuilder, private share: ShareService, private image: ServicecenterService) {
+    // Operations On Date
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
     const day = currentDate.getDate().toString().padStart(2, '0');
     this.tdy = `${year}-${month}-${day}`;
-  
+
   }
 
   ngOnInit(): void {
@@ -51,26 +52,28 @@ export class AppointmentComponent implements OnInit {
       productName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s.,#\\-]+$')]],
       productModelNo: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s\\/\\-]+$')]],
       dateOfPurchase: ['', Validators.required],
-      contactNumber: ['', [Validators.required,Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
+      contactNumber: ['', [Validators.required, Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
       problemDescription: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]],
       time: ['', Validators.required],
       date: ['', Validators.required],
-      maildid: this.share.Mailid,
-      servicecenter: ['']
+      UserEmailId: [""],
+      ServiceCenterId: [""]
+
     });
     this.review = this.fb.group({
-      servicecentermailid: [''],
+      UserEmailId: [localStorage.getItem('Email')],
+      ServiceCenterId: [""],
       review: [''],
       rating: [this.rating]
     })
-    this.serviceName = this.share.serviceName;
-    
+
     this.generateAvailableSlots()
+    // operations to check availability of slots
     this.appointments.getExistingAppointments().subscribe(existingAppointments => {
       this.existingAppointments = existingAppointments;
       this.availableSlots.forEach(slot => {
         slot.times.forEach((timeSlot: { time: string; isBooked: boolean; }) => {
-          const isBooked = existingAppointments.some(appointment => appointment.servicecenter === this.serviceName &&
+          const isBooked = existingAppointments.some(appointment => appointment.serviceCenterId.toString() === this.servicecenterid.toString() &&
             appointment.date === slot.date && appointment.time === timeSlot.time
           );
           timeSlot.isBooked = isBooked;
@@ -78,17 +81,17 @@ export class AppointmentComponent implements OnInit {
       });
     });
   }
+  // To get Appointments
   getappointment() {
-    this.appointments.getappointment().subscribe(response => {
-      console.log(response);
+    this.appointments.getappointment(this.Email).subscribe(response => {
       this.AppointmentArr = response;
     })
   }
+  // To avaid choosing future date
   onDateSelected() {
     const sd = this.EditAppointment.get('dateOfPurchase')?.value
-    console.log('Selected Date:', sd);
-    // You can perform additional validation or actions with the selected date here
   }
+  // operations to generate and check availability of slots
   generateAvailableSlots() {
     const days = 5;
     const timeSlots = [
@@ -101,7 +104,7 @@ export class AppointmentComponent implements OnInit {
     const today = new Date();
     this.availableSlots = []; // Clear the array before generating new slots
     let isAllSlotsBooked = true;
-    for (let i = 1; i < days+1; i++) {
+    for (let i = 1; i < days + 1; i++) {
       const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -115,7 +118,7 @@ export class AppointmentComponent implements OnInit {
 
       const isAnySlotAvailable = timeSlots.some(timeSlot =>
         !this.existingAppointments.some(appointment =>
-          appointment.servicecenter === this.serviceName &&
+          appointment.serviceCenterId.toString() === this.servicecenterid.toString() &&
           appointment.date === dateString &&
           appointment.time === timeSlot.time
         )
@@ -129,9 +132,9 @@ export class AppointmentComponent implements OnInit {
     }
 
   }
+  // To Fill the Details in edit Form
   fillappointment(app: Appointment) {
 
-    console.log(app.servicecenter)
     this.EditAppointment.setValue({
       id: app.id,
       productName: app.productName,
@@ -141,116 +144,113 @@ export class AppointmentComponent implements OnInit {
       problemDescription: app.problemDescription,
       time: app.time,
       date: app.date,
-      maildid: app.maildid,
-      servicecenter: app.servicecenter
+      UserEmailId: app.userEmailId,
+      ServiceCenterId: app.serviceCenterId
     })
 
   }
+  // to cancel bookings
   deleteappointment(Id: number) {
     this.appointments.cancelappointment(Id).subscribe(res => {
-      console.log(res)
-      this.successmessage="appointment deleted successfully"
+      this.successmessage = "appointment deleted successfully"
       setTimeout(() => {
-        this.successmessage = null;
+        this.successmessage = '';
       }, 5000);
       this.getappointment()
     })
-    
+
   }
-
+// Update the booking
   Update() {
-    const selectedDate = this.EditAppointment.controls['date'].value;
-    const selectedTime = this.EditAppointment.controls['time'].value;
-
-    const isSlotBooked = this.existingAppointments.some(appointment => appointment.servicecenter === this.serviceName &&
-      appointment.date === selectedDate && appointment.time === selectedTime
-    );
-
-    if (isSlotBooked) {
-      console.log('Selected slot is already booked');
-    } else {
+    this.book='loading....'
       if (this.EditAppointment.valid) {
         this.appointments.updateappointment(this.EditAppointment.value).subscribe(response => {
-          this.successmessage="appointment updated successfully"
-      setTimeout(() => {
-        this.successmessage = null;
-      }, 5000);
-          console.log(response)
+          this.successmessage = "appointment updated successfully"
+          setTimeout(() => {
+            this.successmessage = '';
+          }, 5000);
+          document.getElementById('closemodal')?.click();
           this.getappointment()
         })
         this.EditAppointment.reset()
+        this.book='book'
+
       }
       else {
-        if(this.EditAppointment.pristine){
-          this.errormessage="Enter Your AC & Appointment Details"
-      setTimeout(() => {
-        this.errormessage = null;
-      }, 5000);
-          alert('')
-        }
-        else{
-          ValidateForm.validateAllFormFileds(this.EditAppointment);
-          this.errormessage="Enter Valid Ac Details and Appointment Details"
+        if (this.EditAppointment.pristine) {
+          this.errormessage = "Enter Your AC & Appointment Details"
           setTimeout(() => {
-            this.errormessage = null;
+            this.errormessage = '';
           }, 5000);
+          this.book='book'
+
+        }
+        else {
+          ValidateForm.validateAllFormFileds(this.EditAppointment);
+          this.errormessage = "Enter Valid Ac Details and Appointment Details"
+          setTimeout(() => {
+            this.errormessage = '';
+          }, 5000);
+          this.book='book'
         }
       }
-    }
+    
 
   }
-
+// To check if service is over or not
   isserviceover(dt: any) {
     const currentDate = new Date();
     const currentDay = currentDate.getDate();
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
-  
+
     const dtParts = dt.split('-');
     const dtDay = parseInt(dtParts[0], 10);
     const dtMonth = parseInt(dtParts[1], 10);
     const dtYear = parseInt(dtParts[2], 10);
-  
+
     const currentDateFormatted = new Date(currentYear, currentMonth - 1, currentDay);
     const dtFormatted = new Date(dtYear, dtMonth - 1, dtDay);
-  
-    console.log(dtFormatted, '<', currentDateFormatted);
-  
-    return dtFormatted < currentDateFormatted;
-  }
-  
+
     
+    if (dtFormatted < currentDateFormatted)
+      return true
+    else if (dtFormatted > currentDateFormatted)
+      return false
+    else {
+      return 'same'
+    }
+
+  }
+// to Download the bill
+
   DownloadInvoice(pid: any, uid: any, sid: any, index: number) {
-    const id = pid; // Declare and assign the 'id' variable using the 'pid' parameter
-  
-    this.loadingStates[index] = "loading..."; // Set the loading state for the button at the given index
-  
+    const id = pid; 
+    this.loadingStates[index] = "loading..."; 
     this.appointments.GenerateInvoicePDF(pid, uid, sid).subscribe(res => {
       const blob: Blob = res.body as Blob;
       const url = window.URL.createObjectURL(blob);
-  
       const a = document.createElement('a');
       a.download = pid;
       a.href = url;
       a.click();
-      this.loadingStates[index] = "download"; // Set the download state for the button at the given index
+      this.loadingStates[index] = "download"; 
     });
   }
 
 
 
 
-  serviceimg(url: string) {
-    this.mailid = url
-    console.log(this.mailid)
-    this.image.getimage(url).subscribe(Res => {
+  serviceimg(serviceCenterId: string) {
+    this.serviceCenterId = serviceCenterId
+    this.image.getimage(serviceCenterId).subscribe(Res => {
 
       this.imageurl = Res.serviceCenterImageUrl
       this.centerName = Res.serviceCenterName
 
     })
   }
-
+// Start Ratings
   rate(star: number) {
     this.rating = star;
     this.review.controls['rating'].setValue(star);
@@ -258,18 +258,27 @@ export class AppointmentComponent implements OnInit {
   getStarsArray(): number[] {
     return [1, 2, 3, 4, 5];
   }
+  // to Post the review
   reviews() {
-    this.review.controls['servicecentermailid'].setValue(this.mailid)
-    console.log(this.review.value)
+    this.review.setValue({
+      UserEmailId: localStorage.getItem('Email'),
+      ServiceCenterId: this.serviceCenterId,
+      review: this.review.get('review')?.value,
+      rating: this.rating
+    })
     this.appointments.postreview(this.review.value).subscribe(response => {
-      this.successmessage="review add successfully"
+      this.successmessage = "review add successfully"
       setTimeout(() => {
-        this.successmessage = null;
+        this.successmessage = "";
       }, 5000);
-      console.log(response);
       this.review.reset()
     });
   }
-
+  // TO CHECK THE INVALID FIELD 
+  showFieldErrors() {
+    Object.keys(this.EditAppointment.controls).forEach((key) => {
+      this.EditAppointment.get(key)?.markAsTouched();
+    });
+  }
 
 }
