@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using dotnetapp.Helpers;
+
 
 
 namespace dotnetapp.Controllers
@@ -30,16 +30,14 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
-            var admin = await _context.Admins.FirstOrDefaultAsync(x => x.Email == adminobj.Email);
+            var admin = await _context.Admins.FirstOrDefaultAsync(x => x.Email == adminobj.Email && x.Password == adminobj.Password);
             if (admin == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            if (!PasswordHasher.VerifyPassword(adminobj.Password, admin.Password))
-            {
-                return NotFound(new { Message = "Wrong password" });
-            }
-            return Created("",true);
+           
+
+            return Created("", true);
         }
 
 
@@ -50,18 +48,14 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
-           
-            var user = await _context.LoginModels.FirstOrDefaultAsync(x => x.Email == userobj.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == userobj.Email && x.Password == userobj.Password);
             if (user == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            if (!PasswordHasher.VerifyPassword(userobj.Password, user.Password))
-            {
-                return NotFound(new { Message = "Wrong password" });
-            }
-    
-            return Created("",true);
+           
+
+            return Created("", true);
         }
 
 
@@ -73,26 +67,33 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
-            // var email = await _context.Admins.FirstOrDefaultAsync(x => x.Email == userobj.Email);
-            // if (email != null)
-            // {
-            //     return BadRequest(new
-            //     {
-            //         Message = "Admin already exists"
-            //     });
-            // }
-            userobj.Password = PasswordHasher.HashPassword(userobj.Password);
+            if(userobj.UserRole != "demo"){
+                var email = await _context.Admins.FirstOrDefaultAsync(x => x.Email == userobj.Email);
+            if (email != null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Admin already exists"
+                });
+            }
+            }
+            
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
+            
             var admin = new AdminModel
-            {
-                Email = userobj.Email,
-                Password = userobj.Password,
-                UserRole = userobj.UserRole,
-                MobileNumber = userobj.MobileNumber,
-            };
-            await _context.Admins.AddAsync(admin);
-            await _context.SaveChangesAsync();
+                {
+                    Email = userobj.Email,
+                    Password = userobj.Password,
+                    MobileNumber = userobj.MobileNumber,
+                    UserRole = userobj.UserRole
+                };
+                await _context.Admins.AddAsync(admin);
+                await _context.SaveChangesAsync();
+            
+
+            
+
             return Created("", true);
         }
 
@@ -101,29 +102,31 @@ namespace dotnetapp.Controllers
         {
             if (userobj == null)
             {
+                return BadRequest();
+            }
+
+            if(userobj.UserRole != "demo"){
+                 var email = await _context.LoginModels.FirstOrDefaultAsync(x => x.Email == userobj.Email);
+            if (email != null)
+            {
                 return BadRequest(new
                 {
-                    Message = "something wrong"
+                    Message = "User already exists"
                 });
             }
-            // var email = await _context.LoginModels.FirstOrDefaultAsync(x => x.Email == userobj.Email);
-            // if (email != null)
-            // {
-            //     return BadRequest(new
-            //     {
-            //         Message = "User already exists"
-            //     });
-            // }
-            userobj.Password = PasswordHasher.HashPassword(userobj.Password);
+            }
+           
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
-            var loginobj = new LoginModel
+            var loginObj = new LoginModel
             {
                 Email = userobj.Email,
-                Password = userobj.Password,
+                Password = userobj.Password
             };
-            await _context.LoginModels.AddAsync(loginobj);
+            await _context.LoginModels.AddAsync(loginObj);
             await _context.SaveChangesAsync();
+            
+
             return Created("", true);
         }
     }
