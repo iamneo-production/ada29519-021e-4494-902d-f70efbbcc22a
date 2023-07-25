@@ -25,28 +25,75 @@ namespace acservice.Controllers
         [HttpPost("addServiceCenter")]
         public async Task<IActionResult> addServiceCenter([FromBody] ServiceCenterModel serviceCenterModel)
         {
-            if (serviceCenterModel == null)
+             if (serviceCenterModel == null)
             {
                 return BadRequest();
             }
+            var emailExists = await _context.Services.AnyAsync(x => x.serviceCenteramailId == serviceCenterModel.serviceCenteramailId);
+            if (emailExists)
+            {
+                return BadRequest(new
+                {
+                    Message = "Email already takken try another email"
+                });
+            }
+            var ServiceCenterExists = await _context.Services.AnyAsync(x => x.serviceCenterName == serviceCenterModel.serviceCenterName);
+            if (ServiceCenterExists)
+            {
+                return BadRequest(new
+                {
+                    Message = "Service center name already takken try another service center name"
+                });
+            }
+            var MobileExists = await _context.Services.AnyAsync(x => x.serviceCenterPhone == serviceCenterModel.serviceCenterPhone);
+            if (MobileExists)
+            {
+                return BadRequest(new
+                {
+                    Message = "Mobile number already takken try another mobile number"
+                });
+            }
             await _context.Services.AddAsync(serviceCenterModel);
             await _context.SaveChangesAsync();
-           
 
-  
-            return Ok(new
+
+
+            return Created("", new
             {
                 Message = "Service center added successfully"
             });
 
         }
-
         [HttpPut("editServiceCenter/{id}")]
         public async Task<IActionResult> editServiceCenter(string id, [FromBody] ServiceCenterModel serviceCenterModel)
         {
-            if (serviceCenterModel == null || id != serviceCenterModel.serviceCenterID)
+             if (serviceCenterModel == null || id != serviceCenterModel.serviceCenterID)
             {
                 return BadRequest();
+            }
+            var emailExists = await _context.Services.AnyAsync(x => x.serviceCenteramailId == serviceCenterModel.serviceCenteramailId && x.serviceCenterID != serviceCenterModel.serviceCenterID);
+            if (emailExists)
+            {
+                return BadRequest(new
+                {
+                    Message = "Email already takken try another email"
+                });
+            }
+            var ServiceCenterExists = await _context.Services.AnyAsync(x => x.serviceCenterName == serviceCenterModel.serviceCenterName && x.serviceCenterID != serviceCenterModel.serviceCenterID);
+            if (ServiceCenterExists)
+            {
+                return BadRequest(new
+                {
+                    Message = "Service center name already takken try another service center name"
+                });
+            }
+            var MobileExists = await _context.Services.AnyAsync(x => x.serviceCenterPhone == serviceCenterModel.serviceCenterPhone && x.serviceCenterID != serviceCenterModel.serviceCenterID);
+            if (MobileExists)
+            {
+                return BadRequest(new
+                {
+                    Message = "Mobile number already takken try another mobile number"
+                });
             }
 
             var serviceCenter = await _context.Services.FindAsync(id);

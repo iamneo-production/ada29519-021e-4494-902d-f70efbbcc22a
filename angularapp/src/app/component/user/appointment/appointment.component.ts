@@ -84,6 +84,9 @@ export class AppointmentComponent implements OnInit {
       this.AppointmentArr = response;
     })
   }
+  isAnySlotAvailable(slot: any): boolean {
+    return slot.times.some((timeSlot: { time: string; isBooked: boolean }) => !timeSlot.isBooked);
+  }
   onDateSelected() {
     const sd = this.EditAppointment.get('dateOfPurchase')?.value
     console.log('Selected Date:', sd);
@@ -100,8 +103,8 @@ export class AppointmentComponent implements OnInit {
 
     const today = new Date();
     this.availableSlots = []; // Clear the array before generating new slots
-    let isAllSlotsBooked = true;
-    for (let i = 1; i < days+1; i++) {
+    let availableDays=0;
+    for (let i = 1; availableDays < days+1; i++) {
       const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -122,12 +125,12 @@ export class AppointmentComponent implements OnInit {
       );
 
       if (isAnySlotAvailable) {
-        isAllSlotsBooked = false;
+        availableDays++;
+        this.availableSlots.push(slot);
       }
-
-      this.availableSlots.push(slot);
     }
-
+  
+    return this.availableSlots;
   }
   fillappointment(app: Appointment) {
 
@@ -149,7 +152,7 @@ export class AppointmentComponent implements OnInit {
   deleteappointment(Id: number) {
     this.appointments.cancelappointment(Id).subscribe(res => {
       console.log(res)
-      this.successmessage="appointment deleted successfully"
+      this.successmessage="Appointment Deleted Successfully"
       setTimeout(() => {
         this.successmessage = null;
       }, 5000);
@@ -216,7 +219,15 @@ export class AppointmentComponent implements OnInit {
   
     console.log(dtFormatted, '<', currentDateFormatted);
   
-    return dtFormatted < currentDateFormatted;
+    if(dtFormatted < currentDateFormatted)
+    return true
+    else if(dtFormatted >currentDateFormatted)
+    return false
+    else{
+      console.log("both are sequenceEqual")
+      return 'same'
+    }
+   
   }
   
     

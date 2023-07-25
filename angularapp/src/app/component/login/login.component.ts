@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   loginButtonText: string = 'login';
   LoginForm!: FormGroup;
   errormessage:string
-
+  username:string=''
+  role=''
+  pwd=false
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
@@ -70,10 +72,22 @@ export class LoginComponent implements OnInit {
       } else {
         this.auth.userlogin(this.LoginForm.value).subscribe({
           next: (res) => {
-            if(res.userRole==='user')
+            console.log(res)
+            this.username=res.userName
+            localStorage.setItem("username",res.userName)
+            if(res.userRole==='user'){
               this.router.navigate(['user/homepage']);
-            else
+              this.auth.storeuser('user')
+              
+            }
+              
+            else{
               this.router.navigate(['admin/dashboard']);
+              this.auth.storeadmin('admin')
+              
+            }
+              
+            
 
           },
           error: (err) => {
@@ -96,5 +110,16 @@ export class LoginComponent implements OnInit {
       }
       
     }
+  }
+  user(){
+    if(this.role==="user"){
+      return localStorage.setItem('userpresent','user')
+    }
+    else{
+      return localStorage.setItem('adminpresent','admin')
+    }
+  }
+  togglePasswordVisibility() {
+    this.pwd = !this.pwd;
   }
 }

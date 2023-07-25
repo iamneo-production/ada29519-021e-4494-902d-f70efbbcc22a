@@ -12,8 +12,10 @@
   </div>
   <div class="container col">
       <div class="form">
-            <h2 style="text-align: center;color: darkblue;">ADD SERVICE CENTER</h2><br>
-            <form [formGroup]="addCenter">
+            <div class="header"><h2 style="text-align: center;color: rgb(246, 246, 249);">ADD SERVICE CENTER</h2><br>
+            </div>
+              <form [formGroup]="addCenter">
+              
               <label><h5>Enter Service Center Name : </h5></label>
               <input formControlName="serviceCenterName" type="text" placeholder="Enter the Service Center Name" id="addName" />
               <small *ngIf="addCenter.controls['serviceCenterName'].dirty && addCenter.hasError('pattern','serviceCenterName')">Only Alphabets Allowed </small>
@@ -60,4 +62,13 @@
   </body>
   
   
-  
+  <div class="popup-container" *ngIf="successmessage">
+    <span class="alert alert-success" role="alert">
+      <i class="bi bi-check-circle-fill"></i>      {{successmessage}}
+    </span>
+  </div>
+  <div class="popup-container" *ngIf="errormessage">
+    <span class="alert alert-danger" role="alert">
+      <i class="bi bi-x-square-fill" ></i>      {{errormessage}}
+    </span>
+  </div>

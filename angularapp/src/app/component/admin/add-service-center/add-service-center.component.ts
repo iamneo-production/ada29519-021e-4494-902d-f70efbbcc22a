@@ -54,12 +54,18 @@ export class AddServiceCenterComponent implements OnInit{
       .subscribe({
         next:(res=>{
           this.successmessage=res.message
+          setTimeout(() => {
+            this.successmessage = '';
+          }, 5000);
           this.addCenter.reset();
            this.router.navigate(['admin/editServiceCenter'])
         })
         ,error:(err=>{
           this.AddserviceButtonText="add"
-          alert(err?.error.message)
+          this.errormessage=err?.error.message
+          setTimeout(() => {
+            this.errormessage = '';
+          }, 5000);
         })
       })
 
@@ -67,11 +73,17 @@ export class AddServiceCenterComponent implements OnInit{
     else{
       if(this.addCenter.pristine){
         this.errormessage='Fill the service center details'
+        setTimeout(() => {
+          this.errormessage = '';
+        }, 5000);
       }
       else if(this.addCenter.invalid){
         
         ValidateForm.validateAllFormFileds(this.addCenter);
       this.errormessage='Fill the valid details'
+      setTimeout(() => {
+        this.errormessage = '';
+      }, 5000);
       }
     }
   }

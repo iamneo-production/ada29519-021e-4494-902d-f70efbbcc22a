@@ -40,7 +40,7 @@ export class HomepageComponent implements OnInit {
     });
   }
   getAverageRating(mailid: string): number {
-    return this.ratingsMap[mailid] || 0;
+    return this.ratingsMap[mailid] || 1;
   }
   getStarRating(rating: number): string {
     const roundedRating = Math.round(rating);

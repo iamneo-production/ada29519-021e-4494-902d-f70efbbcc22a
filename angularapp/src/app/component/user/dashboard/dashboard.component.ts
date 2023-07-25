@@ -83,6 +83,9 @@ export class DashboardComponent implements OnInit {
     
 
   }
+  errpopup() {
+  this.errormessage = '';
+}
   getservice() {
     this.service.getService().subscribe(Response => {
       console.log(Response)
@@ -98,13 +101,14 @@ export class DashboardComponent implements OnInit {
     });
   }
   getAverageRating(mailid: string): number {
-    return this.ratingsMap[mailid] || 0;
+    return this.ratingsMap[mailid] || 1;
   }
   getStarRating(rating: number): string {
     const roundedRating = Math.round(rating);
     return '⭐'.repeat(roundedRating);
   }
-  generateAvailableSlots() {
+
+generateAvailableSlots() {
   const days = 5; // Number of days to show slots for
   const timeSlots = [
     { time: '08:00 AM - 10:00 AM', isBooked: false },
@@ -115,8 +119,9 @@ export class DashboardComponent implements OnInit {
 
   const today = new Date();
   this.availableSlots = []; // Clear the array before generating new slots
-  let isAllSlotsBooked = true;
-  for (let i = 1; i < days+1; i++) {
+
+  let availableDays = 0;
+  for (let i = 1; availableDays < days + 1; i++) {
     const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -136,25 +141,22 @@ export class DashboardComponent implements OnInit {
         appointment.time === timeSlot.time
       )
     );
-
-    // If any slot is available, mark isAllSlotsBooked as false
     if (isAnySlotAvailable) {
-      isAllSlotsBooked = false;
+      availableDays++;
+      this.availableSlots.push(slot);
     }
-
-    this.availableSlots.push(slot);
   }
 
   return this.availableSlots;
 }
+
+isAnySlotAvailable(slot: any): boolean {
+  return slot.times.some((timeSlot: { time: string; isBooked: boolean }) => !timeSlot.isBooked);
+}
 onDateSelected() {
   const sd = this.productdetails.get('dateOfPurchase')?.value
   console.log('Selected Date:', sd);
-  // You can perform additional validation or actions with the selected date here
 }
-// Call the function to generate the slots for the next five days
-// const slots = generateAvailableSlots();
-// console.log(slots);
 
 
 
@@ -178,7 +180,7 @@ onDateSelected() {
             this.successmessage = null;
           }, 5000);
           this.productdetails.reset()
-          
+          window.location.reload();
         });
         
       }

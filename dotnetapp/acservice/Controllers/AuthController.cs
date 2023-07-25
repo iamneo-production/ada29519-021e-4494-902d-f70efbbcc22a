@@ -39,7 +39,7 @@ namespace acservice.Controllers
             var pwd = await _context.Users.FirstOrDefaultAsync(x => x.email == adminobj.email && x.password == adminobj.password);
              if (admin == null)
             {
-                return NotFound(new { Message = "Password wrong" });
+                return NotFound(new { Message = "Wrong Password" });
             }
             return Ok(new { Message="Login success" ,admin.userRole});
         }
@@ -62,7 +62,7 @@ namespace acservice.Controllers
             {
                 return NotFound(new { Message = "Wrong password" });
             }
-            return Ok(new { Message = "Login successfull" ,user.userRole});
+            return Ok(new { Message = "Login successfull" ,user.userRole,user.userName});
         }
 
 

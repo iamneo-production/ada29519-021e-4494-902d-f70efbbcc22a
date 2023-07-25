@@ -10,19 +10,21 @@ import { HomepageComponent } from './component/user/homepage/homepage.component'
 import { DashboardComponent } from './component/user/dashboard/dashboard.component';
 import { AppointmentComponent } from './component/user/appointment/appointment.component';
 import { AdmindashboardComponent } from './component/admin/admindashboard/admindashboard.component';
+import { AuthGuard } from './component/guard/auth.guard';
+import { AdminguardGuard } from './component/guard/adminguard.guard';
 
 const routes: Routes = [
    { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'admin/dashboard', component:AdmindashboardComponent},
-  { path: 'admin/addServiceCenter', component: AddServiceCenterComponent },
-  { path: 'admin/editServiceCenter', component: EditServiceCenterComponent },
-  { path: 'user', component: UserComponent },
-  { path: 'user/homepage', component: HomepageComponent },
-  { path: 'user/dashboard', component: DashboardComponent },
-  { path: 'user/appointment', component: AppointmentComponent },
+  { path: 'admin', component: AdminComponent ,canActivate:[AdminguardGuard]},
+  { path: 'admin/dashboard', component:AdmindashboardComponent,canActivate:[AdminguardGuard]},
+  { path: 'admin/addServiceCenter', component: AddServiceCenterComponent,canActivate:[AdminguardGuard] },
+  { path: 'admin/editServiceCenter', component: EditServiceCenterComponent,canActivate:[AdminguardGuard] },
+  { path: 'user', component: UserComponent ,canActivate:[AuthGuard]},
+  { path: 'user/homepage', component: HomepageComponent ,canActivate:[AuthGuard]},
+  { path: 'user/dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
+  { path: 'user/appointment', component: AppointmentComponent,canActivate:[AuthGuard] },
 ];
 
 @NgModule({

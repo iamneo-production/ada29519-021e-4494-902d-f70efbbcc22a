@@ -26,7 +26,10 @@
           <small *ngIf="LoginForm.controls['email'].dirty && LoginForm.hasError('required','email')">Email is required</small>
 
           <label for="password">Enter Your Password:</label>
-          <input formControlName="password" type="password" placeholder="Password" id="password" />
+          <input formControlName="password" type="{{ pwd ? 'text' : 'password' }}" placeholder="Password" id="password" />
+          <i class="bi bi-eye-slash-fill eye-icon" *ngIf="!pwd" (click)="togglePasswordVisibility()"></i>
+  <!-- Show eye-slash icon when password is shown -->
+          <i class="bi bi-eye-fill eye-icon" *ngIf="pwd" (click)="togglePasswordVisibility()" ></i>
           <small *ngIf="LoginForm.controls['password'].dirty && LoginForm.hasError('required','password')">Password is required</small>
         </form>  
       </div>

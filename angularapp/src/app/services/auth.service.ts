@@ -37,5 +37,18 @@ export class AuthService {
     console.log(centerobj)
     return this.http.post<any>(`${this.AddBookingURL}`,centerobj)
   }
+  storeuser(user:string){
+    localStorage.setItem('isuser',user)
+  }
+  storeadmin(admin:string){
+    localStorage.setItem('isadmin',admin)
+  }
+  
+  isuserloggedin():boolean{
+    return !!localStorage.getItem('isuser')
+  }
+  isadminloggedin():boolean{
+    return !!localStorage.getItem('isadmin')
+  }
 
 }

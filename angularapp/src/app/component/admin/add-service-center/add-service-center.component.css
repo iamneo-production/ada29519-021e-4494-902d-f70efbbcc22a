@@ -1,26 +1,41 @@
-.container{
-  padding: 16px;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  height: 100vh;
- 
-}
-.form{
-  background-color:lavender;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  padding: 30px;
-}
 
-body{
-  background-color: lightblue;
+.container {
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #cbd5ead6;
 }
 
+.form {
+  background-color: #f0f4f477;
+  width: 90%;
+  max-width: 600px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.header {
+  background-color: #0a3cb0;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border-color: #045f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+body {
+  background-color: #e6eaf0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
 input[type="text"],
 input[type="tel"],
@@ -28,35 +43,61 @@ input[type="url"],
 input[type="email"],
 textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  color: #333333;
 }
 
-label h5{
-  color: darkblue;
+label h5 {
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 textarea {
-  height: 100px;
+  height: 120px;
 }
 
 button[type="submit"] {
-  padding: 10px 20px;
-  background-color: palevioletred;
-  color: white;
+  padding: 12px 24px;
+  background-color: #ff6b6b;
+  color: #ffffff;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff4f4f;
 }
 
 small {
-  color: red;
-  font-size: 18px;
+  color: #ff4f4f;
+  font-size: 14px;
+  margin-top: 5px;
 }
+
+.popup-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+
 .popup-container {
   position: fixed;
   top: 20px;

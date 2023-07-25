@@ -49,15 +49,23 @@ export class EditServiceCenterComponent implements OnInit {
   errpopup(){
     this.errormessage=""
   }
+
   onedit() {
     if (this.editCenter.valid) {
-      this.services.updateservice(this.editCenter.value).subscribe(Response => {
+      this.services.updateservice(this.editCenter.value).subscribe({
+        next:(Response => {
         this.getservice();
-        this.successmessage="service center updated successfully"
+        this.successmessage="Service Center Updated Successfully"
         setTimeout(() => {
           this.successmessage = null;
         }, 5000);
-      });
+      })
+      ,error:(err=>{
+        this.errormessage=err?.error.message
+        setTimeout(() => {
+          this.errormessage = null;
+        }, 5000);
+      })})
     } else {
       if(this.editCenter.pristine){
         this.errormessage="Enter Details of Service Center"

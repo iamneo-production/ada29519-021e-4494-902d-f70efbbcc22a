@@ -6,8 +6,8 @@
 .card-container {
   flex: 1;
   display: flex;
-  margin-left: 150px;
-  width: 225%;
+  margin-left: 140px;
+  width: 200%;
   height: 100%;
 }
 
@@ -50,6 +50,7 @@
   background-color:lavender;
   margin-right: 40px;
   margin-left:40px ;
+  border-radius: 10px;
   width: 700px;
   height: auto;
 }

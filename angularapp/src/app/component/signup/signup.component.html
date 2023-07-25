@@ -42,7 +42,7 @@
           <small *ngIf="SignupForm.controls['mobilenumber'].dirty && SignupForm.hasError('pattern','mobilenumber')">Invalid mobile number (10 digits only)</small>
           <br>
           <label for="password">Enter Your Password:</label>
-          <input formControlName="password" type="password" placeholder="Password" id="password" />
+          <input formControlName="password" type="pwd{{password" placeholder="Password" id="password" />
           <small *ngIf="SignupForm.controls['password'].dirty && SignupForm.hasError('required','password')">Password is required</small>
           <small *ngIf="SignupForm.controls['password'].dirty && SignupForm.hasError('pattern','password')">The password must be at least 8 characters long and include at least one special character, one uppercase letter, and one lowercase letter.</small>
           <br>
