@@ -272,6 +272,7 @@ export class AppointmentComponent implements OnInit {
         this.successmessage = "";
       }, 5000);
       this.review.reset()
+      document.getElementById('closemodal1')?.click();
     });
   }
   // TO CHECK THE INVALID FIELD 

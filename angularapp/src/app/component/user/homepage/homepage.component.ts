@@ -27,7 +27,6 @@ export class HomepageComponent implements OnInit {
   // GET ALL SERVICE CENTERS
   getservice() {
     this.services.getService().subscribe(Response => {
-      console.log(Response)
       this.servicesarr = Response;
       this.getAverageRatings();
     })

@@ -1,6 +1,5 @@
 body{
   background-image: url('https://wallpaperaccess.com/full/7233921.jpg');
-  padding-bottom: 11%;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -9,6 +8,8 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 1000px;
+  
 }
 
 

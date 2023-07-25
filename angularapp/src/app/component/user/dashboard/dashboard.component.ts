@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Appointment } from 'src/app/helpers/appointment';
-import { Reviewresponse } from 'src/app/helpers/review';
-// import { Reviewresponse, Reviews } from 'src/app/helpers/reviews';
-import { serviceCenter } from 'src/app/helpers/serviceCenter';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ServicecenterService } from 'src/app/services/servicecenter.service';
-import { ShareService } from 'src/app/services/share.service';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -32,9 +26,7 @@ export class DashboardComponent implements OnInit {
   servicePhone = ''
   servicecenterdescription = ''
   rating:any
-
-  reviewarr: Reviewresponse[] = []
-  ratingsMap: { [key: string]: number } = {};
+  
   successmessage: string = ''
   errormessage: string = ''
 
@@ -65,7 +57,6 @@ export class DashboardComponent implements OnInit {
       ServiceCenterId: [localStorage.getItem('serviceCenterID')]
     });
     this.getservicecenter()
-    this.getreview()
     this.getAverageRating()
     this.generateAvailableSlots();
     this.appointment.getExistingAppointments().subscribe(existingAppointments => {
@@ -92,12 +83,6 @@ export class DashboardComponent implements OnInit {
       this.servicecenterdescription = res.serviceCenterDescription
     })
   }
-// GET THE REVIEW FOR THAT SERVICE CENTER
-getreview(){
-  this.appointment.getreviews(this.servicecenterid).subscribe(res=>{
-    this.reviewarr=res
-  })
-}
 
 // TO GENERATE THE SLOTS AND CHECK THA AVAILABILITY
   generateAvailableSlots() {
@@ -151,7 +136,10 @@ getreview(){
   getAverageRating(){
     this.appointment.getreview(this.servicecenterid).subscribe(res=>{
       const roundedRating = Math.round(res);
-    this.rating='⭐'.repeat(roundedRating);
+      if (roundedRating>0)
+      this.rating='⭐'.repeat(roundedRating);
+      else
+      this.rating='⭐'
     })
   }
 

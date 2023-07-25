@@ -13,29 +13,23 @@
         </span>
   </div>
   <!-- Show Service Centers -->
-    <div class="form1">
-        <div class="grid-container">
-            <div *ngIf="servicesarr.length==0" class="alert">
-                NO service found
-            </div>
-            <div class="cards" *ngIf="servicesarr.length>0" id="adminProfileView">
-                <div *ngFor="let ser of servicesarr" class="card">
-                    <div class="item">
-                        <img [src]="ser.serviceCenterImageUrl" alt="Grid Image" class="card_img">
-                        <div class="plus"><p>+</p></div>
-                        <div class="line"></div>
-                        <div>
-                            <h3>{{ser.serviceCenterName}}</h3>
-                            <p><b>Phone no:</b> {{ser.serviceCenterPhone}}</p>
-                            <p><b>Mail:</b> {{ser.serviceCenteramailId}}</p>                          
-                            <button type="button" class="btn btn-primary" (click)="updateform(ser)" id="editCenter" data-bs-toggle="modal" data-bs-target="#editservice">EDIT</button>
-                            <button class="btn btn-primary"(click)="ondelete(ser.serviceCenterID)" id="deleteCenter">Delete</button>
-                        </div>
-                    </div>
-                </div>
+    <div *ngIf="servicesarr.length==0" class="alert">
+        NO service found
+    </div>
+    <div class="cards" *ngIf="servicesarr.length>0" id="adminProfileView">
+        <div *ngFor="let ser of servicesarr" class="card">
+            <img [src]="ser.serviceCenterImageUrl" alt="Grid Image" class="card_img">
+            <div class="plus"><p>+</p></div>
+            <div class="line"></div>
+            <div>
+                <h3>{{ser.serviceCenterName}}</h3>
+                <p><b>PhoneNo:</b> {{ser.serviceCenterPhone}}</p>
+                <p><b>Mail:</b> {{ser.serviceCenteramailId}}</p>                          
+                <button type="button" class="btn btn-primary" (click)="updateform(ser)" id="editCenter" data-bs-toggle="modal" data-bs-target="#editservice"><i class="bi bi-pencil-square"></i></button>
+                <button class="btn btn-primary"(click)="ondelete(ser.serviceCenterID)" id="deleteCenter"><i class="bi bi-trash"></i></button>
             </div>
         </div>
-    </div>
+    </div>     
 </body>
 <!-- Modal Forms to Edit the Serivce Center -->
 <div class="modal fade" id="editservice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
