@@ -89,7 +89,7 @@ export class AppointmentComponent implements OnInit {
   }
   // To avaid choosing future date
   onDateSelected() {
-    const sd = this.EditAppointment.get('dateOfPurchase')?.value
+     this.EditAppointment.get('dateOfPurchase')?.value
   }
   // operations to generate and check availability of slots
   generateAvailableSlots() {

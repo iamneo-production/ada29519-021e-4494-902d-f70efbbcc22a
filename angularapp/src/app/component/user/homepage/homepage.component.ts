@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Reviews } from 'src/app/helpers/review';
-// import { Reviews } from 'src/app/helpers/reviews';
 import { serviceCenter } from 'src/app/helpers/serviceCenter';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ServicecenterService } from 'src/app/services/servicecenter.service';
