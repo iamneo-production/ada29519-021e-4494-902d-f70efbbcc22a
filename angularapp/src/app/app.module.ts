@@ -42,6 +42,14 @@ import { AddServiceCenterComponent } from './component/admin/add-service-center/
 import { EditServiceCenterComponent } from './component/admin/edit-service-center/edit-service-center.component';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { ComponentComponent } from './component/component.component';
+import { LoginComponent } from './component/login/login.component';
+import { SignupComponent } from './component/signup/signup.component';
+import { UserComponent } from './component/user/user.component';
+import { AdmindashboardComponent } from './component/admin/admindashboard/admindashboard.component';
+import { AppointmentComponent } from './component/user/appointment/appointment.component';
+import { DashboardComponent } from './component/user/dashboard/dashboard.component';
+import { HomepageComponent } from './component/user/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +57,14 @@ import { NgForm } from '@angular/forms';
     AdminComponent,
     AddServiceCenterComponent,
     EditServiceCenterComponent,
+    ComponentComponent,
+    LoginComponent,
+    SignupComponent,
+    UserComponent,
+    AdmindashboardComponent,
+    AppointmentComponent,
+    DashboardComponent,
+    HomepageComponent,
     // HelperComponent,
     // HelpersComponent,
     // ServicesComponent,
