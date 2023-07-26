@@ -4,28 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using acservice.Database;
-using acservice.Models;
+using dotnetapp.DataDbContext;
+using dotnetapp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
-namespace acservice.Controllers
+namespace dotnetapp.Controllers
 {
     [Route("admin")]
     [ApiController]
     public class ServiceCenterController : ControllerBase
     {
-        private readonly AC_ServerDbContext _context;
-        public ServiceCenterController(AC_ServerDbContext ac_serverDbContext)
+        private readonly AcServiceDbContext _context;
+        public ServiceCenterController(AcServiceDbContext ac_serverDbContext)
         {
             _context = ac_serverDbContext;
 
         }
-        
         [HttpPost("addServiceCenter")]
         public async Task<IActionResult> addServiceCenter([FromBody] ServiceCenterModel serviceCenterModel)
         {
-             if (serviceCenterModel == null)
+            if (serviceCenterModel == null)
             {
                 return BadRequest();
             }
@@ -64,10 +63,11 @@ namespace acservice.Controllers
             });
 
         }
+
         [HttpPut("editServiceCenter/{id}")]
-        public async Task<IActionResult> editServiceCenter(string id, [FromBody] ServiceCenterModel serviceCenterModel)
+        public async Task<IActionResult> editServiceCenter(int id, [FromBody] ServiceCenterModel serviceCenterModel)
         {
-             if (serviceCenterModel == null || id != serviceCenterModel.serviceCenterID)
+            if (serviceCenterModel == null || id != serviceCenterModel.serviceCenterID)
             {
                 return BadRequest();
             }
@@ -119,7 +119,7 @@ namespace acservice.Controllers
             });
         }
         [HttpDelete("deleteServiceCenter/{id}")]
-        public async Task<IActionResult> deleteServiceCenter(string id)
+        public async Task<IActionResult> deleteServiceCenter(int id)
         {
             var serviceCenter = await _context.Services.FindAsync(id);
 
@@ -149,24 +149,18 @@ namespace acservice.Controllers
 
             return Ok(serviceCenter);
         }
-        [HttpGet("image/{id}")]
-        public async Task<IActionResult> GetServiceImage(string id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetServiceImage(int id)
         {
-            var service = await _context.Services.FirstOrDefaultAsync(s => s.serviceCenteramailId == id);
+            var service = await _context.Services.FirstOrDefaultAsync(s => s.serviceCenterID == id);
 
-            if (service == null || string.IsNullOrEmpty(service.serviceCenterImageUrl))
+            if (service == null)
             {
-                return NotFound(new { Message = "No image found" });
+                return NotFound(new { Message = "No service found" });
             }
 
             return Ok(service);
         }
-
-
-
-
-
-
 
     }
 }

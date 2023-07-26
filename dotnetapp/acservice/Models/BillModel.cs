@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
-namespace acservice.Models
+namespace dotnetapp.Models
 {
     public class BillModel
     {
-        
-        public int id { get; set; }
-        public string billpdf { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Billpdf { get; set; }
+        public string UserEmailId { get; set; }
     }
 }

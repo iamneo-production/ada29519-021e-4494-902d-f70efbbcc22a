@@ -2,24 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using acservice.Models;
 using Microsoft.EntityFrameworkCore;
+using dotnetapp.Models;
 
-namespace acservice.Database
+namespace dotnetapp.DataDbContext
 {
-    public class AC_ServerDbContext:DbContext
+    public class AcServiceDbContext:DbContext
     {
-        public AC_ServerDbContext(DbContextOptions<AC_ServerDbContext>options):base(options)
+      public AcServiceDbContext(DbContextOptions<AcServiceDbContext>options):base(options)
         {
             
         }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<UserModel> Users { get; set; } 
         public DbSet<ServiceCenterModel> Services { get; set; }
-
         public DbSet<AdminModel> Admins { get; set; }
         public DbSet<LoginModel> LoginModels { get; set; }
-        public DbSet<ReviewModels> Reviews { get; set; }
-        public DbSet<BillModel> Bills { get; set; }
+        public DbSet<ReviewModel> Reviews{get;set;}
+        public DbSet<BillModel> Bills {get;set;}
     }
 }

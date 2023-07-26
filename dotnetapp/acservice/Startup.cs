@@ -12,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using acservice.Database;
+using dotnetapp.DataDbContext;
 
 namespace acservice
 {
@@ -37,9 +37,9 @@ namespace acservice
 
             // Configure database
             // var cs = Configuration.GetConnectionString("connectionString");
-            var connectionString = "User ID=sa;password=examlyMssql@123;server=localhost;Database=BackEND;trusted_connection=false; Persist Security Info=False;Encrypt=False";
+            var connectionString = "User ID=sa;password=examlyMssql@123;server=localhost;Database=AC_SERVICE;trusted_connection=false; Persist Security Info=False;Encrypt=False";
             
-            services.AddDbContext<AC_ServerDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<AcServiceDbContext>(options => options.UseSqlServer(connectionString));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "acservice", Version = "v1" });
