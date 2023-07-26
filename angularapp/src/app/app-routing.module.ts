@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // import { AdminComponent } from './component/admin/admin.component';
 // import { AddServiceCenterComponent } from './component/admin/add-service-center/add-service-center.component';
 // import { EditServiceCenterComponent } from './component/admin/edit-service-center/edit-service-center.component';
-// import { UserComponent } from './component/user/user.component';
+import { UserComponent } from './component/user/user.component';
 // import { HomepageComponent } from './component/user/homepage/homepage.component';
 import { DashboardComponent } from './component/user/dashboard/dashboard.component';
 // import { AppointmentComponent } from './component/user/appointment/appointment.component';
