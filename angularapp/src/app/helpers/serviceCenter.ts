@@ -1,5 +1,5 @@
 export interface serviceCenter{
-    id:number;
+    serviceCenterID:string;
     serviceCenterName:string
     serviceCenterPhone:string
     serviceCenterAddress:string

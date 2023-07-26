@@ -1,113 +1,187 @@
-<app-user style="position: sticky; top: 0; z-index: 100;"></app-user>
-<!-- POPUP MESSAGES -->
-<div class="popup-container" *ngIf="successmessage">
-  <span class="alert alert-success" role="alert">
-    <i class="bi bi-check-circle-fill"></i> {{successmessage}}
-  </span>
-</div>
-<div class="popup-container" *ngIf="errormessage">
-  <span class="alert alert-danger" role="alert">
-    <i class="bi bi-x-square-fill"></i> {{errormessage}}
-  </span>
-</div>
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Appointment } from 'src/app/helpers/appointment';
+import ValidateForm from 'src/app/helpers/validateForm';
+import { AppointmentService } from 'src/app/services/appointment.service';
+import { ServicecenterService } from 'src/app/services/servicecenter.service';
+@Component({
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
+})
+export class DashboardComponent implements OnInit {
+// DECALRATIONS
+  book='book'
+  tdy: string = ''
 
-<body>
+  productdetails!: FormGroup;
+  appointmentdetails: any[] = [];
+  availableSlots: any[] = [];
+  existingAppointments: Appointment[] = []
+
+  // service center
+  serviceimage = ''
+  serviceName = ''
+  servicemailid = ''
+  servicePhone = ''
+  servicecenterdescription = ''
+  rating:any
   
-  <br>
-  <br>
-        <!-- TO SHOW SELECTED SERVICE CENTER -->
-        <div class="cards">
-          <div class="card">
-            <img class="card_img" [src]="serviceimage" alt="Grid Image">
-            <div class="plus">
-              <p>+</p>
-            </div>
-            <h3 style="text-transform: capitalize; text-align: center;">{{serviceName}}</h3>
-            <div class="line"></div>
-            <p>Rating : {{ rating }}</p>
-            <p><b>Mail :</b> {{ servicemailid }}</p>
-            <p><b>Phone :</b> {{ servicePhone }}</p>
-            <p><b>Description:</b> {{servicecenterdescription}}
-            </p>
-            <p><b>Timing :</b> 00:00-23:59</p>
-            <p><b>Reviews</b></p>
-            <p><app-carousel></app-carousel></p> 
-          </div>
-    <!-- FORM TO BOOK THE APPOINTMENT -->
-          <div class="card">
-            <h3 style="text-align: center;"> Enter Ac Details</h3>
-            <div class="line"></div>
-            <form [formGroup]="productdetails">
+  successmessage: string = ''
+  errormessage: string = ''
 
-              <label><h5>Enter Name of AC</h5></label>
-                <input class="form-control" style="margin: 10px; width: 90%;" type="text" placeholder="Enter the name of the AC" id="enterProductName" formControlName="productName"
-                 [ngClass]="{'is-invalid': productdetails.controls['productName'].touched && (productdetails.hasError('required','productName')||productdetails.hasError('pattern','productName'))}" 
-                 [ngClass]="{'is-valid': productdetails.controls['productName'].touched &&productdetails.controls['productModelNo'].valid }">
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['productName'].touched && productdetails.hasError('required','productName')">Product name is required</small>
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['productName'].touched && productdetails.hasError('pattern','productName')">Invalid Product Name</small>
-          
-              <br><label><h5>Enter the Model number of AC</h5></label>
-                <input type="text"  class="form-control" style="margin: 10px; width: 90%;" placeholder="Enter the Model number of the AC" id="enterModelNo" formControlName="productModelNo"
-                [ngClass]="{'is-invalid': productdetails.controls['productModelNo'].touched && (productdetails.hasError('required','productModelNo')||productdetails.hasError('pattern','productModelNo'))}"
-                [ngClass]="{'is-valid': productdetails.controls['productModelNo'].touched &&productdetails.controls['productModelNo'].valid }">
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['productModelNo'].touched && productdetails.hasError('pattern','productModelNo')">Invalid Model Number</small>
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['productModelNo'].touched && productdetails.hasError('required','productModelNo')">Model Number is required</small>
+  servicecenterid = localStorage.getItem("serviceCenterID") || ""
 
-              <br><label> <h5>Enter Date of Purchase of AC</h5> </label>
-                <input type="date"  class="form-control" style="margin: 10px; width: 90%;" placeholder="Enter the Date of Purchase" id="enterDateOfPurchase" formControlName="dateOfPurchase" (change)="onDateSelected()" [max]="tdy"
-                [ngClass]="{'is-invalid': productdetails.controls['dateOfPurchase'].touched && productdetails.hasError('required','dateOfPurchase')}"
-                [ngClass]="{'is-valid': productdetails.controls['dateOfPurchase'].touched &&productdetails.controls['dateOfPurchase'].valid }">
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['dateOfPurchase'].touched && productdetails.hasError('required','dateOfPurchase')">Product Date Of Purchase is required</small>
-              
-              <br><label> <h5>Enter the Contact Number:</h5> </label>
-                <input type="tel" class="form-control" style="margin: 10px; width: 90%;" placeholder="Enter the Contact Number" id="enterContactNumber" formControlName="contactNumber"
-                [ngClass]="{'is-invalid': productdetails.controls['contactNumber'].touched && (productdetails.hasError('required','contactNumber')||productdetails.hasError('pattern','contactNumber'))}"
-                [ngClass]="{'is-valid': productdetails.controls['contactNumber'].touched &&productdetails.controls['contactNumber'].valid }">
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['contactNumber'].touched && productdetails.hasError('required','contactNumber')">Contact Number is required</small>
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['contactNumber'].touched && productdetails.hasError('pattern','contactNumber')">Invalid  Contact Number (10 digits only)</small>
-              
-              <br><label><h5>Enter Problem Description of AC:</h5> </label>
-              <textarea class="form-control" style="margin: 10px; width: 90%;" placeholder="Enter Problem of the AC" id="enterProblem" formControlName="problemDescription"
-              [ngClass]="{'is-invalid': productdetails.controls['problemDescription'].touched && (productdetails.hasError('required','problemDescription')||productdetails.hasError('pattern','problemDescription'))}"
-              [ngClass]="{'is-valid': productdetails.controls['problemDescription'].touched &&productdetails.controls['problemDescription'].valid }"></textarea>
-              <span class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['problemDescription'].touched && productdetails.hasError('required','problemDescription')">Problem Description is required</span>
-              <span class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['problemDescription'].touched && productdetails.hasError('pattern','problemDescription')">Only Alphabets allowed</span>
+  constructor(
+    private fb: FormBuilder,
+    private appointment: AppointmentService,
+    private service: ServicecenterService,
+  ) {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    this.tdy = `${year}-${month}-${day}`;
+  }
+
+  ngOnInit(): void {
+    this.productdetails = this.fb.group({
+      productName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s.,#\\-]+$')]],
+      productModelNo: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s\\/\\-]+$')]],
+      dateOfPurchase: ['', Validators.required],
+      contactNumber: ['', [Validators.required, Validators.pattern(/^(?!([0-9])\1{9}$)\d{10}$/)]],
+      problemDescription: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9,.\\s\\/]+$')]],
+      time: ['', Validators.required],
+      date: ['', Validators.required],
+      UserEmailId: [localStorage.getItem('Email')],
+      ServiceCenterId: [localStorage.getItem('serviceCenterID')]
+    });
+    this.getservicecenter()
+    this.getAverageRating()
+    this.generateAvailableSlots();
+    this.appointment.getExistingAppointments().subscribe(existingAppointments => {
+      this.existingAppointments = existingAppointments;
+      this.availableSlots.forEach(slot => {
+        slot.times.forEach((timeSlot: { time: string; isBooked: boolean; }) => {
+          const isBooked = existingAppointments.some(appointment => appointment.serviceCenterId.toString() === this.servicecenterid.toString() &&
+            appointment.date === slot.date && appointment.time === timeSlot.time
+          );
+          timeSlot.isBooked = isBooked;
+        });
+      });
+    });
 
 
-              <br><label> <h5>Book the Slots</h5> </label>
-              <div class="slots">
-                <select id="selectDate"class="form-control" style="margin: 10px; width: 90%;" formControlName="date" placeholder="Choose the DATE"
-                [ngClass]="{'is-valid': productdetails.controls['date'].touched &&productdetails.controls['date'].valid }"
-                [ngClass]="{'is-invalid': productdetails.controls['date'].touched && (productdetails.hasError('required','date')||productdetails.hasError('pattern','date'))}">
-                  <option value="" disabled selected>Select a date</option>
-                  <ng-container *ngFor="let slot of availableSlots">
-                    <option [value]="slot.date">{{ slot.date }}</option>
-                  </ng-container>
-                </select>
-                <small class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['date'].touched && productdetails.hasError('required', 'date')"> Date is required</small>
+  }
+  // GET THE SERVICE CENTER
+  getservicecenter() {
+    this.service.getimage(this.servicecenterid).subscribe(res => {
+      this.serviceimage = res.serviceCenterImageUrl
+      this.serviceName = res.serviceCenterName
+      this.servicemailid = res.serviceCenteramailId
+      this.servicePhone = res.serviceCenterPhone
+      this.servicecenterdescription = res.serviceCenterDescription
+    })
+  }
 
-                <select id="selectTime" class="form-control" style="margin: 10px; width: 90%;" formControlName="time" placeholder="Choose the time slot"
-                [ngClass]="{'is-valid': productdetails.controls['time'].touched &&productdetails.controls['time'].valid }"
-                [ngClass]="{'is-invalid': productdetails.controls['time'].touched && (productdetails.hasError('required','time')||productdetails.hasError('pattern','time'))}">
-                  <option value="" disabled selected>Select a time</option>
-                  <ng-container *ngFor="let slot of availableSlots">
-                    <ng-container *ngIf="slot.date === productdetails.value.date">
-                      <option *ngFor="let timeSlot of slot.times" [value]="timeSlot.time"
-                        [disabled]="timeSlot.isBooked">
-                        {{ timeSlot.time }}
-                      </option>
-                    </ng-container>
-                  </ng-container>
-                </select>
-                <p class="text-danger" style="margin: 10px;"*ngIf="productdetails.controls['time'].touched && productdetails.controls['time'].hasError('required')">  Time is required </p>
-              </div>
-              <button class="btn btn-primary" style="margin-left: 5%;margin-bottom: 5%; width: 90%;" (click)="onbook();showFieldErrors()" type="submit" id="bookButton">
-                <span *ngIf="book === 'book'">BOOK APPOINTMENT</span>
-                <span *ngIf="book !== 'book'">
-                  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                </span>
-              </button>
-            </form>
-          </div>
-        </div>
-</body>
+// TO GENERATE THE SLOTS AND CHECK THA AVAILABILITY
+  generateAvailableSlots() {
+    const days = 5; 
+    const timeSlots = [
+      { time: '08:00 AM - 10:00 AM', isBooked: false },
+      { time: '11:00 AM - 01:00 PM', isBooked: false },
+      { time: '02:00 PM - 04:00 PM', isBooked: false },
+      { time: '05:00 PM - 07:00 PM', isBooked: false }
+    ];
+
+    const today = new Date();
+    this.availableSlots = []; 
+    let isAllSlotsBooked = true;
+    for (let i = 1; i < days + 1; i++) {
+      const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      const dateString = `${day}-${month}-${year}`;
+
+      const slot = {
+        date: dateString,
+        times: timeSlots.map(time => ({ time: time.time, isBooked: time.isBooked }))
+      };
+
+      // Check if any slot is available for the current day
+      const isAnySlotAvailable = timeSlots.some(timeSlot =>
+        !this.existingAppointments.some(appointment =>
+          appointment.serviceCenterId === this.servicecenterid &&
+          appointment.date === dateString &&
+          appointment.time === timeSlot.time
+        )
+      );
+
+      // If any slot is available, mark isAllSlotsBooked as false
+      if (isAnySlotAvailable) {
+        isAllSlotsBooked = false;
+      }
+
+      this.availableSlots.push(slot);
+    }
+
+    return this.availableSlots;
+  }
+  onDateSelected() {
+    const sd = this.productdetails.get('dateOfPurchase')?.value
+  }
+
+// GET THE REVIEWS
+  getAverageRating(){
+    this.appointment.getreview(this.servicecenterid).subscribe(res=>{
+      const roundedRating = Math.round(res);
+      if (roundedRating>0)
+      this.rating='⭐'.repeat(roundedRating);
+      else
+      this.rating='⭐'
+    })
+  }
+
+// POST THE BOOKINGS
+  onbook() {
+    this.book='loading'
+    if (this.productdetails.valid) {
+      this.appointment.bookappointment(this.productdetails.value).subscribe(response => {
+        this.successmessage = "Appointment Booked"
+        setTimeout(() => {
+          this.successmessage = "";
+        }, 5000);
+        this.productdetails.reset()
+        this.book='book'
+      });
+    }
+    else {
+      if (this.productdetails.pristine) {
+        this.errormessage = "Enter your AC Details"
+        setTimeout(() => {
+          this.errormessage = "";
+        }, 5000);
+        this.productdetails.markAllAsTouched;
+        this.book='book'
+      }
+      else {
+        ValidateForm.validateAllFormFileds(this.productdetails);
+
+        this.errormessage = "Enter Valid AC Details"
+        setTimeout(() => {
+          this.errormessage = "";
+        }, 5000);
+        this.productdetails.markAllAsTouched;
+        this.book='book'
+      }
+    }
+  }
+  // CHECK THE INVALID FIELD
+  showFieldErrors() {
+    Object.keys(this.productdetails.controls).forEach((key) => {
+      this.productdetails.get(key)?.markAsTouched();
+    });
+  }
+
+}
