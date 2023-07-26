@@ -1,26 +1,25 @@
+using Microsoft.AspNetCore.Mvc;
+using dotnetapp.DataDbContext;
+using dotnetapp.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using acservice.Database;
-using acservice.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 
-namespace acservice.Controllers
-{ 
+
+
+namespace dotnetapp.Controllers
+{
     [ApiController]
-
-
     public class AuthController : ControllerBase
     {
-        private readonly AC_ServerDbContext _context;
-        public AuthController(AC_ServerDbContext ac_serverDbContext)
-        {
-            _context = ac_serverDbContext;
+        private readonly AcServiceDbContext _context;
 
+        public AuthController(AcServiceDbContext ac_DbContext)
+        {
+            _context = ac_DbContext;
         }
 
 
@@ -31,12 +30,14 @@ namespace acservice.Controllers
             {
                 return BadRequest();
             }
-            var admin = await _context.Users.FirstOrDefaultAsync(x => x.email == adminobj.email && x.password == adminobj.password);
+            var admin = await _context.Admins.FirstOrDefaultAsync(x => x.Email == adminobj.Email && x.Password == adminobj.Password);
             if (admin == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            return Ok(new { Message="Login success" });
+           
+
+            return Created("", true);
         }
 
 
@@ -47,12 +48,14 @@ namespace acservice.Controllers
             {
                 return BadRequest();
             }
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.email == userobj.email && x.password == userobj.password);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == userobj.Email && x.Password == userobj.Password);
             if (user == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
-            return Ok(new { Message = "Login success" });
+           
+
+            return Created("", true);
         }
 
 
@@ -64,23 +67,36 @@ namespace acservice.Controllers
             {
                 return BadRequest();
             }
+            if(userobj.UserRole != "demo"){
+                var email = await _context.Admins.FirstOrDefaultAsync(x => x.Email == userobj.Email);
+            if (email != null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Admin already exists"
+                });
+            }
+            }
+            
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
+            
             var admin = new AdminModel
                 {
-                    email = userobj.email,
-                    password = userobj.password,
-                    mobileNumber = userobj.mobileNumber,
-                    userRole = userobj.userRole
+                    Email = userobj.Email,
+                    Password = userobj.Password,
+                    MobileNumber = userobj.MobileNumber,
+                    UserRole = userobj.UserRole
                 };
                 await _context.Admins.AddAsync(admin);
                 await _context.SaveChangesAsync();
-            return Ok(new
-            {
-                Message = "Admin added"
-            });
+            
+
+            
+
+            return Created("", true);
         }
-        
+
         [HttpPost("user/signup")]
         public async Task<IActionResult> saveUser([FromBody] UserModel userobj)
         {
@@ -88,19 +104,30 @@ namespace acservice.Controllers
             {
                 return BadRequest();
             }
+
+            if(userobj.UserRole != "demo"){
+                 var email = await _context.LoginModels.FirstOrDefaultAsync(x => x.Email == userobj.Email);
+            if (email != null)
+            {
+                return BadRequest(new
+                {
+                    Message = "User already exists"
+                });
+            }
+            }
+           
             await _context.Users.AddAsync(userobj);
             await _context.SaveChangesAsync();
             var loginObj = new LoginModel
             {
-                email = userobj.email,
-                password = userobj.password
+                Email = userobj.Email,
+                Password = userobj.Password
             };
             await _context.LoginModels.AddAsync(loginObj);
             await _context.SaveChangesAsync();
-            return Ok(new
-            {
-                Message = "User added"
-            });
+            
+
+            return Created("", true);
         }
     }
 }

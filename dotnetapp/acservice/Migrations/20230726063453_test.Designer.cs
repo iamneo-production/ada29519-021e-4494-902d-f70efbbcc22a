@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using acservice.Database;
+using dotnetapp.DataDbContext;
 
 namespace acservice.Migrations
 {
-    [DbContext(typeof(AC_ServerDbContext))]
-    [Migration("20230630111447_InitialSetup")]
-    partial class InitialSetup
+    [DbContext(typeof(AcServiceDbContext))]
+    [Migration("20230726063453_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,23 +20,23 @@ namespace acservice.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("acservice.Models.AdminModel", b =>
+            modelBuilder.Entity("dotnetapp.Models.AdminModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("mobileNumber")
+                    b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("userRole")
+                    b.Property<string>("UserRole")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -44,45 +44,54 @@ namespace acservice.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("acservice.Models.BillModel", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("billpdf")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Bills");
-                });
-
-            modelBuilder.Entity("acservice.Models.LoginModel", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("LoginModels");
-                });
-
-            modelBuilder.Entity("acservice.Models.ProductModel", b =>
+            modelBuilder.Entity("dotnetapp.Models.BillModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("Billpdf")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserEmailId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bills");
+                });
+
+            modelBuilder.Entity("dotnetapp.Models.LoginModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LoginModels");
+                });
+
+            modelBuilder.Entity("dotnetapp.Models.ProductModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("ServiceCenterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmailId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("contactNumber")
                         .HasColumnType("nvarchar(max)");
@@ -91,9 +100,6 @@ namespace acservice.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("dateOfPurchase")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("maildid")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("problemDescription")
@@ -105,12 +111,6 @@ namespace acservice.Migrations
                     b.Property<string>("productName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("servicecenter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("servicecentermailid")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("time")
                         .HasColumnType("nvarchar(max)");
 
@@ -119,20 +119,23 @@ namespace acservice.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("acservice.Models.ReviewModels", b =>
+            modelBuilder.Entity("dotnetapp.Models.ReviewModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("rating")
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<string>("review")
+                    b.Property<string>("Review")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("servicecentermailid")
+                    b.Property<int>("ServiceCenterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserEmailId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -140,10 +143,12 @@ namespace acservice.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("acservice.Models.ServiceCenterModel", b =>
+            modelBuilder.Entity("dotnetapp.Models.ServiceCenterModel", b =>
                 {
-                    b.Property<string>("serviceCenterID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("serviceCenterID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("serviceCenterAddress")
                         .HasColumnType("nvarchar(max)");
@@ -168,29 +173,26 @@ namespace acservice.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("acservice.Models.UserModel", b =>
+            modelBuilder.Entity("dotnetapp.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("confirmpassword")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("email")
+                    b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("mobileNumber")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
+                    b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("userName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userRole")
+                    b.Property<string>("UserRole")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

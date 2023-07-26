@@ -2,26 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Appointment } from '../helpers/appointment';
 import { Observable } from 'rxjs';
+import { Reviewresponse } from '../helpers/reviews';
+// import { Reviewresponse, Reviews } from '../helpers/review';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentService {
   getappointmentURL ="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointments"
-  bookappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
-  editappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
-  deleteappointmentURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
-  feedbackURl="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/review"
-  getfeedbackURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/getreview"
-  billURL="https://8080-fdaebccfffbabacbdeefceabbedabdfbab.project.examly.io/user/generatebill"
-  id=localStorage.getItem('email')
+  bookappointmentURL="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/appointment"
+  editappointmentURL="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/editappointment"
+  deleteappointmentURL="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/cancelappointment"
+  feedbackURl="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/review"
+  getfeedbackURL="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/getreview"
+  billURL="https://8080-fdaebccfffbabacbdeedecebedadbdbbef.project.examly.io/user/generatebill"
+  
 
   constructor(private http:HttpClient) { }
-  getappointment():Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.getappointmentURL+'/'+this.id)
+  getappointment(id:string):Observable<any>{
+    return this.http.get<any>(this.getappointmentURL+'/'+id)
   }
   getreview(mid: string):Observable<any>{
     return this.http.get<any>(`${this.getfeedbackURL}/${mid}`);
+  }
+  getreviews(mid: string):Observable<Reviewresponse[]>{
+    return this.http.get<Reviewresponse[]>(`${this.getfeedbackURL}s/${mid}`);
   }
   
   bookappointment(app:Appointment):Observable<Appointment>{
