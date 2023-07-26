@@ -55,7 +55,11 @@ namespace dotnetapp.Controllers
             }
            
 
-            return Created("", true);
+            return Created("", new
+            {
+                Message = "Login Success",
+                user.UserRole
+            });
         }
 
 

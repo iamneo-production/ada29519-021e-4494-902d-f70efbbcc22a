@@ -79,8 +79,16 @@ export class LoginComponent implements OnInit {
             setTimeout(() => {
               this.successmessage = '';
             }, 5000);
+            if(res.userRole==='user'){
               this.auth.setuser('user')
-              this.router.navigate(['user/homepage']);        
+              this.router.navigate(['user/homepage']); 
+            }
+            else
+            {
+              this.auth.setadmin('admin')
+              this.router.navigate(['admin/dashboard']); 
+            }
+                     
           },
           error: (err) => {
             this.loginButtonText = 'login';

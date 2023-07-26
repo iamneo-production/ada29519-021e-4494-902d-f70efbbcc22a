@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
@@ -51,7 +51,6 @@ export class SignupComponent implements OnInit {
       };
 
       if (usertype === 'admin') {
-        if(signupData.Password==='Admin@123'){
           this.auth.adminsignup(signupData)
           .subscribe({
             next: (res => {
@@ -67,16 +66,7 @@ export class SignupComponent implements OnInit {
                 this.errormessage = '';
               }, 5000);
             })
-          })
-        }
-        else{
-          this.signupButtonText = 'signup'
-              this.errormessage = "Invalid Detail For Admin"
-              setTimeout(() => {
-                this.errormessage = '';
-              }, 5000);
-        }
-        
+          })      
       }
       else {
         this.auth.usersignup(signupData)
