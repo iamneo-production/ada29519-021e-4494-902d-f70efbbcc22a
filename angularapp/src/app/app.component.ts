@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
   constructor(private router:Router){}
   ngOnInit(): void {
-    // this.router.navigate(['login']);
+    
   }
   title = 'AC_Service_UI';
 }

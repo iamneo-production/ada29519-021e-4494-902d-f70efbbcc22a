@@ -56,9 +56,8 @@ a:hover {
 }
 
 .dropdown-content img {
-        margin-top: 100px;
         display: block;
-        margin: 0 auto;
+        margin: 100px auto;
     border-radius: 50%;
 }
 
