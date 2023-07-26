@@ -6,9 +6,6 @@ import {HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  // private AuthURL:string="https://localhost:7052/api/Auth/";
-  private addserviceCenterURL:string="https://8080-cedfeaebafbbabccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/addServiceCenter";
-  private AddBookingURL:string="https://8080-cedfeaebafbbabccfffbabacbdeefceabbedabdfbab.project.examly.io/api/Appointment/appointment_booking";
   private adminloginurl:string="https://8080-cedfeaebafbbabccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/login"
   private adminsignupurl:string="https://8080-cedfeaebafbbabccfffbabacbdeefceabbedabdfbab.project.examly.io/admin/signup"
   private userloginurl:string="https://8080-cedfeaebafbbabccfffbabacbdeefceabbedabdfbab.project.examly.io/user/login"
@@ -29,15 +26,23 @@ export class AuthService {
   userlogin(loginobj:any ){
        return this.http.post<any>(`${this.userloginurl}`,loginobj)
   }
-  addCenterDB(centerobj:any){
-    return this.http.post<any>(`${this.addserviceCenterURL}`,centerobj)
-  }
-  // editCenterDB(centerobj:any){
-  //   return this.http.post<any>(`${this.AddCenterURL}`,centerobj)
+  // addCenterDB(centerobj:any){
+  //   return this.http.post<any>(`${this.addserviceCenterURL}`,centerobj)
   // }
-  onBookDB(centerobj:any){
-    console.log(centerobj)
-    return this.http.post<any>(`${this.AddBookingURL}`,centerobj)
+  // onBookDB(centerobj:any){
+  //   console.log(centerobj)
+  //   return this.http.post<any>(`${this.AddBookingURL}`,centerobj)
+  // }
+  setuser(user:string){
+    localStorage.setItem('user',user)
   }
-
+  setadmin(admin:string){
+    localStorage.setItem('admin',admin)
+  }
+  isuserloggedin():boolean{
+    return !!localStorage.getItem('user')
+  }
+  isadminloggedin():boolean{
+    return !!localStorage.getItem('admin')
+  }
 }
