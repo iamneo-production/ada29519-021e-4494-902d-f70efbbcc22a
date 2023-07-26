@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { HomepageComponent } from './component/user/homepage/homepage.component';
 // import { DashboardComponent } from './component/user/dashboard/dashboard.component';
 // import { AppointmentComponent } from './component/user/appointment/appointment.component';
-import { ShareService } from './services/share.service';
+//import { ShareService } from './services/share.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -46,7 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     // Ng2SearchPipeModule   
   ],
-  providers: [ShareService],
+  //providers: [ShareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
