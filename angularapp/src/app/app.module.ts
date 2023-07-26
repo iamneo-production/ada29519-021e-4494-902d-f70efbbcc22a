@@ -50,6 +50,7 @@ import { AdmindashboardComponent } from './component/admin/admindashboard/admind
 import { AppointmentComponent } from './component/user/appointment/appointment.component';
 import { DashboardComponent } from './component/user/dashboard/dashboard.component';
 import { HomepageComponent } from './component/user/homepage/homepage.component';
+import { CarouselComponent } from './component/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { HomepageComponent } from './component/user/homepage/homepage.component'
     AppointmentComponent,
     DashboardComponent,
     HomepageComponent,
+    CarouselComponent,
     // HelperComponent,
     // HelpersComponent,
     // ServicesComponent,
