@@ -6,8 +6,6 @@ import {HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private addserviceCenterURL:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/addServiceCenter";
-  private AddBookingURL:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/api/Appointment/appointment_booking";
   private adminloginurl:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/login"
   private adminsignupurl:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/signup"
   private userloginurl:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/login"
@@ -28,13 +26,8 @@ export class AuthService {
   userlogin(loginobj:any ){
        return this.http.post<any>(`${this.userloginurl}`,loginobj)
   }
-  addCenterDB(centerobj:any){
-    return this.http.post<any>(`${this.addserviceCenterURL}`,centerobj)
-  }
-  onBookDB(centerobj:any){
-    console.log(centerobj)
-    return this.http.post<any>(`${this.AddBookingURL}`,centerobj)
-  }
+
+  
   setuser(user:string){
     localStorage.setItem('user',user)
   }

@@ -7,13 +7,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicecenterService {
+  private addserviceCenterURL:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/addServiceCenter";
 
   constructor(private http:HttpClient ) { }
   editserviceCenterURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/editServiceCenter";
   deleteserviceCenterURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/deleteServiceCenter";
   getserviceCenterURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/getservicecenter"
   serviceCenterURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin"
-                        
+   
+  addCenterDB(centerobj:any){
+    return this.http.post<any>(`${this.addserviceCenterURL}`,centerobj)
+  }
   getService():Observable<serviceCenter[]>{
     return this.http.get<serviceCenter[]>(this.getserviceCenterURL)
 

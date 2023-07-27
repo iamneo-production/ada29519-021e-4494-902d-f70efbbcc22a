@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit{
     this.getaccount(this.email)
     
   }
-  // Get user detaila
+  // Get user details
   getaccount(email:string){
     this.acc.getAccount(email).subscribe(response => {
       this.userarr=response

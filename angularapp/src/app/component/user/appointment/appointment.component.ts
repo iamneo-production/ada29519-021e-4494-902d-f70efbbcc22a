@@ -231,7 +231,7 @@ export class AppointmentComponent implements OnInit {
       const blob: Blob = res.body as Blob;
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.download = pid;
+      a.download = `Cooling King Bill No:${pid}`;
       a.href = url;
       a.click();
       this.loadingStates[index] = "download"; 
