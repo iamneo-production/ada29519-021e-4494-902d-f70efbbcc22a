@@ -19,7 +19,10 @@
       <div class="alert" *ngIf="AppointmentArr.length===0">
         <h1>NO BOOKING</h1>
       </div>
-      <table class="table table-striped" *ngIf="AppointmentArr.length>0">
+      <div id="tableDescription" class="visually-hidden">
+        This table displays the list of appointments.
+      </div>
+      <table class="table table-striped" *ngIf="AppointmentArr.length>0" aria-describedby="tableDescription">
         <thead>
           <tr>
             <th>#</th>
@@ -178,7 +181,7 @@
           </div>
           <div class="modal-body">
             <h1>{{centerName}}</h1>
-            <img src="{{imageurl}}" width="450" height="350">
+            <img src="{{imageurl}}" width="450" height="350" alt="centernameimage">
             <br>
             <form [formGroup]="review">
               <textarea placeholder="Hey! How was the service..." id="Review" formControlName="review"></textarea>

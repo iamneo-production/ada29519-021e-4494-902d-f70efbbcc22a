@@ -1,9 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/helpers/account';
-
-import ValidateForm from 'src/app/helpers/validateForm';
 import { AccountService } from 'src/app/services/account.service';;
 
 @Component({
@@ -24,7 +22,7 @@ export class AdminComponent implements OnInit{
     this.getaccount(this.email)
     
   }
-  // Get user detaila
+  // Get user details
   getaccount(email:string){
     this.acc.getAccount(email).subscribe(response => {
       this.userarr=response

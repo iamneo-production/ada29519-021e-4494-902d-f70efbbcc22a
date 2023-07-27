@@ -2,19 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Appointment } from '../helpers/appointment';
 import { Observable } from 'rxjs';
-import { Reviewresponse, Reviews } from '../helpers/review';
+import { Reviewresponse } from '../helpers/review';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentService {
-  getappointmentURL ="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/appointments"
-  bookappointmentURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/appointment"
-  editappointmentURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/editappointment"
-  deleteappointmentURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/cancelappointment"
-  feedbackURl="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/review"
-  getfeedbackURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/getreview"
-  billURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/user/generatebill"
+  getappointmentURL ="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/appointments"
+  bookappointmentURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
+  editappointmentURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
+  deleteappointmentURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
+  feedbackURl="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/review"
+  getfeedbackURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/getreview"
+  billURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/generatebill"
   
 
   constructor(private http:HttpClient) { }

@@ -18,6 +18,7 @@
   flex: 0 0 100%;
   position: relative;
   transition: transform 0.5s ease-in-out;
+  animation: slide-in 1s ease-in-out forwards;
 }
 
 .carousel-item.active {
@@ -40,13 +41,6 @@
   font-weight: bold;
   
 
-}
-
-
-
-/* Animation and Transition Effects */
-.carousel-item {
-  animation: slide-in 1s ease-in-out forwards;
 }
 
 

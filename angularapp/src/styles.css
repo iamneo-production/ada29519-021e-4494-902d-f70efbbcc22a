@@ -24,7 +24,7 @@
 }
 
 .card p{
-  font-family: lato;
+  font-family: "Lato", Arial, sans-serif;
   margin:0px;
   color: black;
   font-weight: 400;
@@ -42,7 +42,7 @@
 }
 
 .card h3{
-  font-family: lato;
+  font-family: "Lato", Arial, sans-serif;
   margin:0px;
   color: black;
   font-weight: 400;
@@ -58,7 +58,7 @@
 }
 
 h1{
-  font-family: lato;
+  font-family: "Lato", Arial, sans-serif;
   color:black;
   font-weight: 400;
   font-size:35px;
@@ -154,7 +154,7 @@ h1{
   padding-bottom:10px;
   padding-left:20px;
   display:inline;
-  font-family: lato;
+  font-family: "Lato", Arial, sans-serif;
   color: white;
   font-size:18px;
   line-height:90%;

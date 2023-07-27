@@ -48,14 +48,23 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest();
             }
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == userobj.Email && x.Password == userobj.Password);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == userobj.Email);
             if (user == null)
             {
                 return NotFound(new { Message = "Account not found" });
             }
+            var pwd = await _context.Users.FirstOrDefaultAsync(x => x.Email == userobj.Email && x.Password == userobj.Password);
+            if (pwd == null)
+            {
+                return NotFound(new { Message = "Wrong Password" });
+            }
            
 
-            return Created("", true);
+            return Created("", new
+            {
+                Message = "Login Success",
+                user.UserRole
+            });
         }
 
 
@@ -73,7 +82,7 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest(new
                 {
-                    Message = "Admin already exists"
+                    Message = "Email already exists"
                 });
             }
             }
@@ -111,7 +120,7 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest(new
                 {
-                    Message = "User already exists"
+                    Message = "Email already exists"
                 });
             }
             }

@@ -89,7 +89,7 @@ export class AppointmentComponent implements OnInit {
   }
   // To avaid choosing future date
   onDateSelected() {
-    const sd = this.EditAppointment.get('dateOfPurchase')?.value
+     this.EditAppointment.get('dateOfPurchase')?.value
   }
   // operations to generate and check availability of slots
   generateAvailableSlots() {
@@ -231,7 +231,7 @@ export class AppointmentComponent implements OnInit {
       const blob: Blob = res.body as Blob;
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.download = pid;
+      a.download = `Cooling King Bill No:${pid}`;
       a.href = url;
       a.click();
       this.loadingStates[index] = "download"; 
