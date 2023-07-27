@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateForm';
 import { AuthService } from 'src/app/services/auth.service';
+import { ServicecenterService } from 'src/app/services/servicecenter.service';
 
 @Component({
   selector: 'app-add-service-center',
@@ -17,7 +18,7 @@ export class AddServiceCenterComponent implements OnInit {
   successmessage: string = ''
   errormessage: string = ''
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private addservice:ServicecenterService, private router: Router) {
 
   }
   ngOnInit(): void {
@@ -37,7 +38,7 @@ export class AddServiceCenterComponent implements OnInit {
   onadd() {
     if (this.addCenter.valid) {
       this.AddserviceButtonText = "loading..."
-      this.auth.addCenterDB(this.addCenter.value)
+      this.addservice.addCenterDB(this.addCenter.value)
         .subscribe({
           next: (res => {
             this.successmessage = res.message
