@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
     return this.availableSlots;
   }
   onDateSelected() {
-    const sd = this.productdetails.get('dateOfPurchase')?.value
+    this.productdetails.get('dateOfPurchase')?.value
   }
 
 // GET THE REVIEWS

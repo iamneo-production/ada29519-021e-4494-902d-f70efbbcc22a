@@ -10,6 +10,7 @@ export class ServicecenterService {
   private addserviceCenterURL:string="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/addServiceCenter";
 
   constructor(private http:HttpClient ) { }
+<<<<<<< HEAD
   editserviceCenterURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/editServiceCenter";
   deleteserviceCenterURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/deleteServiceCenter";
   getserviceCenterURL="https://8080-edbedcefdafadfffbabacbdeedecebedadbdbbef.project.examly.io/admin/getservicecenter"
@@ -18,6 +19,13 @@ export class ServicecenterService {
   addCenterDB(centerobj:any){
     return this.http.post<any>(`${this.addserviceCenterURL}`,centerobj)
   }
+=======
+  editserviceCenterURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/admin/editServiceCenter";
+  deleteserviceCenterURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/admin/deleteServiceCenter";
+  getserviceCenterURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/admin/getservicecenter"
+  serviceCenterURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/admin"
+                        
+>>>>>>> main
   getService():Observable<serviceCenter[]>{
     return this.http.get<serviceCenter[]>(this.getserviceCenterURL)
 

@@ -12,9 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 using dotnetapp.DataDbContext;
-using dotnetapp.Controllers;
 
 namespace dotnetapp
 {
@@ -30,20 +28,21 @@ namespace dotnetapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //string connectionString = Configuration.GetConnectionString("myconnstring");
-           // services.AddDbContext<ProductDBContext>(opt => opt.UseSqlServer(connectionString));
-           // services.AddScoped<IProductService, ProductService>();
+
+            services.AddControllers();
             services.AddCors(options =>
             {
                 options.AddPolicy("MyPolicy", x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
-            var connectionString = "User ID=sa;password=examlyMssql@123;server=localhost;Database=acserviceapi;trusted_connection=false; Persist Security Info=False;Encrypt=False";
-            services.AddDbContext<AcServiceDbContext>(options => options.UseSqlServer(connectionString));
 
-            services.AddControllers();
+            // Configure database
+            // var cs = Configuration.GetConnectionString("connectionString");
+            var connectionString = "User ID=sa;password=examlyMssql@123;server=localhost;Database=AC_SERVICE;trusted_connection=false; Persist Security Info=False;Encrypt=False";
+            
+            services.AddDbContext<AcServiceDbContext>(options => options.UseSqlServer(connectionString));
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnetapp", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "acservice", Version = "v1" });
             });
         }
 
@@ -54,11 +53,10 @@ namespace dotnetapp
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnetapp v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "acservice v1"));
             }
 
             app.UseCors("MyPolicy");
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
