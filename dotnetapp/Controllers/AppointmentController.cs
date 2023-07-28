@@ -249,7 +249,9 @@ namespace dotnetapp.Controllers
             htmlcontent += "</div>";
 
             PdfGenerator.AddPdfPages(doc, htmlcontent, PageSize.A4);
+            #nullable enable
             byte[]? response = null;
+
             using (MemoryStream ms = new MemoryStream())
             {
                 doc.Save(ms);

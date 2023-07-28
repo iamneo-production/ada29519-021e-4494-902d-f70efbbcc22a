@@ -7,9 +7,9 @@ import { Account } from '../helpers/account';
   providedIn: 'root'
 })
 export class AccountService {
-  getaccounturl="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/getaccount"
-  deleteaccounturl="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/deleteaccount"
-  editaccounturl="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/editaccount"
+  getaccounturl="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/getaccount"
+  deleteaccounturl="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/deleteaccount"
+  editaccounturl="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/editaccount"
   // eid=localStorage.getItem('email')
 
   constructor(private http:HttpClient) { }

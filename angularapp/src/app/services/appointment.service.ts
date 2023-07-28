@@ -8,13 +8,13 @@ import { Reviewresponse } from '../helpers/review';
   providedIn: 'root'
 })
 export class AppointmentService {
-  getappointmentURL ="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/appointments"
-  bookappointmentURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
-  editappointmentURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
-  deleteappointmentURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
-  feedbackURl="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/review"
-  getfeedbackURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/getreview"
-  billURL="https://8080-cabeefffffbabacbdeefceabbedabdfbab.project.examly.io/user/generatebill"
+  getappointmentURL ="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointments"
+  bookappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/appointment"
+  editappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/editappointment"
+  deleteappointmentURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/cancelappointment"
+  feedbackURl="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/review"
+  getfeedbackURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/getreview"
+  billURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/generatebill"
   
 
   constructor(private http:HttpClient) { }

@@ -149,7 +149,7 @@ namespace dotnetapp.Controllers
 
             return Ok(serviceCenter);
         }
-        [HttpGet("{id}")]
+        [HttpGet("image/{id}")]
         public async Task<IActionResult> GetServiceImage(int id)
         {
             var service = await _context.Services.FirstOrDefaultAsync(s => s.serviceCenterID == id);
