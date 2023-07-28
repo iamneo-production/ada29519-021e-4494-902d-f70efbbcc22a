@@ -6,11 +6,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AC_SERVICE_API.Models
 {
-    public class LoginModel
+    public class ReviewModel
     {
         [Key]
         public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Review { get; set; }
+        public int Rating { get; set; }
+        
+        public string UserEmailId { get; set; }
+
+        
+        public int ServiceCenterId { get; set; }
     }
 }

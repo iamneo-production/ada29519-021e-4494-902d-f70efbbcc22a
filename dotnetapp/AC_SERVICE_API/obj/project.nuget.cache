@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rcy9zz/Q7BGE+OeI99c/WLQPNzSronj13wBaw3SRyFsWDrgl7PcpLOBsblXJBW+x8/KJPNfSWnKL38SlSGGuiQ==",
+  "dgSpecHash": "kibzH2UfZ8UQRIaVk4A8E5S1nXuHKMY4Dd1ayra79NfZMJpgMSUQIYzOjF2MOBqkX0szfyZ+CFVsKoAj+XJ8NQ==",
   "success": true,
   "projectFilePath": "/home/coder/project/workspace/dotnetapp/AC_SERVICE_API/AC_SERVICE_API.csproj",
   "expectedPackageFiles": [
@@ -37,7 +37,12 @@
     "/home/coder/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/home/coder/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/pdfsharpcore/1.1.21/pdfsharpcore.1.1.21.nupkg.sha512",
+    "/home/coder/.nuget/packages/polybioz.htmlrenderer.pdfsharp.core/1.0.0/polybioz.htmlrenderer.pdfsharp.core.1.0.0.nupkg.sha512",
     "/home/coder/.nuget/packages/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.core/1.0.0-beta0008/sixlabors.core.1.0.0-beta0008.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.fonts/1.0.0-beta0009/sixlabors.fonts.1.0.0-beta0009.nupkg.sha512",
+    "/home/coder/.nuget/packages/sixlabors.imagesharp/1.0.0-beta0006/sixlabors.imagesharp.1.0.0-beta0006.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "/home/coder/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
@@ -78,6 +83,7 @@
     "/home/coder/.nuget/packages/system.resources.resourcemanager/4.3.0/system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "/home/coder/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
     "/home/coder/.nuget/packages/system.runtime.caching/4.7.0/system.runtime.caching.4.7.0.nupkg.sha512",
+    "/home/coder/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.1/system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
     "/home/coder/.nuget/packages/system.runtime.extensions/4.3.0/system.runtime.extensions.4.3.0.nupkg.sha512",
     "/home/coder/.nuget/packages/system.runtime.handles/4.3.0/system.runtime.handles.4.3.0.nupkg.sha512",
     "/home/coder/.nuget/packages/system.runtime.interopservices/4.3.0/system.runtime.interopservices.4.3.0.nupkg.sha512",
