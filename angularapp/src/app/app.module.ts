@@ -18,9 +18,8 @@ import { ShareService } from './services/share.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CarouselComponent } from './component/carousel/carousel.component';
 import { AdmindashboardComponent } from './component/admin/admindashboard/admindashboard.component';
-
-
 
 
 
@@ -42,6 +41,7 @@ import { AdmindashboardComponent } from './component/admin/admindashboard/admind
     DashboardComponent,
     AppointmentComponent,
     HomepageComponent,
+    CarouselComponent,
     AdmindashboardComponent
   ],
   imports: [
@@ -51,7 +51,7 @@ import { AdmindashboardComponent } from './component/admin/admindashboard/admind
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule 
   ],
   providers: [ShareService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Reviews } from 'src/app/helpers/reviews';
+import { Reviews } from 'src/app/helpers/review';
 import { serviceCenter } from 'src/app/helpers/serviceCenter';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ServicecenterService } from 'src/app/services/servicecenter.service';
@@ -11,6 +11,7 @@ import { ShareService } from 'src/app/services/share.service';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
+  // DECALRATIONS
   servicesarr: serviceCenter[] = [];
   reviewarr:Reviews[]=[]
   search:string=""
@@ -22,19 +23,19 @@ export class HomepageComponent implements OnInit {
     
     this.getservice();
   }
+  // GET ALL SERVICE CENTERS
   getservice() {
     this.services.getService().subscribe(Response => {
-      console.log(Response)
       this.servicesarr = Response;
       this.getAverageRatings();
     })
    
   }
   
-  
+  // FOR RATINGS
   getAverageRatings() {
     this.servicesarr.forEach(service => {
-      this.review.getreview(service.serviceCenteramailId).subscribe(res => {
+      this.review.getreview(service.serviceCenterID).subscribe(res => {
         this.ratingsMap[service.serviceCenteramailId] = res;
       });
     });
@@ -48,14 +49,8 @@ export class HomepageComponent implements OnInit {
   }
   
 
-  getServiceCenter(grid:string,serviceCenterName: string,serviceCenterPhone:string,serviceCenteramailId:string,serviceCenterImageUrl:string,serviceCenterDescription:string) {
-    localStorage.setItem("serviceCenterName",serviceCenterName)
-    localStorage.setItem("serviceCenterPhone",serviceCenterPhone)
-    localStorage.setItem("serviceCenteramailId",serviceCenteramailId)
-    localStorage.setItem("serviceCenterImageUrl",serviceCenterImageUrl)
-    localStorage.setItem("grid",grid)
-    localStorage.setItem("servicecenterdescription",serviceCenterDescription)
-
+  getServiceCenter(serviceCenterID:string) {
+    localStorage.setItem('serviceCenterID',serviceCenterID)
   }
 
 

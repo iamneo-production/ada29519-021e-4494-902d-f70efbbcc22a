@@ -13,7 +13,7 @@ export class AuthService {
   private adminsignupurl:string="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/admin/signup"
   private userloginurl:string="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/login"
   private usersignupurl:string="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/signup"
-                               
+           
   constructor(private http:HttpClient) { }
   adminsignup(adminobj:any){
     return this.http.post<any>(`${this.adminsignupurl}`,adminobj)
@@ -29,26 +29,18 @@ export class AuthService {
   userlogin(loginobj:any ){
        return this.http.post<any>(`${this.userloginurl}`,loginobj)
   }
-  addCenterDB(centerobj:any){
-    return this.http.post<any>(`${this.addserviceCenterURL}`,centerobj)
-  }
 
-  onBookDB(centerobj:any){
-    console.log(centerobj)
-    return this.http.post<any>(`${this.AddBookingURL}`,centerobj)
-  }
-  storeuser(user:string){
-    localStorage.setItem('isuser',user)
-  }
-  storeadmin(admin:string){
-    localStorage.setItem('isadmin',admin)
-  }
   
+  setuser(user:string){
+    localStorage.setItem('user',user)
+  }
+  setadmin(admin:string){
+    localStorage.setItem('admin',admin)
+  }
   isuserloggedin():boolean{
-    return !!localStorage.getItem('isuser')
+    return !!localStorage.getItem('user')
   }
   isadminloggedin():boolean{
-    return !!localStorage.getItem('isadmin')
+    return !!localStorage.getItem('admin')
   }
-
 }

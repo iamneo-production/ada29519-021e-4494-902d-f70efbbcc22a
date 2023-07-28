@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Appointment } from '../helpers/appointment';
 import { Observable } from 'rxjs';
+import { Reviewresponse } from '../helpers/review';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,17 @@ export class AppointmentService {
   feedbackURl="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/review"
   getfeedbackURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/getreview"
   billURL="https://8080-edbedcefdafadfffbabacbdeefceabbedabdfbab.project.examly.io/user/generatebill"
-  id=localStorage.getItem('email')
+  
 
   constructor(private http:HttpClient) { }
-  getappointment():Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.getappointmentURL+'/'+this.id)
+  getappointment(id:string):Observable<any>{
+    return this.http.get<any>(this.getappointmentURL+'/'+id)
   }
   getreview(mid: string):Observable<any>{
     return this.http.get<any>(`${this.getfeedbackURL}/${mid}`);
+  }
+  getreviews(mid: string):Observable<Reviewresponse[]>{
+    return this.http.get<Reviewresponse[]>(`${this.getfeedbackURL}s/${mid}`);
   }
   
   bookappointment(app:Appointment):Observable<Appointment>{
