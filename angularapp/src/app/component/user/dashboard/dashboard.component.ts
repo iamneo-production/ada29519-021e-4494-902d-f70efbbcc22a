@@ -12,9 +12,10 @@ import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  templateUrl: './component/user/dashboard/dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
 // DECALRATIONS
   book='book'
