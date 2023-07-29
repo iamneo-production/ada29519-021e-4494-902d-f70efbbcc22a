@@ -23,7 +23,7 @@ const routes: Routes = [
   //  { path: 'admin/addServiceCenter', component: AddServiceCenterComponent },
   //  { path: 'admin/editServiceCenter', component: EditServiceCenterComponent },
   //  { path: 'user/homepage', component: HomepageComponent },
-  //  { path: 'user/dashboard', component: DashboardComponent },
+      { path: 'user/dashboard', component: DashboardComponent },
   //  { path: 'user/appointment', component: AppointmentComponent },
 
   // { path: 'admin/dashboard', component: AdmindashboardComponent ,canActivate:[AdminGuard]},

@@ -44,20 +44,12 @@ import { DashboardComponent } from './component/user/dashboard/dashboard.compone
 //import { AppointmentComponent } from './component/user/appointment/appointment.component';
 import { ShareService } from './services/share.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminComponent } from './component/admin/admin.component';
+//import { AdminComponent } from './component/admin/admin.component';
 import { CarouselComponent } from './component/carousel/carousel.component';
 
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 // import { CarouselComponent } from './component/carousel/carousel.component';
 // import { AdmindashboardComponent } from './component/admin/admindashboard/admindashboard.component';
-
-
-
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -69,7 +61,6 @@ import { CarouselComponent } from './component/carousel/carousel.component';
     // EditServiceCenterComponent,
     UserComponent,
     DashboardComponent,
-    AdminComponent,
     CarouselComponent,
     //AppointmentComponent,
     //HomepageComponent,
