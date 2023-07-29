@@ -31,7 +31,7 @@ import { AdmindashboardComponent } from './component/admin/admindashboard/admind
     AdminComponent,
   
     EditServiceCenterComponent,
-    
+
     AdmindashboardComponent
   ],
   imports: [
@@ -41,7 +41,7 @@ import { AdmindashboardComponent } from './component/admin/admindashboard/admind
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    Ng2SearchPipeModule 
+    //Ng2SearchPipeModule 
   ],
   providers: [ShareService],
   bootstrap: [AppComponent]
